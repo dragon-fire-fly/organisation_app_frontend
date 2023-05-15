@@ -1,4 +1,4 @@
-import "./App.css";
+import styles from "./App.module.css";
 import "./api/axiosDefaults";
 import axios from "axios";
 import GoogleCalendarAPI from "./components/GoogleCalendarAPI";
@@ -8,7 +8,7 @@ import NavBar from "./components/NavBar";
 
 function App() {
   return (
-    <div className="App">
+    <div className={styles.App}>
       <NavBar />
       {/* <GoogleCalendarAPI /> */}
       {/* <DemoApp /> */}
