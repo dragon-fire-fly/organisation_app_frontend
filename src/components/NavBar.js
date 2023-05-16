@@ -25,6 +25,7 @@ const NavBar = () => {
       console.log(err);
     }
   };
+
   const addPostIcon = (
     <NavLink
       className={styles.NavLink}
@@ -79,6 +80,7 @@ const NavBar = () => {
       </NavLink>
     </>
   );
+
   return (
     <Navbar
       expanded={expanded}
@@ -108,6 +110,7 @@ const NavBar = () => {
             >
               <i className="fas fa-home"></i>Home
             </NavLink>
+
             {currentUser ? loggedInIcons : loggedOutIcons}
           </Nav>
         </Navbar.Collapse>
@@ -115,4 +118,5 @@ const NavBar = () => {
     </Navbar>
   );
 };
+
 export default NavBar;
