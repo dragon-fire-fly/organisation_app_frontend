@@ -14,6 +14,9 @@ import ProfilePage from "./pages/profiles/ProfilePage";
 import UsernameForm from "./pages/profiles/UsernameForm";
 import UserPasswordForm from "./pages/profiles/UserPasswordForm";
 import ProfileEditForm from "./pages/profiles/ProfileEditForm";
+import EventsPage from "./pages/events/EventsPage";
+import { Calendar } from "@fullcalendar/core";
+import CalendarPage from "./pages/calendar/CalendarPage";
 
 function App() {
   const currentUser = useCurrentUser();
@@ -79,6 +82,14 @@ function App() {
             path="/profiles/:id/edit"
             render={() => <ProfileEditForm />}
           />
+          <Route
+            exact
+            path="/events"
+            render={() => (
+              <EventsPage message="No results found. Adjust the search keyword." />
+            )}
+          />
+          <Route exact path="/calendar" render={() => <CalendarPage />} />
           <Route render={() => <p>Page not found!</p>} />
         </Switch>
       </Container>
