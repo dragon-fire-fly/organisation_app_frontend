@@ -1,11 +1,15 @@
 import React, { useEffect, useState } from "react";
+
 import Col from "react-bootstrap/Col";
 import Row from "react-bootstrap/Row";
 import Container from "react-bootstrap/Container";
+
 import Asset from "../../components/Asset";
+
 import styles from "../../styles/ProfilePage.module.css";
 import appStyles from "../../App.module.css";
 import btnStyles from "../../styles/Button.module.css";
+
 import PopularProfiles from "./PopularProfiles";
 import { useCurrentUser } from "../../contexts/CurrentUserContext";
 import { useParams } from "react-router";
@@ -19,9 +23,12 @@ import InfiniteScroll from "react-infinite-scroll-component";
 import Post from "../posts/Post";
 import { fetchMoreData } from "../../utils/utils";
 import NoResults from "../../assets/no-results.png";
+import { ProfileEditDropdown } from "../../components/MoreDropdown";
+
 function ProfilePage() {
   const [hasLoaded, setHasLoaded] = useState(false);
   const [profilePosts, setProfilePosts] = useState({ results: [] });
+
   const currentUser = useCurrentUser();
   const { id } = useParams();
 
@@ -30,6 +37,7 @@ function ProfilePage() {
 
   const [profile] = pageProfile.results;
   const is_owner = currentUser?.username === profile?.owner;
+
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -50,8 +58,10 @@ function ProfilePage() {
     };
     fetchData();
   }, [id, setProfileData]);
+
   const mainProfile = (
     <>
+      {profile?.is_owner && <ProfileEditDropdown id={profile?.id} />}
       <Row noGutters className="px-3 text-center">
         <Col lg={3} className="text-lg-left">
           <Image
@@ -100,6 +110,7 @@ function ProfilePage() {
       </Row>
     </>
   );
+
   const mainProfilePosts = (
     <>
       <hr />
@@ -123,6 +134,7 @@ function ProfilePage() {
       )}
     </>
   );
+
   return (
     <Row>
       <Col className="py-2 p-0 p-lg-2" lg={8}>
@@ -144,4 +156,5 @@ function ProfilePage() {
     </Row>
   );
 }
+
 export default ProfilePage;
