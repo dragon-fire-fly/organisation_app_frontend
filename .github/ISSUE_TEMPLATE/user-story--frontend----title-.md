@@ -1,5 +1,5 @@
 ---
-name: 'USER STORY: <TITLE>'
+name: 'USER STORY (Frontend): <TITLE>'
 about: User Story Template
 title: 'USER STORY:'
 labels: User Story
@@ -8,6 +8,8 @@ assignees: dragon-fire-fly
 ---
 
 As a **role** I can **capability** so that **received benefit**
+
+Backend issue:
 
 #  Acceptance Criteria
 - acceptance criteria 1
