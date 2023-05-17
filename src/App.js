@@ -17,6 +17,7 @@ import ProfileEditForm from "./pages/profiles/ProfileEditForm";
 import EventsPage from "./pages/events/EventsPage";
 import { Calendar } from "@fullcalendar/core";
 import CalendarPage from "./pages/calendar/CalendarPage";
+import EventCreateForm from "./pages/events/EventCreateForm";
 
 function App() {
   const currentUser = useCurrentUser();
@@ -81,6 +82,11 @@ function App() {
             exact
             path="/profiles/:id/edit"
             render={() => <ProfileEditForm />}
+          />
+          <Route
+            exact
+            path="/events/create"
+            render={() => <EventCreateForm />}
           />
           <Route
             exact
