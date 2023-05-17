@@ -1,7 +1,7 @@
 ---
 name: 'USER STORY (Frontend): <TITLE>'
 about: User Story Template
-title: 'USER STORY:'
+title: 'USER STORY (Frontend): '
 labels: User Story
 assignees: dragon-fire-fly
 
