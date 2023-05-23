@@ -5,21 +5,37 @@ import timeGridPlugin from "@fullcalendar/timegrid";
 import listPlugin from "@fullcalendar/list";
 import multiMonthPlugin from "@fullcalendar/multimonth";
 import interactionPlugin from "@fullcalendar/interaction";
-import { Button, Modal, ModalBody, ModalFooter } from "react-bootstrap";
+import EventModal from "./EventModal";
 
 function EventCalendar(props) {
   const [show, setShow] = useState(false);
   const [header, setHeader] = useState("");
+  const [body, setBody] = useState("");
+  const [calendarEvents, setCalendarEvents] = useState({ events: [] });
 
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
 
   const handleDateClick = (arg) => {
     // bind with an arrow function
-    // alert(arg.dateStr);
-    console.log({ arg });
-    console.log(`you clicked on ${arg.dateStr}`);
-    setHeader("Add new Event");
+    // console.log(`you clicked on ${arg.dateStr}`);
+    setHeader(`Events for ${arg.dateStr}`);
+    let dayEvents = [];
+    for (let x in props.events) {
+      if (
+        arg.dateStr + 1 >= props.events[x].start &&
+        arg.dateStr <= props.events[x].end
+      ) {
+        // console.log(`${props.events[x].title} today!`);
+        const eventDetails = {};
+        eventDetails["title"] = props.events[x].title;
+        eventDetails["start"] = props.events[x].start;
+        eventDetails["end"] = props.events[x].end;
+        dayEvents.push(eventDetails);
+      }
+    }
+
+    setBody([dayEvents]);
     setShow(true);
   };
 
@@ -28,16 +44,24 @@ function EventCalendar(props) {
     setHeader(arg.event.title);
     setShow(true);
   };
+
+  const renderModalContent = () => {
+    let modalContent = "";
+    for (let x in calendarEvents) {
+      modalContent += calendarEvents["events"][x].title;
+    }
+    return modalContent;
+  };
+
   return (
     <>
-      <Modal show={show} onHide={handleClose}>
-        <Modal.Header>{header}</Modal.Header>
-        <ModalBody>Event details</ModalBody>
-        <ModalFooter>
-          <Button onClick={handleClose}>cancel</Button>
-          <Button>submit</Button>
-        </ModalFooter>
-      </Modal>
+      <EventModal
+        show={show}
+        setShow={setShow}
+        handleClose={handleClose}
+        header={header}
+        body={body}
+      />
 
       <FullCalendar
         plugins={[
