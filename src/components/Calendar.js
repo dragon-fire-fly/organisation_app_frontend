@@ -8,10 +8,11 @@ import interactionPlugin from "@fullcalendar/interaction";
 import EventModal from "./EventModal";
 
 function EventCalendar(props) {
+  const events = props.events;
   const [show, setShow] = useState(false);
   const [header, setHeader] = useState("");
   const [body, setBody] = useState("");
-  const [calendarEvents, setCalendarEvents] = useState({ events: [] });
+  // const [calendarEvents, setCalendarEvents] = useState({ events: [] });
 
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
@@ -34,23 +35,29 @@ function EventCalendar(props) {
         dayEvents.push(eventDetails);
       }
     }
-
     setBody([dayEvents]);
     setShow(true);
   };
 
   const handleEventClick = (arg) => {
-    console.log(arg.event.title);
     setHeader(arg.event.title);
-    setShow(true);
-  };
-
-  const renderModalContent = () => {
-    let modalContent = "";
-    for (let x in calendarEvents) {
-      modalContent += calendarEvents["events"][x].title;
+    console.log(arg.event.id);
+    let dayEvents = [];
+    for (let x in props.events) {
+      console.log(props.events[x].id);
+      if (arg.event.id == props.events[x].id) {
+        // console.log(`${props.events[x].title} today!`);
+        const eventDetails = {};
+        eventDetails["title"] = props.events[x].title;
+        eventDetails["start"] = props.events[x].start;
+        eventDetails["end"] = props.events[x].end;
+        console.log(eventDetails);
+        dayEvents.push(eventDetails);
+      }
     }
-    return modalContent;
+    setBody([dayEvents]);
+
+    setShow(true);
   };
 
   return (
