@@ -73,8 +73,8 @@ function EventCreateForm() {
     formData.append("image", imageInput.current.files[0]);
     formData.append("event_type", eventType);
     formData.append("location", location);
-    formData.append("start_at", startAt);
-    formData.append("end_at", endAt);
+    formData.append("start", startAt);
+    formData.append("end", endAt);
     // formData.append("allDay", allDay);
     formData.append("privacy", privacy);
     console.log(formData);
@@ -129,20 +129,20 @@ function EventCreateForm() {
           value={eventType}
           onChange={handleChange}
         >
-          <option value="0">Educational</option>
-          <option value="1">Cultural</option>
-          <option value="2">Recreational</option>
-          <option value="3">Fundraiser</option>
-          <option value="4">Private</option>
-          <option value="5">Work</option>
-          <option value="6">Exhibition</option>
-          <option value="7">Festival</option>
-          <option value="8">Concert</option>
-          <option value="9">Cinema</option>
-          <option value="10">Party</option>
-          <option value="11">Seminar</option>
-          <option value="12">Personal</option>
-          <option value="13">Other</option>
+          <option value="Educational">Educational</option>
+          <option value="Cultural">Cultural</option>
+          <option value="Recreational">Recreational</option>
+          <option value="Fundraiser">Fundraiser</option>
+          <option value="Private">Private</option>
+          <option value="Work">Work</option>
+          <option value="Exhibition">Exhibition</option>
+          <option value="Festival">Festival</option>
+          <option value="Concert">Concert</option>
+          <option value="Cinema">Cinema</option>
+          <option value="Party">Party</option>
+          <option value="Seminar">Seminar</option>
+          <option value="Personal">Personal</option>
+          <option value="Other">Other</option>
         </Form.Control>
       </Form.Group>
       {errors?.eventType?.map((message, idx) => (
