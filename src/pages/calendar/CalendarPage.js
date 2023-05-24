@@ -1,21 +1,23 @@
 import React, { useEffect, useState } from "react";
 import EventCalendar from "../../components/Calendar";
 import { axiosReq } from "../../api/axiosDefaults";
-import { useLocation } from "react-router-dom/cjs/react-router-dom.min";
+import { Container } from "react-bootstrap";
+import Asset from "../../components/Asset";
+import { PacmanLoader } from "react-spinners";
 
-function CalendarPage(filter = "") {
+function CalendarPage() {
   const [events, setEvents] = useState({ results: [] });
   const [hasLoaded, setHasLoaded] = useState(false);
-  const { pathname } = useLocation();
-  const [query, setQuery] = useState("");
+
+  const override: CSSProperties = {
+    display: "block",
+    margin: "0 auto",
+  };
 
   useEffect(() => {
     const fetchEvents = async () => {
       try {
-        const { data } = await axiosReq.get(
-          `/events/calendar`
-          // `/events/?${filter}search=${query}`
-        );
+        const { data } = await axiosReq.get(`/events`);
         setEvents(data);
         setHasLoaded(true);
       } catch (err) {
@@ -29,19 +31,21 @@ function CalendarPage(filter = "") {
     return () => {
       clearTimeout(timer);
     };
-  }, [filter, query, pathname]);
+  }, []);
 
-  console.log(events?.results);
-
-  const testEvents = [
-    {
-      title: "event 1",
-      start: "2023-05-01 17:00:00",
-      end: "2023-05-03 19:00:00",
-    },
-    { title: "event 2", date: "2023-05-18" },
-  ];
-  return <EventCalendar events={events?.results} />;
+  return (
+    <>
+      <Container>
+        {hasLoaded ? <p></p> : <p>Your events are loading...</p>}
+        <PacmanLoader
+          color="blue"
+          loading={!hasLoaded}
+          cssOverride={override}
+        />
+      </Container>
+      <EventCalendar events={events.results} />
+    </>
+  );
 }
 
 export default CalendarPage;
