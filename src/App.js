@@ -18,6 +18,8 @@ import EventsPage from "./pages/events/EventsPage";
 import { Calendar } from "@fullcalendar/core";
 import CalendarPage from "./pages/calendar/CalendarPage";
 import EventCreateForm from "./pages/events/EventCreateForm";
+import EventPage from "./pages/events/EventPage";
+import EventEditForm from "./pages/events/EventEditForm";
 
 function App() {
   const currentUser = useCurrentUser();
@@ -94,6 +96,12 @@ function App() {
             render={() => (
               <EventsPage message="No results found. Adjust the search keyword." />
             )}
+          />
+          <Route exact path="/events/:id" render={() => <EventPage />} />
+          <Route
+            exact
+            path="/events/:id/edit"
+            render={() => <EventEditForm />}
           />
           <Route exact path="/calendar" render={() => <CalendarPage />} />
           <Route render={() => <p>Page not found!</p>} />
