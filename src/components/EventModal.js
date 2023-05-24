@@ -1,14 +1,29 @@
 import React, { useEffect, useState } from "react";
 import { Button, Modal } from "react-bootstrap";
-import { Link } from "react-router-dom/cjs/react-router-dom.min";
+import { Link, useHistory } from "react-router-dom/cjs/react-router-dom.min";
 
 const EventModal = (props) => {
   // console.log(props);
   const { show, setShow, handleClose, header, body, specificEvent } = props;
+  const [eventId, setEventId] = useState("");
+  let eventLink = `/events/${eventId}`;
+
+  useEffect(() => {
+    const fetchEvent = () => {
+      try {
+        setEventId(body[0][0].id);
+      } catch (err) {
+        console.log(err);
+      }
+    };
+    fetchEvent();
+  }, [body]);
+  const history = useHistory();
 
   console.log(specificEvent);
 
-  const addEventRedirect = () => console.log("button pressed");
+  const addEventRedirect = () => history.push("/events/create");
+  const viewEventRedirect = () => history.push(`/events/${eventId}`);
 
   return (
     // <Modal show={show} onHide={() => setShow(false)}>
@@ -44,7 +59,7 @@ const EventModal = (props) => {
         <Button onClick={handleClose}>cancel</Button>
 
         {specificEvent ? (
-          <Button>view event</Button>
+          <Button onClick={viewEventRedirect}>view event</Button>
         ) : (
           <Button onClick={addEventRedirect}>add event</Button>
         )}
