@@ -15,8 +15,10 @@ import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
 import { Alert, Image } from "react-bootstrap";
 import { axiosReq } from "../../api/axiosDefaults";
 import Asset from "../../components/Asset";
+import { useRedirect } from "../../hooks/useRedirect";
 
 function EventCreateForm() {
+  useRedirect("loggedOut");
   const [errors, setErrors] = useState({});
 
   const [postData, setPostData] = useState({
@@ -50,7 +52,6 @@ function EventCreateForm() {
       ...postData,
       [event.target.name]: event.target.value,
     });
-    console.log(event.target.value);
   };
 
   const handleChangeImage = (event) => {
@@ -66,7 +67,6 @@ function EventCreateForm() {
   const handleSubmit = async (event) => {
     event.preventDefault();
     const formData = new FormData();
-    console.log(formData);
 
     formData.append("title", title);
     formData.append("content", content);
@@ -77,7 +77,6 @@ function EventCreateForm() {
     formData.append("end", endAt);
     // formData.append("allDay", allDay);
     formData.append("privacy", privacy);
-    console.log(formData);
     try {
       const { data } = await axiosReq.post("/events/", formData);
       history.push(`/events/${data.id}`);
