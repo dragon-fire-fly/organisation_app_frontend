@@ -12,6 +12,7 @@ function EventCalendar(props) {
   const [show, setShow] = useState(false);
   const [header, setHeader] = useState("");
   const [body, setBody] = useState("");
+  const [specificEvent, setSpecificEvent] = useState(false);
   // const [calendarEvents, setCalendarEvents] = useState({ events: [] });
 
   const handleClose = () => setShow(false);
@@ -21,6 +22,7 @@ function EventCalendar(props) {
     // bind with an arrow function
     // console.log(`you clicked on ${arg.dateStr}`);
     setHeader(`Events for ${arg.dateStr}`);
+    setSpecificEvent(false);
     let dayEvents = [];
     for (let x in props.events) {
       if (
@@ -29,6 +31,7 @@ function EventCalendar(props) {
       ) {
         // console.log(`${props.events[x].title} today!`);
         const eventDetails = {};
+        eventDetails["id"] = props.events[x].id;
         eventDetails["title"] = props.events[x].title;
         eventDetails["start"] = props.events[x].start;
         eventDetails["end"] = props.events[x].end;
@@ -44,10 +47,10 @@ function EventCalendar(props) {
     console.log(arg.event.id);
     let dayEvents = [];
     for (let x in props.events) {
-      console.log(props.events[x].id);
       if (arg.event.id == props.events[x].id) {
         // console.log(`${props.events[x].title} today!`);
         const eventDetails = {};
+        eventDetails["id"] = props.events[x].id;
         eventDetails["title"] = props.events[x].title;
         eventDetails["start"] = props.events[x].start;
         eventDetails["end"] = props.events[x].end;
@@ -56,8 +59,11 @@ function EventCalendar(props) {
       }
     }
     setBody([dayEvents]);
-
+    setSpecificEvent(true);
     setShow(true);
+    return () => {
+      setSpecificEvent(false);
+    };
   };
 
   return (
@@ -68,6 +74,7 @@ function EventCalendar(props) {
         handleClose={handleClose}
         header={header}
         body={body}
+        specificEvent={specificEvent}
       />
 
       <FullCalendar
