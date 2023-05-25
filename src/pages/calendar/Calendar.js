@@ -5,7 +5,7 @@ import timeGridPlugin from "@fullcalendar/timegrid";
 import listPlugin from "@fullcalendar/list";
 import multiMonthPlugin from "@fullcalendar/multimonth";
 import interactionPlugin from "@fullcalendar/interaction";
-import EventModal from "./EventModal";
+import EventModal from "../../components/EventModal";
 
 function EventCalendar(props) {
   const events = props.events;
