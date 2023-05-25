@@ -1,0 +1,24 @@
+.Event {
+    background-color: #ffffff;
+    border: 1px solid #dadadf;
+    border-radius: 2px;
+    margin-bottom: 16px;
+    text-align: center;
+  }
+
+  .Event figure,
+  h5 {
+    margin: 0 0;
+  }
+
+  .Eyes {
+    color: #2142b2;
+  }
+
+  .Eyes:hover {
+    color: #2142b2;
+  }
+
+  /* .EyesOutline:hover {
+    color: #167b25;
+  } */

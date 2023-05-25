@@ -1,7 +1,8 @@
 import React from "react";
+import styles from "../../styles/Event.module.css";
 import { Link, useHistory } from "react-router-dom/cjs/react-router-dom.min";
 import { useCurrentUser } from "../../contexts/CurrentUserContext";
-import { Card, Media } from "react-bootstrap";
+import { Card, Media, OverlayTrigger, Tooltip } from "react-bootstrap";
 import Avatar from "../../components/Avatar";
 import { axiosRes } from "../../api/axiosDefaults";
 import { MoreDropdown } from "../../components/MoreDropdown";
@@ -21,7 +22,11 @@ const Event = (props) => {
     end_at,
     // all_day,
     privacy,
+    memories_count,
+    watches_count,
+    watch_id,
     eventPage,
+    setEvents,
   } = props;
 
   const currentUser = useCurrentUser();
@@ -37,6 +42,46 @@ const Event = (props) => {
     try {
       await axiosRes.delete(`/events/${id}/`);
       history.goBack();
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
+  const handleWatch = async () => {
+    try {
+      const { data } = await axiosRes.post("/watches/", { event: id });
+      setEvents((prevEvents) => ({
+        ...prevEvents,
+        results: prevEvents.results.map((event) => {
+          return event.id === id
+            ? {
+                ...event,
+                watches_count: event.watches_count + 1,
+                watch_id: data.id,
+              }
+            : event;
+        }),
+      }));
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
+  const handleUnwatch = async () => {
+    try {
+      await axiosRes.delete(`/watches/${watch_id}/`);
+      setEvents((prevEvents) => ({
+        ...prevEvents,
+        results: prevEvents.results.map((event) => {
+          return event.id === id
+            ? {
+                ...event,
+                watches_count: event.watches_count - 1,
+                watch_id: null,
+              }
+            : event;
+        }),
+      }));
     } catch (err) {
       console.log(err);
     }
@@ -74,6 +119,37 @@ const Event = (props) => {
           </Card.Text>
         )}
         {location && <Card.Text>{location}</Card.Text>}
+
+        <div className={styles.EventBar}>
+          {is_owner ? (
+            <OverlayTrigger
+              placement="top"
+              overlay={<Tooltip>You can't watch your own Event!</Tooltip>}
+            >
+              <i class="fa-regular fa-eye" />
+            </OverlayTrigger>
+          ) : watch_id ? (
+            <span onClick={handleUnwatch}>
+              <i className={`fa-solid fa-eye ${styles.Eyes}`} />
+            </span>
+          ) : currentUser ? (
+            <span onClick={handleWatch}>
+              <i className={`fa-regular fa-eye ${styles.EyesOutline}`} />
+            </span>
+          ) : (
+            <OverlayTrigger
+              placement="top"
+              overlay={<Tooltip>Log in to watch events!</Tooltip>}
+            >
+              <i class="fa-regular fa-eye" />
+            </OverlayTrigger>
+          )}
+          {watches_count}
+          <Link to={`/events/${id}`}>
+            <i class="fa-solid fa-brain" />
+          </Link>
+          {memories_count}
+        </div>
       </Card.Body>
     </Card>
   );
