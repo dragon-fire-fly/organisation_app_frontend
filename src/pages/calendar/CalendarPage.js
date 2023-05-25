@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import EventCalendar from "../../components/Calendar";
+import EventCalendar from "./Calendar";
 import { axiosReq } from "../../api/axiosDefaults";
 import { Container } from "react-bootstrap";
 import Asset from "../../components/Asset";
