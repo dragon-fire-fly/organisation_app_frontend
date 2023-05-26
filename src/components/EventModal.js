@@ -40,12 +40,7 @@ const EventModal = (props) => {
         ) : body[0]?.length ? (
           body[0].map((event) => (
             <>
-              <Link
-                // to={{ pathname: "/events", state: { event } }}
-                key={event.title}
-              >
-                {event.title}
-              </Link>
+              <Link to={`/events/${eventId}`}>{event.title}</Link>
               <p key={event.id}>
                 from {event.start} 'til {event.end}
               </p>
