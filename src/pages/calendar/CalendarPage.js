@@ -2,12 +2,14 @@ import React, { useEffect, useState } from "react";
 import EventCalendar from "./Calendar";
 import { axiosReq } from "../../api/axiosDefaults";
 import { Container } from "react-bootstrap";
-import Asset from "../../components/Asset";
 import { PacmanLoader } from "react-spinners";
+import { useCurrentUser } from "../../contexts/CurrentUserContext";
 
 function CalendarPage() {
   const [events, setEvents] = useState({ results: [] });
   const [hasLoaded, setHasLoaded] = useState(false);
+
+  const currentUser = useCurrentUser();
 
   const override: CSSProperties = {
     display: "block",
@@ -17,7 +19,9 @@ function CalendarPage() {
   useEffect(() => {
     const fetchEvents = async () => {
       try {
-        const { data } = await axiosReq.get(`/events`);
+        const { data } = await axiosReq.get(
+          `/events/calendars/${currentUser.pk}/`
+        );
         setEvents(data);
         setHasLoaded(true);
       } catch (err) {
