@@ -87,6 +87,26 @@ const Event = (props) => {
     }
   };
 
+  const handleAddToCalendar = async () => {
+    try {
+      // retrieve the calendar, then add the event (appended to a list), THEN post
+
+      const { data } = await axiosRes.get(`/events/${id}/`);
+      data.calendars.push(currentUser.pk);
+
+      console.log(data.calendars);
+      await axiosRes.patch(`/events/${id}/`, {
+        calendars: data.calendars,
+      });
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
+  const handleRemoveFromCalendar = () => {
+    console.log("button pressed");
+  };
+
   return (
     <Card>
       <Card.Body>
@@ -126,7 +146,7 @@ const Event = (props) => {
               placement="top"
               overlay={<Tooltip>You can't watch your own Event!</Tooltip>}
             >
-              <i class="fa-regular fa-eye" />
+              <i className="fa-regular fa-eye" />
             </OverlayTrigger>
           ) : watch_id ? (
             <span onClick={handleUnwatch}>
@@ -141,14 +161,45 @@ const Event = (props) => {
               placement="top"
               overlay={<Tooltip>Log in to watch events!</Tooltip>}
             >
-              <i class="fa-regular fa-eye" />
+              <i className="fa-regular fa-eye" />
             </OverlayTrigger>
           )}
           {watches_count}
           <Link to={`/events/${id}`}>
-            <i class="fa-solid fa-brain" />
+            <i className="fa-solid fa-brain" />
           </Link>
           {memories_count}
+          {is_owner ? (
+            <OverlayTrigger
+              placement="top"
+              overlay={
+                <Tooltip>Your event is already in your calendar!</Tooltip>
+              }
+            >
+              <i className="fa-regular fa-calendar-check" />
+            </OverlayTrigger>
+          ) : // watch_id needs to be updated to in_calendar
+          watch_id ? (
+            <span onClick={handleAddToCalendar}>
+              <i className={`fa-solid fa-calendar-check ${styles.Eyes}`} />
+            </span>
+          ) : currentUser ? (
+            <span onClick={handleRemoveFromCalendar}>
+              <i
+                className={`fa-regular fa-calendar-check ${styles.EyesOutline}`}
+              />
+            </span>
+          ) : (
+            <OverlayTrigger
+              placement="top"
+              overlay={
+                <Tooltip>Log in to add events to your calendar!</Tooltip>
+              }
+            >
+              <i className="fa-regular fa-calendar-check" />
+            </OverlayTrigger>
+          )}
+          add to calendar
         </div>
       </Card.Body>
     </Card>
