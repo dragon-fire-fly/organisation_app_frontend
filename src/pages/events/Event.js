@@ -89,7 +89,7 @@ const Event = (props) => {
 
   const handleAddToCalendar = async () => {
     try {
-      // retrieve the calendar, then add the event (appended to a list), THEN post
+      // retrieve the calendar, then add the event (appended to a list), THEN patch
 
       const { data } = await axiosRes.get(`/events/${id}/`);
       data.calendars.push(currentUser.pk);
@@ -103,8 +103,20 @@ const Event = (props) => {
     }
   };
 
-  const handleRemoveFromCalendar = () => {
-    console.log("button pressed");
+  const handleRemoveFromCalendar = async () => {
+    try {
+      // retrieve the calendar, then remove the event, THEN patch
+
+      const { data } = await axiosRes.get(`/events/${id}/`);
+
+      const userIndex = data.calendars.indexOf(currentUser.pk);
+      data.calendars.splice(userIndex, 1);
+      await axiosRes.patch(`/events/${id}/`, {
+        calendars: data.calendars,
+      });
+    } catch (err) {
+      console.log(err);
+    }
   };
 
   return (
