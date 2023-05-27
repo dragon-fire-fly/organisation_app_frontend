@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import styles from "../../styles/Event.module.css";
 import { Link, useHistory } from "react-router-dom/cjs/react-router-dom.min";
 import { useCurrentUser } from "../../contexts/CurrentUserContext";
@@ -25,6 +25,7 @@ const Event = (props) => {
     memories_count,
     watches_count,
     watch_id,
+    calendars,
     eventPage,
     setEvents,
   } = props;
@@ -93,11 +94,21 @@ const Event = (props) => {
 
       const { data } = await axiosRes.get(`/events/${id}/`);
       data.calendars.push(currentUser.pk);
-
-      console.log(data.calendars);
       await axiosRes.patch(`/events/${id}/`, {
         calendars: data.calendars,
       });
+      setEvents((prevEvents) => ({
+        ...prevEvents,
+        results: prevEvents.results.map((event) => {
+          return event.id === id
+            ? {
+                ...event,
+                calendars: data.calendars,
+              }
+            : event;
+        }),
+      }));
+      console.log("added to calendar");
     } catch (err) {
       console.log(err);
     }
@@ -114,6 +125,18 @@ const Event = (props) => {
       await axiosRes.patch(`/events/${id}/`, {
         calendars: data.calendars,
       });
+      setEvents((prevEvents) => ({
+        ...prevEvents,
+        results: prevEvents.results.map((event) => {
+          return event.id === id
+            ? {
+                ...event,
+                calendars: data.calendars,
+              }
+            : event;
+        }),
+      }));
+      console.log("removed");
     } catch (err) {
       console.log(err);
     }
@@ -191,12 +214,12 @@ const Event = (props) => {
               <i className="fa-regular fa-calendar-check" />
             </OverlayTrigger>
           ) : // watch_id needs to be updated to in_calendar
-          watch_id ? (
-            <span onClick={handleAddToCalendar}>
+          calendars.includes(currentUser.pk) ? (
+            <span onClick={handleRemoveFromCalendar}>
               <i className={`fa-solid fa-calendar-check ${styles.Eyes}`} />
             </span>
           ) : currentUser ? (
-            <span onClick={handleRemoveFromCalendar}>
+            <span onClick={handleAddToCalendar}>
               <i
                 className={`fa-regular fa-calendar-check ${styles.EyesOutline}`}
               />
