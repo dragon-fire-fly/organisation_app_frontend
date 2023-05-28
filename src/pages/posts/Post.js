@@ -20,10 +20,12 @@ const Post = (props) => {
     content,
     image,
     updated_at,
+    event,
     postPage,
     setPosts,
   } = props;
   const currentUser = useCurrentUser();
+  console.log(event);
 
   const is_owner = currentUser?.username === owner;
   const history = useHistory();
@@ -96,6 +98,11 @@ const Post = (props) => {
       <Card.Body>
         {title && <Card.Title className="text-center">{title}</Card.Title>}
         {content && <Card.Text>{content}</Card.Text>}
+        {event && (
+          <Card.Text>
+            Event: <Link to={`events/${event.id}`}>{event.title}</Link>
+          </Card.Text>
+        )}
         <div className={styles.PostBar}>
           {is_owner ? (
             <OverlayTrigger

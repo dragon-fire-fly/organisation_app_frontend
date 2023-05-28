@@ -28,7 +28,6 @@ function PostCreateForm() {
   const [hasLoaded, setHasLoaded] = useState({});
 
   const currentUser = useCurrentUser();
-  console.log(currentUser.pk);
 
   const [postData, setPostData] = useState({
     title: "",
@@ -55,7 +54,6 @@ function PostCreateForm() {
           value: value.id,
         });
       });
-      console.log(results);
       // Update the events state
       setEvents([{ key: "Select an event", value: "" }, ...results]);
     }
