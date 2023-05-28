@@ -1,4 +1,4 @@
-import React, { useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
@@ -19,20 +19,50 @@ import btnStyles from "../../styles/Button.module.css";
 import { useHistory } from "react-router";
 import { axiosReq } from "../../api/axiosDefaults";
 import { useRedirect } from "../../hooks/useRedirect";
+import { useCurrentUser } from "../../contexts/CurrentUserContext";
 
 function PostCreateForm() {
   useRedirect("loggedOut");
+  var [events, setEvents] = useState([]);
   const [errors, setErrors] = useState({});
+  const [hasLoaded, setHasLoaded] = useState({});
+
+  const currentUser = useCurrentUser();
+  console.log(currentUser.pk);
 
   const [postData, setPostData] = useState({
     title: "",
     content: "",
     image: "",
+    event: "",
   });
-  const { title, content, image } = postData;
+  const { title, content, image, event } = postData;
 
   const imageInput = useRef(null);
   const history = useHistory();
+
+  useEffect(() => {
+    async function fetchEvents() {
+      // Fetch data
+      const { data } = await axiosReq.get(
+        `/events/calendars/${currentUser.pk}/`
+      );
+      const results = [];
+      // Store results in the results array
+      data.results.forEach((value) => {
+        results.push({
+          key: value.title,
+          value: value.id,
+        });
+      });
+      console.log(results);
+      // Update the events state
+      setEvents([{ key: "Select an event", value: "" }, ...results]);
+    }
+
+    // Trigger the fetch
+    fetchEvents();
+  }, []);
 
   const handleChange = (event) => {
     setPostData({
@@ -51,13 +81,14 @@ function PostCreateForm() {
     }
   };
 
-  const handleSubmit = async (event) => {
-    event.preventDefault();
+  const handleSubmit = async (e) => {
+    e.preventDefault();
     const formData = new FormData();
 
     formData.append("title", title);
     formData.append("content", content);
     formData.append("image", imageInput.current.files[0]);
+    formData.append("event", event);
 
     try {
       const { data } = await axiosReq.post("/posts/", formData);
@@ -96,6 +127,29 @@ function PostCreateForm() {
           value={content}
           onChange={handleChange}
         />
+      </Form.Group>
+      {errors?.content?.map((message, idx) => (
+        <Alert variant="warning" key={idx}>
+          {message}
+        </Alert>
+      ))}
+
+      <Form.Group>
+        <Form.Label>Event (optional)</Form.Label>
+        <Form.Control
+          as="select"
+          name="event"
+          value={event}
+          onChange={handleChange}
+        >
+          {events.map((event) => {
+            return (
+              <option key={Number(event.value)} value={Number(event.value)}>
+                {event.key}
+              </option>
+            );
+          })}
+        </Form.Control>
       </Form.Group>
       {errors?.content?.map((message, idx) => (
         <Alert variant="warning" key={idx}>
