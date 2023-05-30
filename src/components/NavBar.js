@@ -49,21 +49,6 @@ const NavBar = () => {
   );
   const loggedInIcons = (
     <>
-      {/* <NavLink
-        className={styles.NavLink}
-        activeClassName={styles.Active}
-        to="/feed"
-      >
-        <i className="fas fa-stream"></i>Feed
-      </NavLink>
-      <NavLink
-        className={styles.NavLink}
-        activeClassName={styles.Active}
-        to="/liked"
-      >
-        <i className="fas fa-heart"></i>Liked
-      </NavLink> */}
-
       <NavLink
         className={styles.NavLink}
         activeClassName={styles.Active}
@@ -71,12 +56,6 @@ const NavBar = () => {
       >
         <i className="fa-solid fa-calendar-days"></i>Calendar
       </NavLink>
-      {/* <NavLink
-        className={styles.NavLink}
-        to={`/profiles/${currentUser?.profile_id}`}
-      >
-        <Avatar src={currentUser?.profile_image} text="Profile" height={40} />
-      </NavLink> */}
     </>
   );
   const loggedOutIcons = (
@@ -113,17 +92,17 @@ const NavBar = () => {
           as={Link}
           to={"/events/watched/"}
         >
-          <i className="fa-solid fa-calendar-check"></i> My Watched Events
+          <i className="fa-solid fa-eye"></i> My Watched Events
         </NavDropdown.Item>
         <NavDropdown.Item className={styles.NavLink} as={Link} to={"/liked"}>
-          <i className="fa-regular fa-thumbs-up"></i> My Liked Posts
+          <i className="fa-solid fa-thumbs-up"></i> My Liked Posts
         </NavDropdown.Item>
         <hr />
         <NavDropdown.Item className={styles.NavLink} as={Link} to={"/friends"}>
           <i className="fa-solid fa-user-group"></i> My Friends
         </NavDropdown.Item>
         <NavDropdown.Item className={styles.NavLink} as={Link} to={"/feed"}>
-          <i className="fa-regular fa-message"></i> My Friend's Posts
+          <i className="fa-solid fa-message"></i> My Friend's Posts
         </NavDropdown.Item>
         <NavDropdown.Item
           className={styles.NavLink}
