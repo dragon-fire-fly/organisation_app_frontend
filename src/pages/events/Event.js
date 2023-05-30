@@ -211,10 +211,9 @@ const Event = (props) => {
                 <Tooltip>Your event is already in your calendar!</Tooltip>
               }
             >
-              <i className="fa-regular fa-calendar-check" />
+              <i className={`fa-solid fa-calendar-check ${styles.Eyes}`} />
             </OverlayTrigger>
-          ) : // watch_id needs to be updated to in_calendar
-          calendars.includes(currentUser.pk) ? (
+          ) : calendars.includes(currentUser?.pk) ? (
             <span onClick={handleRemoveFromCalendar}>
               <i className={`fa-solid fa-calendar-check ${styles.Eyes}`} />
             </span>

@@ -20,8 +20,6 @@ const EventModal = (props) => {
   }, [body]);
   const history = useHistory();
 
-  console.log(specificEvent);
-
   const addEventRedirect = () => history.push("/events/create");
   const viewEventRedirect = () => history.push(`/events/${eventId}`);
 
