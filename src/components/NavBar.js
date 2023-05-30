@@ -118,6 +118,21 @@ const NavBar = () => {
         <NavDropdown.Item className={styles.NavLink} as={Link} to={"/liked"}>
           <i className="fa-regular fa-thumbs-up"></i> My Liked Posts
         </NavDropdown.Item>
+        <hr />
+        <NavDropdown.Item className={styles.NavLink} as={Link} to={"/friends"}>
+          <i className="fa-solid fa-user-group"></i> My Friends
+        </NavDropdown.Item>
+        <NavDropdown.Item className={styles.NavLink} as={Link} to={"/feed"}>
+          <i className="fa-regular fa-message"></i> My Friend's Posts
+        </NavDropdown.Item>
+        <NavDropdown.Item
+          className={styles.NavLink}
+          as={Link}
+          to={"/events/friends"}
+        >
+          <i className="fa-solid fa-calendar-days"></i> My Friend's Events
+        </NavDropdown.Item>
+        <hr />
         <NavDropdown.Item
           className={styles.NavLink}
           to="/"
