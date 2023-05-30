@@ -15,6 +15,7 @@ import { useCurrentUser } from "../../contexts/CurrentUserContext";
 import { axiosReq } from "../../api/axiosDefaults";
 import Memory from "../memories/Memory";
 import { fetchMoreData } from "../../utils/utils";
+import UpcomingEvents from "./UpcomingEvents";
 
 function EventPage() {
   const { id } = useParams();
@@ -45,10 +46,12 @@ function EventPage() {
 
   return (
     <Row className="h-100">
+      <Col md={4} className="d-none d-lg-block p-0 p-lg-2">
+        <UpcomingEvents events={[]} />
+      </Col>
       {hasLoaded ? (
         <>
           <Col className="py-2 p-0 p-lg-2" lg={8}>
-            <PopularProfiles mobile />
             <Event {...event.results[0]} setEvents={setEvent} eventPage />
             <Container className={appStyles.Content}>
               {currentUser ? (
@@ -83,9 +86,6 @@ function EventPage() {
                 <span>No memories... yet</span>
               )}
             </Container>
-          </Col>
-          <Col lg={4} className="d-none d-lg-block p-0 p-lg-2">
-            <PopularProfiles />
           </Col>
         </>
       ) : (
