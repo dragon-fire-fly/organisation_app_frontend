@@ -10,6 +10,7 @@ import NoResults from "../../assets/no-results.png";
 import Asset from "../../components/Asset";
 import Event from "./Event";
 import { fetchMoreData } from "../../utils/utils";
+import UpcomingEvents from "../profiles/UpcomingEvents";
 
 function EventsPage({ message, filter = "" }) {
   const [events, setEvents] = useState({ results: [] });
@@ -41,8 +42,11 @@ function EventsPage({ message, filter = "" }) {
 
   return (
     <Row className="h-100">
+      {/* <PopularProfiles mobile /> */}
+      <Col md={4} className="d-none d-lg-block p-0 p-lg-2">
+        <UpcomingEvents events={events} />
+      </Col>
       <Col className="py-2 p-0 p-lg-2" lg={8}>
-        <PopularProfiles mobile />
         <i className={`fas fa-search ${styles.SearchIcon}`} />
         <Form
           className={styles.SearchBar}
@@ -80,9 +84,9 @@ function EventsPage({ message, filter = "" }) {
           </Container>
         )}
       </Col>
-      <Col md={4} className="d-none d-lg-block p-0 p-lg-2">
+      {/* <Col md={4} className="d-none d-lg-block p-0 p-lg-2">
         <PopularProfiles />
-      </Col>
+      </Col> */}
     </Row>
   );
 }
