@@ -10,7 +10,7 @@ import NoResults from "../../assets/no-results.png";
 import Asset from "../../components/Asset";
 import Event from "./Event";
 import { fetchMoreData } from "../../utils/utils";
-import UpcomingEvents from "../profiles/UpcomingEvents";
+import UpcomingEvents from "./UpcomingEvents";
 
 function EventsPage({ message, filter = "" }) {
   const [events, setEvents] = useState({ results: [] });

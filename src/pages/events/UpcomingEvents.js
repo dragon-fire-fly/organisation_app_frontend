@@ -22,13 +22,8 @@ const UpcomingEvents = ({ events, mobile }) => {
         console.log(err);
       }
     };
-    setHasLoaded(false);
-    const timer = setTimeout(() => {
-      fetchEvents();
-    }, 1000);
-    return () => {
-      clearTimeout(timer);
-    };
+
+    fetchEvents();
   }, [events]);
 
   console.log(upcomingEvents);
