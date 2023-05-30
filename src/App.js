@@ -21,6 +21,7 @@ import EventCreateForm from "./pages/events/EventCreateForm";
 import EventPage from "./pages/events/EventPage";
 import EventEditForm from "./pages/events/EventEditForm";
 import ProfilePageEvents from "./pages/profiles/ProfilePageEvents";
+import Friends from "./pages/profiles/Friends";
 
 function App() {
   const currentUser = useCurrentUser();
@@ -103,6 +104,25 @@ function App() {
               <EventsPage message="No results found. Adjust the search keyword." />
             )}
           />
+          <Route
+            exact
+            path="/events/watched"
+            render={() => (
+              <EventsPage
+                filter={`watches__owner__profile=${profile_id}&ordering=-watches__created_at&`}
+              />
+            )}
+          />
+          <Route
+            exact
+            path="/events/friends"
+            render={() => (
+              <EventsPage
+                message="No results found. Adjust the search keyword or follow a user."
+                filter={`owner__followed__owner__profile=${profile_id}&`}
+              />
+            )}
+          />
           <Route exact path="/events/:id" render={() => <EventPage />} />
           <Route
             exact
@@ -110,6 +130,7 @@ function App() {
             render={() => <EventEditForm />}
           />
           <Route exact path="/calendar" render={() => <CalendarPage />} />
+          <Route exact path="/friends" render={() => <Friends />} />
           <Route render={() => <p>Page not found!</p>} />
         </Switch>
       </Container>
