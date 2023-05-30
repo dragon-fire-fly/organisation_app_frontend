@@ -2,8 +2,6 @@ import React, { useEffect, useState } from "react";
 import appStyles from "../../App.module.css";
 import Asset from "../../components/Asset";
 import { Container } from "react-bootstrap";
-import Event from "../events/Event";
-import { useUpcomingEventsData } from "../../contexts/UpcomingEventsContext";
 import { axiosReq } from "../../api/axiosDefaults";
 import { useCurrentUser } from "../../contexts/CurrentUserContext";
 

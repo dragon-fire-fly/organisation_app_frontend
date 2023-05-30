@@ -20,15 +20,15 @@ import {
 } from "../../contexts/ProfileDataContext";
 import { Button, Image } from "react-bootstrap";
 import InfiniteScroll from "react-infinite-scroll-component";
-import Post from "../posts/Post";
 import { fetchMoreData } from "../../utils/utils";
 import NoResults from "../../assets/no-results.png";
 import { ProfileEditDropdown } from "../../components/MoreDropdown";
 import { Link } from "react-router-dom/cjs/react-router-dom.min";
+import Event from "../events/Event";
 
-function ProfilePage() {
+function ProfilePageEvents() {
   const [hasLoaded, setHasLoaded] = useState(false);
-  const [profilePosts, setProfilePosts] = useState({ results: [] });
+  const [profileEvents, setProfileEvents] = useState({ results: [] });
 
   const currentUser = useCurrentUser();
   const { id } = useParams();
@@ -42,16 +42,16 @@ function ProfilePage() {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const [{ data: pageProfile }, { data: profilePosts }] =
+        const [{ data: pageProfile }, { data: profileEvents }] =
           await Promise.all([
             axiosReq.get(`/profiles/${id}/`),
-            axiosReq.get(`/posts/?owner__profile=${id}`),
+            axiosReq.get(`/events/?owner__profile=${id}`),
           ]);
         setProfileData((prevState) => ({
           ...prevState,
           pageProfile: { results: [pageProfile] },
         }));
-        setProfilePosts(profilePosts);
+        setProfileEvents(profileEvents);
         setHasLoaded(true);
       } catch (err) {
         console.log(err);
@@ -116,29 +116,27 @@ function ProfilePage() {
     </>
   );
 
-  const mainProfilePosts = (
+  const mainProfileEvents = (
     <>
       <hr />
       <div className="text-center">
-        <span>{profile?.owner}'s posts</span>
-        <span> | </span>
         <span>
-          <Link to={`/profiles/${profile.id}/events/`}>
-            {profile?.owner}'s events
-          </Link>
+          <Link to={`/profiles/${id}/`}>{profile?.owner}'s posts</Link>
         </span>
+        <span> | </span>
+        <span>{profile?.owner}'s events</span>
       </div>
 
       <hr />
-      {profilePosts.results.length ? (
+      {profileEvents.results.length ? (
         <InfiniteScroll
-          children={profilePosts.results.map((post) => (
-            <Post key={post.id} {...post} setPosts={setProfilePosts} />
+          children={profileEvents.results.map((event) => (
+            <Event key={event.id} {...event} setEvents={setProfileEvents} />
           ))}
-          dataLength={profilePosts.results.length}
+          dataLength={profileEvents.results.length}
           loader={<Asset spinner />}
-          hasMore={!!profilePosts.next}
-          next={() => fetchMoreData(profilePosts, setProfilePosts)}
+          hasMore={!!profileEvents.next}
+          next={() => fetchMoreData(profileEvents, setProfileEvents)}
         />
       ) : (
         <Asset
@@ -157,7 +155,7 @@ function ProfilePage() {
           {hasLoaded ? (
             <>
               {mainProfile}
-              {mainProfilePosts}
+              {mainProfileEvents}
             </>
           ) : (
             <Asset spinner />
@@ -171,4 +169,4 @@ function ProfilePage() {
   );
 }
 
-export default ProfilePage;
+export default ProfilePageEvents;

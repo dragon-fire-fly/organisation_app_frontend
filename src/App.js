@@ -20,6 +20,7 @@ import CalendarPage from "./pages/calendar/CalendarPage";
 import EventCreateForm from "./pages/events/EventCreateForm";
 import EventPage from "./pages/events/EventPage";
 import EventEditForm from "./pages/events/EventEditForm";
+import ProfilePageEvents from "./pages/profiles/ProfilePageEvents";
 
 function App() {
   const currentUser = useCurrentUser();
@@ -70,6 +71,11 @@ function App() {
           />
           <Route exact path="/posts/:id" render={() => <PostPage />} />
           <Route exact path="/profiles/:id" render={() => <ProfilePage />} />
+          <Route
+            exact
+            path="/profiles/:id/events"
+            render={() => <ProfilePageEvents />}
+          />
           <Route
             exact
             path="/profiles/:id/edit/username"
