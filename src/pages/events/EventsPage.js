@@ -42,7 +42,6 @@ function EventsPage({ message, filter = "" }) {
 
   return (
     <Row className="h-100">
-      {/* <PopularProfiles mobile /> */}
       <Col md={4} className="d-none d-lg-block p-0 p-lg-2">
         <UpcomingEvents events={events} />
       </Col>
@@ -84,9 +83,6 @@ function EventsPage({ message, filter = "" }) {
           </Container>
         )}
       </Col>
-      {/* <Col md={4} className="d-none d-lg-block p-0 p-lg-2">
-        <PopularProfiles />
-      </Col> */}
     </Row>
   );
 }
