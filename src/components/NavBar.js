@@ -1,5 +1,6 @@
 import React from "react";
 import { Navbar, Container, Nav } from "react-bootstrap";
+import NavDropdown from "react-bootstrap/NavDropdown";
 import logo from "../assets/logo.png";
 import styles from "../styles/NavBar.module.css";
 import { NavLink } from "react-router-dom";
@@ -10,12 +11,14 @@ import {
 import Avatar from "./Avatar";
 import axios from "axios";
 import useClickOutside from "../hooks/useClickOutside";
+import { Link } from "react-router-dom/cjs/react-router-dom.min";
 
 const NavBar = () => {
   const currentUser = useCurrentUser();
   const setCurrentUser = useSetCurrentUser();
 
   const { expanded, setExpanded, ref } = useClickOutside();
+  // const [toggleNavBar, setToggleNavBar] = useState(false);
 
   const handleSignOut = async () => {
     try {
@@ -68,15 +71,12 @@ const NavBar = () => {
       >
         <i className="fa-solid fa-calendar-days"></i>Calendar
       </NavLink>
-      <NavLink className={styles.NavLink} to="/" onClick={handleSignOut}>
-        <i className="fas fa-sign-out-alt"></i>Sign out
-      </NavLink>
-      <NavLink
+      {/* <NavLink
         className={styles.NavLink}
         to={`/profiles/${currentUser?.profile_id}`}
       >
         <Avatar src={currentUser?.profile_image} text="Profile" height={40} />
-      </NavLink>
+      </NavLink> */}
     </>
   );
   const loggedOutIcons = (
@@ -97,6 +97,39 @@ const NavBar = () => {
       </NavLink>
     </>
   );
+
+  const loggedInDropdownIcons = (
+    <>
+      <div>
+        <NavDropdown.Item
+          className={styles.NavLink}
+          as={Link}
+          to={`/profiles/${currentUser?.profile_id}`}
+        >
+          <i className="fas fa-user-alt"></i> My Profile
+        </NavDropdown.Item>
+        <NavDropdown.Item
+          className={styles.NavLink}
+          as={Link}
+          to={"/events/watched/"}
+        >
+          <i className="fa-solid fa-calendar-check"></i> My Watched Events
+        </NavDropdown.Item>
+        <NavDropdown.Item className={styles.NavLink} as={Link} to={"/liked"}>
+          <i className="fa-regular fa-thumbs-up"></i> My Liked Posts
+        </NavDropdown.Item>
+        <NavDropdown.Item
+          className={styles.NavLink}
+          to="/"
+          onClick={handleSignOut}
+        >
+          <i className="fas fa-sign-out-alt"></i>Sign out
+        </NavDropdown.Item>
+      </div>
+    </>
+  );
+
+  const loggedOutDropdownIcons = <></>;
 
   return (
     <Navbar
@@ -134,8 +167,21 @@ const NavBar = () => {
             >
               <i className="fa-solid fa-calendar-xmark"></i>Events
             </NavLink>
-
             {currentUser ? loggedInIcons : loggedOutIcons}
+            {currentUser ? (
+              <NavDropdown
+                title={
+                  <span>
+                    <Avatar src={currentUser?.profile_image} height={40} />
+                  </span>
+                }
+                id="basic-nav-dropdown"
+              >
+                {currentUser ? loggedInDropdownIcons : loggedOutDropdownIcons}
+              </NavDropdown>
+            ) : (
+              <></>
+            )}
           </Nav>
         </Navbar.Collapse>
       </Container>
