@@ -100,7 +100,7 @@ const Post = (props) => {
         {content && <Card.Text>{content}</Card.Text>}
         {event && (
           <Card.Text>
-            Event: <Link to={`events/${event.id}`}>{event.title}</Link>
+            Event: <Link to={`/events/${event.id}`}>{event.title}</Link>
           </Card.Text>
         )}
         <div className={styles.PostBar}>

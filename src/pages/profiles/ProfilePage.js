@@ -123,7 +123,7 @@ function ProfilePage() {
         <span>{profile?.owner}'s posts</span>
         <span> | </span>
         <span>
-          <Link to={`/profiles/${profile.id}/events/`}>
+          <Link to={`/profiles/${profile?.id}/events/`}>
             {profile?.owner}'s events
           </Link>
         </span>
