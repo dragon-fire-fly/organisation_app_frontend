@@ -43,7 +43,7 @@ function App() {
             path="/feed"
             render={() => (
               <PostsPage
-                message="No results found. Adjust the search keyword or follow a user."
+                message="Adjust the search term or add a friend to see their posts!"
                 filter={`owner__followed__owner__profile=${profile_id}&`}
               />
             )}
@@ -109,6 +109,7 @@ function App() {
             path="/events/watched"
             render={() => (
               <EventsPage
+                message="No results found. Adjust the search term or watch an event!"
                 filter={`watches__owner__profile=${profile_id}&ordering=-watches__created_at&`}
               />
             )}
@@ -118,7 +119,7 @@ function App() {
             path="/events/friends"
             render={() => (
               <EventsPage
-                message="No results found. Adjust the search keyword or follow a user."
+                message="No results found. Adjust the search term or add a friend to see their events!"
                 filter={`owner__followed__owner__profile=${profile_id}&`}
               />
             )}
