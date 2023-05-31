@@ -130,7 +130,16 @@ function App() {
             render={() => <EventEditForm />}
           />
           <Route exact path="/calendar" render={() => <CalendarPage />} />
-          <Route exact path="/friends" render={() => <Friends />} />
+          <Route
+            exact
+            path="/friends"
+            render={() => (
+              <Friends
+                message="No results found. Add a friend to see them here!"
+                filter={`owner__followed__owner__profile=${profile_id}&`}
+              />
+            )}
+          />
           <Route render={() => <p>Page not found!</p>} />
         </Switch>
       </Container>
