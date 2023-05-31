@@ -1,12 +1,15 @@
-import React from "react";
+import React, { useState } from "react";
 import appStyles from "../../App.module.css";
 import Asset from "../../components/Asset";
+import styles from "../../styles/PopularProfiles.module.css";
 import Profile from "./Profile";
 import { useProfileData } from "../../contexts/ProfileDataContext";
 import { Container } from "react-bootstrap";
 
 const PopularProfiles = ({ mobile }) => {
   const { popularProfiles } = useProfileData();
+
+  const [refresh, setRefresh] = useState(false);
 
   return (
     <Container
@@ -16,16 +19,25 @@ const PopularProfiles = ({ mobile }) => {
     >
       {popularProfiles.results.length ? (
         <>
-          <p>Most followed profiles.</p>
+          <p className={styles.Title}>Most followed profiles.</p>
           {mobile ? (
             <div className="d-flex justify-content-around">
               {popularProfiles.results.slice(0, 4).map((profile) => (
-                <Profile key={profile.id} profile={profile} mobile />
+                <Profile
+                  key={profile.id}
+                  profile={profile}
+                  mobile
+                  setRefresh={setRefresh}
+                />
               ))}
             </div>
           ) : (
             popularProfiles.results.map((profile) => (
-              <Profile key={profile.id} profile={profile} />
+              <Profile
+                key={profile.id}
+                profile={profile}
+                setRefresh={setRefresh}
+              />
             ))
           )}
         </>
