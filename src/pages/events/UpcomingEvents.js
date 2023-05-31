@@ -1,9 +1,11 @@
 import React, { useEffect, useState } from "react";
 import appStyles from "../../App.module.css";
 import Asset from "../../components/Asset";
-import { Container } from "react-bootstrap";
+import styles from "../../styles/UpcomingEvents.module.css";
+import { Container, Image } from "react-bootstrap";
 import { axiosReq } from "../../api/axiosDefaults";
 import { useCurrentUser } from "../../contexts/CurrentUserContext";
+import EventMini from "./EventMini";
 
 const UpcomingEvents = ({ events, mobile }) => {
   const currentUser = useCurrentUser();
@@ -37,16 +39,16 @@ const UpcomingEvents = ({ events, mobile }) => {
       {hasLoaded ? (
         upcomingEvents?.length ? (
           <>
-            <p>Your Upcoming Events</p>
-            {upcomingEvents.map((event) => (
-              <p>
-                {event.title} {event.start}
-              </p>
-            ))}
+            <p className={styles.Title}>Your Upcoming Events</p>
+            <div>
+              {upcomingEvents.map((event) => (
+                <EventMini event={event} imageSize={75} />
+              ))}
+            </div>
           </>
         ) : (
           <>
-            <p>Your Upcoming Events</p>
+            <p className={styles.Title}>Your Upcoming Events</p>
             <p>You have no upcoming events.</p>
             <p>
               Create an event or add someone else's event to your calendar to
