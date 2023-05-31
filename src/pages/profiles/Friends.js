@@ -11,6 +11,7 @@ function Friends({ message, filter = "" }) {
   const [friends, setFriends] = useState({ results: [] });
   const [hasLoaded, setHasLoaded] = useState(false);
   const [query, setQuery] = useState("");
+  const [refresh, setRefresh] = useState(false);
 
   const { pathname } = useLocation();
 
@@ -26,6 +27,7 @@ function Friends({ message, filter = "" }) {
         console.log(err);
       }
     };
+    setRefresh(false);
     setHasLoaded(false);
     const timer = setTimeout(() => {
       fetchFriends();
@@ -33,7 +35,7 @@ function Friends({ message, filter = "" }) {
     return () => {
       clearTimeout(timer);
     };
-  }, [filter, query, pathname]);
+  }, [filter, query, pathname, refresh]);
 
   return (
     <>
@@ -41,7 +43,12 @@ function Friends({ message, filter = "" }) {
       {friends.results.length ? (
         <InfiniteScroll
           children={friends.results.map((friend) => (
-            <Profile key={friend.id} {...friend} profile={friend} />
+            <Profile
+              key={friend.id}
+              {...friend}
+              profile={friend}
+              setRefresh={setRefresh}
+            />
           ))}
           dataLength={friends.results.length}
           loader={<Asset spinner />}

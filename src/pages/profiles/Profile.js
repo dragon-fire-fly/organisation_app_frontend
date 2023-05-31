@@ -7,7 +7,7 @@ import Avatar from "../../components/Avatar";
 import { Button } from "react-bootstrap";
 import { useSetProfileData } from "../../contexts/ProfileDataContext";
 const Profile = (props) => {
-  const { profile, mobile, imageSize = 55 } = props;
+  const { profile, mobile, imageSize = 55, setRefresh } = props;
   const { id, following_id, image, owner } = profile;
   const currentUser = useCurrentUser();
   const is_owner = currentUser?.username === owner;
@@ -33,9 +33,12 @@ const Profile = (props) => {
           (following_id ? (
             <Button
               className={`${btnStyles.Button} ${btnStyles.BlackOutline}`}
-              onClick={() => handleUnfollow(profile)}
+              onClick={() => {
+                handleUnfollow(profile);
+                setRefresh(true);
+              }}
             >
-              unfollow
+              remove friend
             </Button>
           ) : (
             <Button
@@ -44,7 +47,7 @@ const Profile = (props) => {
                 handleFollow(profile);
               }}
             >
-              follow
+              add friend
             </Button>
           ))}
       </div>
