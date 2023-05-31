@@ -135,7 +135,7 @@ function App() {
             path="/friends"
             render={() => (
               <Friends
-                message="No results found. Add a friend to see them here!"
+                message="No friends found. Add friends to see them here!"
                 filter={`owner__followed__owner__profile=${profile_id}&`}
               />
             )}

@@ -2,7 +2,9 @@ import React, { useEffect, useState } from "react";
 import { useLocation } from "react-router-dom/cjs/react-router-dom.min";
 import { axiosReq } from "../../api/axiosDefaults";
 import { Container, Row } from "react-bootstrap";
+import appStyles from "../../App.module.css";
 import Asset from "../../components/Asset";
+import NoResults from "../../assets/no-results.png";
 import Profile from "./Profile";
 import InfiniteScroll from "react-infinite-scroll-component";
 import { fetchMoreData } from "../../utils/utils";
@@ -29,32 +31,36 @@ function Friends({ message, filter = "" }) {
     };
     setRefresh(false);
     setHasLoaded(false);
-    const timer = setTimeout(() => {
-      fetchFriends();
-    }, 1000);
-    return () => {
-      clearTimeout(timer);
-    };
+    fetchFriends();
   }, [filter, query, pathname, refresh]);
 
   return (
     <>
       <Row className="h-100">Friends</Row>
-      {friends.results.length ? (
-        <InfiniteScroll
-          children={friends.results.map((friend) => (
-            <Profile
-              key={friend.id}
-              {...friend}
-              profile={friend}
-              setRefresh={setRefresh}
+
+      {hasLoaded ? (
+        <>
+          {friends.results.length ? (
+            <InfiniteScroll
+              children={friends.results.map((friend) => (
+                <Profile
+                  key={friend.id}
+                  {...friend}
+                  profile={friend}
+                  setRefresh={setRefresh}
+                />
+              ))}
+              dataLength={friends.results.length}
+              loader={<Asset spinner />}
+              hasMore={!!friends.next}
+              next={() => fetchMoreData(friends, setFriends)}
             />
-          ))}
-          dataLength={friends.results.length}
-          loader={<Asset spinner />}
-          hasMore={!!friends.next}
-          next={() => fetchMoreData(friends, setFriends)}
-        />
+          ) : (
+            <Container className={appStyles.Content}>
+              <Asset src={NoResults} message={message} />
+            </Container>
+          )}
+        </>
       ) : (
         <Container>
           <Asset spinner />
