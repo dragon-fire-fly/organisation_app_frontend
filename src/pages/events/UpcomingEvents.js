@@ -28,8 +28,6 @@ const UpcomingEvents = ({ events, mobile }) => {
     fetchEvents();
   }, [events]);
 
-  console.log(upcomingEvents);
-
   return (
     <Container
       className={`${appStyles.Content} ${
@@ -37,24 +35,36 @@ const UpcomingEvents = ({ events, mobile }) => {
       }`}
     >
       {hasLoaded ? (
-        upcomingEvents?.length ? (
-          <>
-            <p className={styles.Title}>Your Upcoming Events</p>
-            <div>
-              {upcomingEvents.map((event) => (
-                <EventMini event={event} imageSize={75} />
-              ))}
-            </div>
-          </>
+        currentUser ? (
+          upcomingEvents?.length ? (
+            <>
+              <p className={styles.Title}>Your Upcoming Events</p>
+              {mobile ? (
+                <div className="d-flex justify-content-around">
+                  {upcomingEvents.slice(0, 4).map((event) => (
+                    <EventMini event={event} imageSize={75} mobile />
+                  ))}
+                </div>
+              ) : (
+                <div>
+                  {upcomingEvents.map((event) => (
+                    <EventMini event={event} imageSize={75} />
+                  ))}
+                </div>
+              )}
+            </>
+          ) : (
+            <>
+              <p className={styles.Title}>Your Upcoming Events</p>
+              <p>You have no upcoming events.</p>
+              <p>
+                Create an event or add someone else's event to your calendar to
+                get started!
+              </p>
+            </>
+          )
         ) : (
-          <>
-            <p className={styles.Title}>Your Upcoming Events</p>
-            <p>You have no upcoming events.</p>
-            <p>
-              Create an event or add someone else's event to your calendar to
-              get started!
-            </p>
-          </>
+          <p>Log in or create an account to view your upcoming events</p>
         )
       ) : (
         <Asset spinner />

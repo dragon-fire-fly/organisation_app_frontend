@@ -46,6 +46,7 @@ function EventsPage({ message, filter = "" }) {
         <UpcomingEvents events={events} />
       </Col>
       <Col className="py-2 p-0 p-lg-2" lg={8}>
+        <UpcomingEvents events={events} mobile />
         <i className={`fas fa-search ${styles.SearchIcon}`} />
         <Form
           className={styles.SearchBar}

@@ -11,8 +11,6 @@ const EventMini = (props) => {
   const currentUser = useCurrentUser();
   const is_owner = currentUser?.username === owner;
 
-  console.log(dateFormat(event.start, "mmmm dS, yyyy"));
-
   return (
     <div
       className={`my-3 d-flex align-items-center ${mobile && "flex-column"}`}
@@ -28,7 +26,7 @@ const EventMini = (props) => {
         </Link>
       </div>
       <div className={`text-right ${!mobile && "ml-auto"}`}>
-        {dateFormat(start, "mmmm dS yyyy")}
+        {dateFormat(start, "mmmm dS")}
       </div>
     </div>
   );
