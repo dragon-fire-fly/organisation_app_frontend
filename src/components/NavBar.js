@@ -1,5 +1,5 @@
-import React from "react";
-import { Navbar, Container, Nav } from "react-bootstrap";
+import React, { useEffect, useState } from "react";
+import { Navbar, Container, Nav, Dropdown } from "react-bootstrap";
 import NavDropdown from "react-bootstrap/NavDropdown";
 import logo from "../assets/logo.png";
 import styles from "../styles/NavBar.module.css";
@@ -16,9 +16,22 @@ import { Link } from "react-router-dom/cjs/react-router-dom.min";
 const NavBar = () => {
   const currentUser = useCurrentUser();
   const setCurrentUser = useSetCurrentUser();
+  const [windowWidth, setWindowWidth] = useState(window.innerWidth);
 
   const { expanded, setExpanded, ref } = useClickOutside();
   // const [toggleNavBar, setToggleNavBar] = useState(false);
+
+  useEffect(() => {
+    const handleResize = () => {
+      setWindowWidth(window.innerWidth);
+    };
+
+    window.addEventListener("resize", handleResize);
+
+    return () => {
+      window.removeEventListener("resize", handleResize);
+    };
+  }, []);
 
   const handleSignOut = async () => {
     try {
@@ -36,14 +49,14 @@ const NavBar = () => {
         activeClassName={styles.Active}
         to="/posts/create"
       >
-        <i className="far fa-plus-square"></i>Add post
+        <i className="far fa-plus-square"></i> Post
       </NavLink>
       <NavLink
         className={styles.NavLink}
         activeClassName={styles.Active}
         to="/events/create"
       >
-        <i className="fa-regular fa-calendar-plus"></i>Add Event
+        <i className="fa-regular fa-calendar-plus"></i>Event
       </NavLink>
     </>
   );
@@ -97,7 +110,7 @@ const NavBar = () => {
         <NavDropdown.Item className={styles.NavLink} as={Link} to={"/liked"}>
           <i className="fa-solid fa-thumbs-up"></i> My Liked Posts
         </NavDropdown.Item>
-        <hr />
+        <Dropdown.Divider />
         <NavDropdown.Item className={styles.NavLink} as={Link} to={"/friends"}>
           <i className="fa-solid fa-user-group"></i> My Friends
         </NavDropdown.Item>
@@ -111,7 +124,7 @@ const NavBar = () => {
         >
           <i className="fa-solid fa-calendar-days"></i> My Friend's Events
         </NavDropdown.Item>
-        <hr />
+        <Dropdown.Divider />
         <NavDropdown.Item
           className={styles.NavLink}
           to="/"
@@ -162,8 +175,10 @@ const NavBar = () => {
               <i className="fa-solid fa-calendar-xmark"></i>Events
             </NavLink>
             {currentUser ? loggedInIcons : loggedOutIcons}
-            {currentUser ? (
+
+            {currentUser && windowWidth > 460 ? (
               <NavDropdown
+                drop="left"
                 title={
                   <span>
                     <Avatar src={currentUser?.profile_image} height={40} />
@@ -174,7 +189,10 @@ const NavBar = () => {
                 {currentUser ? loggedInDropdownIcons : loggedOutDropdownIcons}
               </NavDropdown>
             ) : (
-              <></>
+              <>
+                <Dropdown.Divider />
+                {currentUser ? loggedInDropdownIcons : loggedOutDropdownIcons}
+              </>
             )}
           </Nav>
         </Navbar.Collapse>
