@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import FullCalendar from "@fullcalendar/react"; // must go before plugins
 import dayGridPlugin from "@fullcalendar/daygrid"; // a plugin!
 import timeGridPlugin from "@fullcalendar/timegrid";
@@ -14,9 +14,22 @@ function EventCalendar(props) {
   const [header, setHeader] = useState("");
   const [body, setBody] = useState("");
   const [specificEvent, setSpecificEvent] = useState(false);
+  const [windowWidth, setWindowWidth] = useState(window.innerWidth);
 
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
+
+  useEffect(() => {
+    const handleResize = () => {
+      setWindowWidth(window.innerWidth);
+    };
+
+    window.addEventListener("resize", handleResize);
+
+    return () => {
+      window.removeEventListener("resize", handleResize);
+    };
+  }, []);
 
   const handleDateClick = (arg) => {
     setHeader(`Events for ${dateFormat(arg.dateStr, "mmmm dS yyyy")}`);
@@ -74,26 +87,42 @@ function EventCalendar(props) {
         body={body}
         specificEvent={specificEvent}
       />
-
-      <FullCalendar
-        plugins={[
-          dayGridPlugin,
-          timeGridPlugin,
-          listPlugin,
-          multiMonthPlugin,
-          interactionPlugin,
-        ]}
-        initialView="dayGridMonth"
-        headerToolbar={{
-          start: "today prevYear,prev,next,nextYear",
-          center: "title",
-          end: "multiMonthYear,dayGridMonth,timeGridWeek,timeGridDay",
-        }}
-        height={"90vh"}
-        events={props.events}
-        dateClick={handleDateClick}
-        eventClick={handleEventClick}
-      />
+      {windowWidth > 780 ? (
+        <FullCalendar
+          plugins={[
+            dayGridPlugin,
+            timeGridPlugin,
+            listPlugin,
+            multiMonthPlugin,
+            interactionPlugin,
+          ]}
+          initialView="dayGridMonth"
+          headerToolbar={{
+            start: "today prevYear,prev,next,nextYear",
+            center: "title",
+            end: "multiMonthYear,dayGridMonth,timeGridWeek,timeGridDay",
+          }}
+          height={"90vh"}
+          events={props.events}
+          dateClick={handleDateClick}
+          eventClick={handleEventClick}
+        />
+      ) : (
+        <FullCalendar
+          plugins={[
+            dayGridPlugin,
+            timeGridPlugin,
+            listPlugin,
+            multiMonthPlugin,
+            interactionPlugin,
+          ]}
+          initialView="dayGridMonth"
+          height={"90vh"}
+          events={props.events}
+          dateClick={handleDateClick}
+          eventClick={handleEventClick}
+        />
+      )}
     </>
   );
 }
