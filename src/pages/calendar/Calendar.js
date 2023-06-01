@@ -6,6 +6,7 @@ import listPlugin from "@fullcalendar/list";
 import multiMonthPlugin from "@fullcalendar/multimonth";
 import interactionPlugin from "@fullcalendar/interaction";
 import EventModal from "../../components/EventModal";
+import dateFormat from "dateformat";
 
 function EventCalendar(props) {
   const events = props.events;
@@ -13,15 +14,12 @@ function EventCalendar(props) {
   const [header, setHeader] = useState("");
   const [body, setBody] = useState("");
   const [specificEvent, setSpecificEvent] = useState(false);
-  // const [calendarEvents, setCalendarEvents] = useState({ events: [] });
 
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
 
   const handleDateClick = (arg) => {
-    // bind with an arrow function
-    // console.log(`you clicked on ${arg.dateStr}`);
-    setHeader(`Events for ${arg.dateStr}`);
+    setHeader(`Events for ${dateFormat(arg.dateStr, "mmmm dS yyyy")}`);
     setSpecificEvent(false);
     let dayEvents = [];
     for (let x in props.events) {
@@ -29,9 +27,9 @@ function EventCalendar(props) {
         arg.dateStr + 1 >= props.events[x].start &&
         arg.dateStr <= props.events[x].end
       ) {
-        // console.log(`${props.events[x].title} today!`);
         const eventDetails = {};
         eventDetails["id"] = props.events[x].id;
+        eventDetails["image"] = props.events[x].image;
         eventDetails["title"] = props.events[x].title;
         eventDetails["start"] = props.events[x].start;
         eventDetails["end"] = props.events[x].end;
@@ -48,9 +46,9 @@ function EventCalendar(props) {
     let dayEvents = [];
     for (let x in props.events) {
       if (arg.event.id == props.events[x].id) {
-        // console.log(`${props.events[x].title} today!`);
         const eventDetails = {};
         eventDetails["id"] = props.events[x].id;
+        eventDetails["image"] = props.events[x].image;
         eventDetails["title"] = props.events[x].title;
         eventDetails["start"] = props.events[x].start;
         eventDetails["end"] = props.events[x].end;
