@@ -4,17 +4,13 @@ import { axiosReq } from "../../api/axiosDefaults";
 import { Container } from "react-bootstrap";
 import { PacmanLoader } from "react-spinners";
 import { useCurrentUser } from "../../contexts/CurrentUserContext";
+import styles from "../../styles/CalendarPage.module.css";
 
 function CalendarPage() {
   const [events, setEvents] = useState({ results: [] });
   const [hasLoaded, setHasLoaded] = useState(false);
 
   const currentUser = useCurrentUser();
-
-  const override: CSSProperties = {
-    display: "block",
-    margin: "0 auto",
-  };
 
   useEffect(() => {
     const fetchEvents = async () => {
@@ -39,13 +35,15 @@ function CalendarPage() {
 
   return (
     <>
-      <Container>
-        {hasLoaded ? <p></p> : <p>Your events are loading...</p>}
-        <PacmanLoader
-          color="blue"
-          loading={!hasLoaded}
-          cssOverride={override}
-        />
+      <Container className={styles.PacmanLoaderContainer}>
+        {hasLoaded ? (
+          <p></p>
+        ) : (
+          <p className={styles.PacmanLoader}>Your events are loading...</p>
+        )}
+        <div className={styles.PacmanLoader}>
+          <PacmanLoader color="#21ca89" loading={!hasLoaded} />
+        </div>
       </Container>
       <EventCalendar events={events.results} />
     </>
