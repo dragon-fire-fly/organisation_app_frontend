@@ -92,7 +92,7 @@ const NavBar = () => {
 
   const loggedInDropdownIcons = (
     <>
-      <div>
+      <div className={styles.NavDropdown}>
         <NavDropdown.Item
           className={styles.NavLink}
           as={Link}
@@ -140,9 +140,10 @@ const NavBar = () => {
 
   return (
     <Navbar
+      variant="dark"
       expanded={expanded}
       className={styles.NavBar}
-      expand="md"
+      expand="lg"
       fixed="top"
     >
       <Container>
@@ -156,6 +157,7 @@ const NavBar = () => {
           ref={ref}
           onClick={() => setExpanded(!expanded)}
           aria-controls="basic-navbar-nav"
+          className={styles.Toggler}
         />
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="ml-auto text-left">
@@ -176,8 +178,9 @@ const NavBar = () => {
             </NavLink>
             {currentUser ? loggedInIcons : loggedOutIcons}
 
-            {currentUser && windowWidth > 460 ? (
+            {currentUser && windowWidth > 780 ? (
               <NavDropdown
+                className={styles.NavDropdownContainer}
                 drop="left"
                 title={
                   <span>
