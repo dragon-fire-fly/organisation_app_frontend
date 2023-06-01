@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Button, Modal } from "react-bootstrap";
 import { Link, useHistory } from "react-router-dom/cjs/react-router-dom.min";
+import EventMini from "../pages/events/EventMini";
 
 const EventModal = (props) => {
   // console.log(props);
@@ -30,18 +31,12 @@ const EventModal = (props) => {
       <Modal.Body>
         {specificEvent ? (
           <>
-            <p key={body[0][0].title}>{body[0][0].title}</p>
-            <p key={body[0][0].id}>
-              from {body[0][0].start} 'til {body[0][0].end}
-            </p>
+            <EventMini event={body[0][0]} />
           </>
         ) : body[0]?.length ? (
           body[0].map((event) => (
             <>
-              <Link to={`/events/${eventId}`}>{event.title}</Link>
-              <p key={event.id}>
-                from {event.start} 'til {event.end}
-              </p>
+              <EventMini event={event} />
             </>
           ))
         ) : (
