@@ -35,16 +35,16 @@ const UpcomingEvents = ({ events, mobile }) => {
         mobile && "d-lg-none text-center mb-3"
       }`}
     >
-      {hasLoaded ? (
-        currentUser ? (
+      {currentUser ? (
+        hasLoaded ? (
           upcomingEvents?.filter((event) => event["past"] === false).length ? (
             <>
               <p className={styles.Title}>Your Upcoming Events</p>
               {mobile ? (
                 <div className="d-flex justify-content-around">
                   {upcomingEvents
-                    .slice(0, 3)
                     .filter((event) => event["past"] === false)
+                    .slice(0, 3)
                     .map((event) => (
                       <EventMini
                         key={event.id}
@@ -75,10 +75,10 @@ const UpcomingEvents = ({ events, mobile }) => {
             </>
           )
         ) : (
-          <p>Log in or create an account to view your upcoming events</p>
+          <Asset spinner />
         )
       ) : (
-        <Asset spinner />
+        <p>Log in or create an account to view your upcoming events</p>
       )}
     </Container>
   );
