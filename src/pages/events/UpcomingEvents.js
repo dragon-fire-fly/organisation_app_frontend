@@ -18,6 +18,7 @@ const UpcomingEvents = ({ events, mobile }) => {
         const { data } = await axiosReq.get(
           `/events/calendars/${currentUser.pk}`
         );
+
         setUpcomingEvents(data.results);
         setHasLoaded(true);
       } catch (err) {
@@ -41,15 +42,25 @@ const UpcomingEvents = ({ events, mobile }) => {
               <p className={styles.Title}>Your Upcoming Events</p>
               {mobile ? (
                 <div className="d-flex justify-content-around">
-                  {upcomingEvents.slice(0, 4).map((event) => (
-                    <EventMini event={event} imageSize={75} mobile />
-                  ))}
+                  {upcomingEvents
+                    .slice(0, 3)
+                    .filter((event) => event["past"] === false)
+                    .map((event) => (
+                      <EventMini
+                        key={event.id}
+                        event={event}
+                        imageSize={75}
+                        mobile
+                      />
+                    ))}
                 </div>
               ) : (
                 <div>
-                  {upcomingEvents.map((event) => (
-                    <EventMini event={event} imageSize={75} />
-                  ))}
+                  {upcomingEvents
+                    .filter((event) => event["past"] === false)
+                    .map((event) => (
+                      <EventMini key={event.id} event={event} imageSize={75} />
+                    ))}
                 </div>
               )}
             </>
