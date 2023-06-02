@@ -4,13 +4,13 @@ import { Link, useLocation } from "react-router-dom/cjs/react-router-dom.min";
 import { axiosReq } from "../../api/axiosDefaults";
 import appStyles from "../../App.module.css";
 import styles from "../../styles/EventsPage.module.css";
-import PopularProfiles from "../profiles/PopularProfiles";
 import InfiniteScroll from "react-infinite-scroll-component";
 import NoResults from "../../assets/no-results.png";
 import Asset from "../../components/Asset";
 import Event from "./Event";
 import { fetchMoreData } from "../../utils/utils";
 import UpcomingEvents from "./UpcomingEvents";
+import dateFormat from "dateformat";
 
 function EventsPage({ message, filter = "" }) {
   const [events, setEvents] = useState({ results: [] });
@@ -18,6 +18,8 @@ function EventsPage({ message, filter = "" }) {
   // to detect url changes
   const { pathname } = useLocation();
   const [query, setQuery] = useState("");
+
+  const now = dateFormat(new Date(), "yyyy-mm-dd HH:MM:ss");
 
   useEffect(() => {
     const fetchEvents = async () => {
@@ -40,13 +42,31 @@ function EventsPage({ message, filter = "" }) {
     };
   }, [filter, query, pathname]);
 
+  const pastFutureSelector = (
+    <>
+      <hr />
+      <div className="text-center">
+        <span>Upcoming Events</span>
+        <span> | </span>
+        <span>
+          <Link to={`/events/past`}>Past Events</Link>
+        </span>
+      </div>
+    </>
+  );
+
   return (
     <Row className="h-100">
       <Col md={4} className="d-none d-lg-block p-0 p-lg-2">
-        <UpcomingEvents events={events} />
+        <UpcomingEvents
+          events={events.results.filter((event) => event["past"] === false)}
+        />
       </Col>
       <Col className="py-2 p-0 p-lg-2" lg={8}>
-        <UpcomingEvents events={events} mobile />
+        <UpcomingEvents
+          events={events.results.filter((event) => event["past"] === false)}
+          mobile
+        />
         <i className={`fas fa-search ${styles.SearchIcon}`} />
         <Form
           className={styles.SearchBar}
@@ -60,13 +80,16 @@ function EventsPage({ message, filter = "" }) {
             placeholder="Search Events"
           />
         </Form>
+        {pastFutureSelector}
         {hasLoaded ? (
           <>
             {events.results.length ? (
               <InfiniteScroll
-                children={events.results.map((event) => (
-                  <Event key={event.id} {...event} setEvents={setEvents} />
-                ))}
+                children={events.results
+                  .filter((event) => event["past"] === false)
+                  .map((event) => (
+                    <Event key={event.id} {...event} setEvents={setEvents} />
+                  ))}
                 dataLength={events.results.length}
                 loader={<Asset spinner />}
                 hasMore={!!events.next}

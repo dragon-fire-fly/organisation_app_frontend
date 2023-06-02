@@ -45,6 +45,19 @@ function PastEventsPage({ message, filter = "" }) {
     };
   }, [filter, query, pathname]);
 
+  const pastFutureSelector = (
+    <>
+      <hr />
+      <div className="text-center">
+        <span>
+          <Link to={`/events/`}>Upcoming Events</Link>
+        </span>
+        <span> | </span>
+        <span>Past Events</span>
+      </div>
+    </>
+  );
+
   return (
     <Row className="h-100">
       <Col md={4} className="d-none d-lg-block p-0 p-lg-2">
@@ -65,6 +78,7 @@ function PastEventsPage({ message, filter = "" }) {
             placeholder="Search Events"
           />
         </Form>
+        <>{pastFutureSelector}</>
         {hasLoaded ? (
           <>
             {events.results.length ? (
