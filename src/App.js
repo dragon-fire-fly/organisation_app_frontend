@@ -22,10 +22,12 @@ import EventPage from "./pages/events/EventPage";
 import EventEditForm from "./pages/events/EventEditForm";
 import ProfilePageEvents from "./pages/profiles/ProfilePageEvents";
 import Friends from "./pages/profiles/Friends";
+import PastEventsPage from "./pages/events/PastEventsPage";
 
 function App() {
   const currentUser = useCurrentUser();
   const profile_id = currentUser?.profile_id || "";
+
   return (
     <div className={styles.App}>
       <NavBar />
@@ -43,7 +45,7 @@ function App() {
             path="/feed"
             render={() => (
               <PostsPage
-                message="Adjust the search term or add a friend to see their posts!"
+                message="No results found. Adjust the search term or add a friend to see their posts!"
                 filter={`owner__followed__owner__profile=${profile_id}&`}
               />
             )}
@@ -102,6 +104,13 @@ function App() {
             path="/events"
             render={() => (
               <EventsPage message="No results found. Adjust the search keyword." />
+            )}
+          />
+          <Route
+            exact
+            path="/events/past"
+            render={() => (
+              <PastEventsPage message="No results found. Adjust the search keyword." />
             )}
           />
           <Route
