@@ -81,7 +81,8 @@ function PastEventsPage({ message, filter = "" }) {
         <>{pastFutureSelector}</>
         {hasLoaded ? (
           <>
-            {events.results.length ? (
+            {events.results.filter((event) => event["past"] === true)
+              .length ? (
               <InfiniteScroll
                 children={events.results
                   .filter((event) => event["past"] === true)
