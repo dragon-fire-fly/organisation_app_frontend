@@ -37,7 +37,7 @@ const UpcomingEvents = ({ events, mobile }) => {
     >
       {hasLoaded ? (
         currentUser ? (
-          upcomingEvents?.length ? (
+          upcomingEvents?.filter((event) => event["past"] === false).length ? (
             <>
               <p className={styles.Title}>Your Upcoming Events</p>
               {mobile ? (
