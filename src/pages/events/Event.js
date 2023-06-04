@@ -6,6 +6,7 @@ import { Card, Media, OverlayTrigger, Tooltip } from "react-bootstrap";
 import Avatar from "../../components/Avatar";
 import { axiosRes } from "../../api/axiosDefaults";
 import { MoreDropdown } from "../../components/MoreDropdown";
+import dateFormat from "dateformat";
 
 const Event = (props) => {
   const {
@@ -18,8 +19,8 @@ const Event = (props) => {
     image,
     event_type,
     location,
-    start_at,
-    end_at,
+    start,
+    end,
     // all_day,
     privacy,
     memories_count,
@@ -164,16 +165,38 @@ const Event = (props) => {
       <Link to={`/events/${id}`}>
         <Card.Img src={image} alt={title} />
       </Link>
-      <Card.Body>
-        {title && <Card.Title className="text-center">{title}</Card.Title>}
+      <Card.Body className="text-center">
+        {title && (
+          <Card.Title className={`text-center ${styles.bold}`}>
+            {title}
+          </Card.Title>
+        )}
         {content && <Card.Text>{content}</Card.Text>}
-        {event_type && <Card.Text>{event_type}</Card.Text>}
-        {start_at && (
+        {event_type && (
           <Card.Text>
-            {start_at} - {end_at}
+            <u>
+              <strong>Type:</strong>
+            </u>{" "}
+            {event_type}
           </Card.Text>
         )}
-        {location && <Card.Text>{location}</Card.Text>}
+        {start && (
+          <Card.Text>
+            <u>
+              <strong>When:</strong>
+            </u>{" "}
+            {dateFormat(start, "mmmm dS 'yy HH:MM")}-
+            {dateFormat(end, "mmmm dS 'yy HH:MM")}
+          </Card.Text>
+        )}
+        {location && (
+          <Card.Text>
+            <u>
+              <strong>Where:</strong>
+            </u>{" "}
+            {location}
+          </Card.Text>
+        )}
 
         <div className={styles.EventBar}>
           {is_owner ? (
@@ -208,7 +231,9 @@ const Event = (props) => {
             <OverlayTrigger
               placement="top"
               overlay={
-                <Tooltip>Your event is already in your calendar!</Tooltip>
+                <Tooltip>
+                  You cannot remove your own event from your calendar!
+                </Tooltip>
               }
             >
               <i className={`fa-solid fa-calendar-check ${styles.Eyes}`} />
