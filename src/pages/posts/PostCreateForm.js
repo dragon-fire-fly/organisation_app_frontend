@@ -89,7 +89,7 @@ function PostCreateForm() {
     formData.append("event", event);
 
     try {
-      const { data } = await axiosReq.post("/posts/", formData);
+      const { data } = await axiosReq.post("/posts/create/", formData);
       history.push(`/posts/${data.id}`);
     } catch (err) {
       console.log(err);
