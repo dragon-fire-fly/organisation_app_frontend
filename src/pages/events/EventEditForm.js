@@ -18,10 +18,10 @@ const EventEditForm = () => {
     title: "",
     content: "",
     image: "",
-    eventType: "",
+    event_type: "",
     location: "",
-    startAt: "",
-    endAt: "",
+    start: "",
+    end: "",
     allDay: "No",
     privacy: 0,
   });
@@ -29,18 +29,19 @@ const EventEditForm = () => {
     title,
     content,
     image,
-    eventType,
+    event_type,
     location,
-    startAt,
-    endAt,
+    start,
+    end,
     allDay,
     privacy,
   } = eventData;
 
+  console.log(eventData);
+
   const imageInput = useRef(null);
   const history = useHistory();
   const { id } = useParams();
-  console.log(id);
 
   useEffect(() => {
     const handleMount = async () => {
@@ -51,15 +52,26 @@ const EventEditForm = () => {
           content,
           image,
           is_owner,
-          eventType,
+          event_type,
           location,
-          startAt,
-          endAt,
+          start,
+          end,
           // allDay,
           privacy,
         } = data;
 
-        is_owner ? setEventData({ title, content, image }) : history.push("/");
+        is_owner
+          ? setEventData({
+              title,
+              content,
+              image,
+              event_type,
+              location,
+              start,
+              end,
+              privacy,
+            })
+          : history.push("/");
       } catch (err) {
         console.log(err);
       }
@@ -94,10 +106,10 @@ const EventEditForm = () => {
     if (imageInput?.current?.files[0]) {
       formData.append("image", imageInput.current.files[0]);
     }
-    formData.append("event_type", eventType);
+    formData.append("event_type", event_type);
     formData.append("location", location);
-    formData.append("start", startAt);
-    formData.append("end", endAt);
+    formData.append("start", start);
+    formData.append("end", end);
     // formData.append("all_day", allDay);
     formData.append("privacy", privacy);
 
@@ -149,7 +161,7 @@ const EventEditForm = () => {
         <Form.Control
           as="select"
           name="eventType"
-          value={eventType}
+          value={event_type}
           onChange={handleChange}
         >
           <option value="Educational">Educational</option>
@@ -168,7 +180,7 @@ const EventEditForm = () => {
           <option value="Other">Other</option>
         </Form.Control>
       </Form.Group>
-      {errors?.eventType?.map((message, idx) => (
+      {errors?.event_type?.map((message, idx) => (
         <Alert variant="warning" key={idx}>
           {message}
         </Alert>
@@ -191,12 +203,12 @@ const EventEditForm = () => {
         <Form.Label>Start at</Form.Label>
         <Form.Control
           type="datetime-local"
-          name="startAt"
-          value={startAt}
+          name="start"
+          value={start}
           onChange={handleChange}
         />
       </Form.Group>
-      {errors?.startAt?.map((message, idx) => (
+      {errors?.start?.map((message, idx) => (
         <Alert variant="warning" key={idx}>
           {message}
         </Alert>
@@ -205,12 +217,12 @@ const EventEditForm = () => {
         <Form.Label>End at</Form.Label>
         <Form.Control
           type="datetime-local"
-          name="endAt"
-          value={endAt}
+          name="end"
+          value={end}
           onChange={handleChange}
         />
       </Form.Group>
-      {errors?.endAt?.map((message, idx) => (
+      {errors?.end?.map((message, idx) => (
         <Alert variant="warning" key={idx}>
           {message}
         </Alert>
