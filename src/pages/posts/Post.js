@@ -25,7 +25,6 @@ const Post = (props) => {
     setPosts,
   } = props;
   const currentUser = useCurrentUser();
-  console.log(event);
 
   const is_owner = currentUser?.username === owner;
   const history = useHistory();
@@ -36,8 +35,8 @@ const Post = (props) => {
 
   const handleDelete = async () => {
     try {
-      await axiosRes.delete(`/posts/${id}/`);
-      history.goBack();
+      await axiosRes.delete(`/posts/${id}/edit/`);
+      history.push("/");
     } catch (err) {
       console.log(err);
     }
