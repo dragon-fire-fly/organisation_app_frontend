@@ -27,8 +27,8 @@ function EventCreateForm() {
     image: "",
     eventType: "",
     location: "",
-    startAt: "",
-    endAt: "",
+    start: "",
+    end: "",
     allDay: "No",
     privacy: 0,
   });
@@ -38,8 +38,8 @@ function EventCreateForm() {
     image,
     eventType,
     location,
-    startAt,
-    endAt,
+    start,
+    end,
     allDay,
     privacy,
   } = postData;
@@ -73,8 +73,8 @@ function EventCreateForm() {
     formData.append("image", imageInput.current.files[0]);
     formData.append("event_type", eventType);
     formData.append("location", location);
-    formData.append("start", startAt);
-    formData.append("end", endAt);
+    formData.append("start", start);
+    formData.append("end", end);
     // formData.append("allDay", allDay);
     formData.append("privacy", privacy);
     try {
@@ -167,12 +167,12 @@ function EventCreateForm() {
         <Form.Label>Start at</Form.Label>
         <Form.Control
           type="datetime-local"
-          name="startAt"
-          value={startAt}
+          name="start"
+          value={start}
           onChange={handleChange}
         />
       </Form.Group>
-      {errors?.startAt?.map((message, idx) => (
+      {errors?.start?.map((message, idx) => (
         <Alert variant="warning" key={idx}>
           {message}
         </Alert>
@@ -181,12 +181,12 @@ function EventCreateForm() {
         <Form.Label>End at</Form.Label>
         <Form.Control
           type="datetime-local"
-          name="endAt"
-          value={endAt}
+          name="end"
+          value={end}
           onChange={handleChange}
         />
       </Form.Group>
-      {errors?.endAt?.map((message, idx) => (
+      {errors?.end?.map((message, idx) => (
         <Alert variant="warning" key={idx}>
           {message}
         </Alert>
