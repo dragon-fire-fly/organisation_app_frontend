@@ -15,16 +15,23 @@ import btnStyles from "../../styles/Button.module.css";
 import { useHistory } from "react-router";
 import { axiosReq } from "../../api/axiosDefaults";
 import { useParams } from "react-router-dom/cjs/react-router-dom.min";
+import { useCurrentUser } from "../../contexts/CurrentUserContext";
+import Asset from "../../components/Asset";
 
 function PostEditForm() {
+  const [events, setEvents] = useState([]);
   const [errors, setErrors] = useState({});
+  const [hasLoaded, setHasLoaded] = useState(false);
+
+  const currentUser = useCurrentUser();
 
   const [postData, setPostData] = useState({
     title: "",
     content: "",
     image: "",
+    event: "",
   });
-  const { title, content, image } = postData;
+  const { title, content, image, event } = postData;
 
   const imageInput = useRef(null);
   const history = useHistory();
@@ -34,15 +41,40 @@ function PostEditForm() {
     const handleMount = async () => {
       try {
         const { data } = await axiosReq.get(`/posts/${id}/`);
-        const { title, content, image, is_owner } = data;
+        const { title, content, image, event, is_owner } = data;
 
-        is_owner ? setPostData({ title, content, image }) : history.push("/");
+        is_owner
+          ? setPostData({ title, content, image, event })
+          : history.push("/");
       } catch (err) {
         console.log(err);
       }
     };
     handleMount();
   }, [history, id]);
+
+  useEffect(() => {
+    async function fetchEvents() {
+      // Fetch data
+      const { data } = await axiosReq.get(
+        `/events/calendars/${currentUser.pk}/`
+      );
+      const results = [];
+      // Store results in the results array
+      data.results.forEach((value) => {
+        results.push({
+          key: value.title,
+          value: value.id,
+        });
+      });
+      // Update the events state
+      setEvents([{ key: "Select an event", value: "" }, ...results]);
+      setHasLoaded(true);
+    }
+
+    // Trigger the fetch
+    fetchEvents();
+  }, []);
 
   const handleChange = (event) => {
     setPostData({
@@ -61,19 +93,26 @@ function PostEditForm() {
     }
   };
 
-  const handleSubmit = async (event) => {
-    event.preventDefault();
+  const handleSubmit = async (e) => {
+    e.preventDefault();
     const formData = new FormData();
 
     formData.append("title", title);
     formData.append("content", content);
+    if (event) {
+      if (event.id) {
+        formData.append("event", event.id);
+      } else {
+        formData.append("event", event);
+      }
+    }
 
     if (imageInput?.current?.files[0]) {
       formData.append("image", imageInput.current.files[0]);
     }
 
     try {
-      await axiosReq.put(`/posts/${id}/`, formData);
+      await axiosReq.patch(`/posts/${id}/edit/`, formData);
       history.push(`/posts/${id}`);
     } catch (err) {
       console.log(err);
@@ -115,6 +154,38 @@ function PostEditForm() {
           {message}
         </Alert>
       ))}
+
+      {hasLoaded ? (
+        <>
+          <Form.Group>
+            <Form.Label>Event (optional)</Form.Label>
+            <Form.Control
+              as="select"
+              name="event"
+              value={event}
+              onChange={handleChange}
+            >
+              {events.map((event) => {
+                return (
+                  <option
+                    key={Number(event.value)}
+                    value={Number(event.value)}
+                  >
+                    {event.key}
+                  </option>
+                );
+              })}
+            </Form.Control>
+          </Form.Group>
+          {errors?.content?.map((message, idx) => (
+            <Alert variant="warning" key={idx}>
+              {message}
+            </Alert>
+          ))}
+        </>
+      ) : (
+        <Asset spinner />
+      )}
 
       <Button
         className={`${btnStyles.Button} ${btnStyles.Blue}`}
