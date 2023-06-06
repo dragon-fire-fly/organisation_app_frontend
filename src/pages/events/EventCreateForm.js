@@ -31,6 +31,7 @@ function EventCreateForm() {
     end: "",
     allDay: "No",
     privacy: 0,
+    link: "",
   });
   const {
     title,
@@ -42,6 +43,7 @@ function EventCreateForm() {
     end,
     allDay,
     privacy,
+    link,
   } = postData;
 
   const imageInput = useRef(null);
@@ -79,6 +81,7 @@ function EventCreateForm() {
     formData.append("end", end);
     // formData.append("allDay", allDay);
     formData.append("privacy", privacy);
+    formData.append("link", link);
     try {
       const { data } = await axiosReq.post("/events/", formData);
       history.push(`/events/${data.id}`);
@@ -223,6 +226,21 @@ function EventCreateForm() {
         </Alert>
       ))} */}
       <Form.Group>
+        <Form.Label>Link to Event</Form.Label>
+        <Form.Control
+          type="text"
+          name="link"
+          value={link}
+          required={false}
+          onChange={handleChange}
+        />
+      </Form.Group>
+      {errors?.link?.map((message, idx) => (
+        <Alert variant="warning" key={idx}>
+          {message}
+        </Alert>
+      ))}
+      <Form.Group>
         <Form.Label>Privacy</Form.Label>
         <Form.Control
           as="select"
@@ -257,7 +275,7 @@ function EventCreateForm() {
   );
 
   return (
-    <form method="POST" enctype="multipart/form-data" onSubmit={handleSubmit}>
+    <Form onSubmit={handleSubmit}>
       <Row className="d-flex justify-content-center">
         <Col md={8} lg={8}>
           <Container
@@ -314,7 +332,7 @@ function EventCreateForm() {
           <Container className={appStyles.Content}>{textFields}</Container>
         </Col>
       </Row>
-    </form>
+    </Form>
   );
 }
 
