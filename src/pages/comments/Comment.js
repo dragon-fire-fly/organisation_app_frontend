@@ -7,6 +7,7 @@ import { useCurrentUser } from "../../contexts/CurrentUserContext";
 import { MoreDropdown } from "../../components/MoreDropdown";
 import { axiosRes } from "../../api/axiosDefaults";
 import CommentEditForm from "./CommentEditForm";
+import DeleteConfirmModal from "../../components/DeleteConfirmModal";
 
 const Comment = (props) => {
   const {
@@ -24,6 +25,16 @@ const Comment = (props) => {
 
   const currentUser = useCurrentUser();
   const is_owner = currentUser?.username === owner;
+
+  const [show, setShow] = useState(false);
+  const [message, setMessage] = useState("");
+
+  const handleShow = () => {
+    setShow(true);
+    setMessage(`Are you sure you want to delete you comment "${content}"?`);
+  };
+
+  const handleClose = () => setShow(false);
 
   const handleDelete = async () => {
     try {
@@ -69,10 +80,16 @@ const Comment = (props) => {
         {is_owner && !showEditForm && (
           <MoreDropdown
             handleEdit={() => setShowEditForm(true)}
-            handleDelete={handleDelete}
+            handleShow={handleShow}
           />
         )}
       </Media>
+      <DeleteConfirmModal
+        showModal={show}
+        handleClose={handleClose}
+        handleDelete={handleDelete}
+        message={message}
+      />
     </>
   );
 };
