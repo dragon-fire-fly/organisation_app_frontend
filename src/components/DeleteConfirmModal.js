@@ -7,6 +7,7 @@ import {
   ModalTitle,
 } from "react-bootstrap";
 import ModalHeader from "react-bootstrap/esm/ModalHeader";
+import btnStyles from "../styles/Button.module.css";
 
 const DeleteConfirmModal = (props) => {
   const { showModal, handleClose, handleDelete, message } = props;
@@ -19,7 +20,9 @@ const DeleteConfirmModal = (props) => {
       <ModalBody>{message}</ModalBody>
       <ModalFooter>
         <Button onClick={handleClose}>Cancel</Button>
-        <Button onClick={handleDelete}>Delete</Button>
+        <Button onClick={handleDelete} className={btnStyles.DeleteBtn}>
+          Delete
+        </Button>
       </ModalFooter>
     </Modal>
   );
