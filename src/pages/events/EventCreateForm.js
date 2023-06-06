@@ -64,8 +64,8 @@ function EventCreateForm() {
     }
   };
 
-  const handleSubmit = async (event) => {
-    event.preventDefault();
+  const handleSubmit = async (e) => {
+    e.preventDefault();
     const formData = new FormData();
 
     formData.append("title", title);
@@ -84,6 +84,13 @@ function EventCreateForm() {
       console.log(err);
       if (err.response?.status !== 401) {
         setErrors(err.response?.data);
+      }
+      for (let error in errors) {
+        console.log(errors);
+        if (errors[error] == "An event cannot end before it has started!") {
+          setErrors({ end: errors[error] });
+          console.log(errors);
+        }
       }
     }
   };
@@ -187,6 +194,11 @@ function EventCreateForm() {
         />
       </Form.Group>
       {errors?.end?.map((message, idx) => (
+        <Alert variant="warning" key={idx}>
+          {message}
+        </Alert>
+      ))}
+      {errors?.non_field_errors?.map((message, idx) => (
         <Alert variant="warning" key={idx}>
           {message}
         </Alert>
