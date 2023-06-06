@@ -1,6 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom/cjs/react-router-dom.min";
-import Asset from "../components/Asset";
+import Asset from "./Asset";
 import styles from "../styles/NotFound.module.css";
 import NotFoundImg from "../assets/not-found.png";
 import { Button } from "react-bootstrap";

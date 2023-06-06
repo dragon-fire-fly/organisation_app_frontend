@@ -25,10 +25,12 @@ import { fetchMoreData } from "../../utils/utils";
 import NoResults from "../../assets/no-results.png";
 import { ProfileEditDropdown } from "../../components/MoreDropdown";
 import { Link } from "react-router-dom/cjs/react-router-dom.min";
+import NotFound from "../../components/NotFound";
 
 function ProfilePage() {
   const [hasLoaded, setHasLoaded] = useState(false);
   const [profilePosts, setProfilePosts] = useState({ results: [] });
+  const [errorMsgs, setErrorMsgs] = useState(false);
 
   const currentUser = useCurrentUser();
   const { id } = useParams();
@@ -55,6 +57,7 @@ function ProfilePage() {
         setHasLoaded(true);
       } catch (err) {
         console.log(err);
+        setErrorMsgs(true);
       }
     };
     fetchData();
@@ -149,25 +152,33 @@ function ProfilePage() {
     </>
   );
 
-  return (
-    <Row>
-      <Col className="py-2 p-0 p-lg-2" lg={8}>
-        <PopularProfiles mobile />
-        <Container className={appStyles.Content}>
-          {hasLoaded ? (
-            <>
-              {mainProfile}
-              {mainProfilePosts}
-            </>
-          ) : (
-            <Asset spinner />
-          )}
-        </Container>
+  return errorMsgs ? (
+    <>
+      <Col className="py-2 p-0 p-lg-2">
+        <NotFound />
       </Col>
-      <Col lg={4} className="d-none d-lg-block p-0 p-lg-2">
-        <PopularProfiles />
-      </Col>
-    </Row>
+    </>
+  ) : (
+    <>
+      <Row>
+        <Col className="py-2 p-0 p-lg-2" lg={8}>
+          <PopularProfiles mobile />
+          <Container className={appStyles.Content}>
+            {hasLoaded ? (
+              <>
+                {mainProfile}
+                {mainProfilePosts}
+              </>
+            ) : (
+              <Asset spinner />
+            )}
+          </Container>
+        </Col>
+        <Col lg={4} className="d-none d-lg-block p-0 p-lg-2">
+          <PopularProfiles />
+        </Col>
+      </Row>
+    </>
   );
 }
 

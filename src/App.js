@@ -23,7 +23,7 @@ import EventEditForm from "./pages/events/EventEditForm";
 import ProfilePageEvents from "./pages/profiles/ProfilePageEvents";
 import Friends from "./pages/profiles/Friends";
 import PastEventsPage from "./pages/events/PastEventsPage";
-import NotFound from "./pages/NotFound";
+import NotFound from "./components/NotFound";
 
 function App() {
   const currentUser = useCurrentUser();
@@ -151,6 +151,7 @@ function App() {
               />
             )}
           />
+          <Route path="/notfound" render={() => <NotFound />} />
           <Route path="*" render={() => <NotFound />} />
         </Switch>
       </Container>
