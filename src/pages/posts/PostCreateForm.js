@@ -85,7 +85,9 @@ function PostCreateForm() {
 
     formData.append("title", title);
     formData.append("content", content);
-    formData.append("image", imageInput.current.files[0]);
+    if (imageInput.current.files.length) {
+      formData.append("image", imageInput.current?.files[0]);
+    }
     formData.append("event", event);
 
     try {
@@ -171,7 +173,7 @@ function PostCreateForm() {
   );
 
   return (
-    <Form onSubmit={handleSubmit}>
+    <form method="POST" enctype="multipart/form-data" onSubmit={handleSubmit}>
       <Row>
         <Col className="py-2 p-0 p-md-2" md={7} lg={8}>
           <Container
@@ -207,6 +209,7 @@ function PostCreateForm() {
               <Form.File
                 id="image-upload"
                 accept="image/*"
+                required={false}
                 onChange={handleChangeImage}
                 ref={imageInput}
               />
@@ -224,7 +227,7 @@ function PostCreateForm() {
           <Container className={appStyles.Content}>{textFields}</Container>
         </Col>
       </Row>
-    </Form>
+    </form>
   );
 }
 

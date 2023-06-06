@@ -70,7 +70,9 @@ function EventCreateForm() {
 
     formData.append("title", title);
     formData.append("content", content);
-    formData.append("image", imageInput.current.files[0]);
+    if (imageInput.current.files.length) {
+      formData.append("image", imageInput.current?.files[0]);
+    }
     formData.append("event_type", eventType);
     formData.append("location", location);
     formData.append("start", start);
@@ -255,7 +257,7 @@ function EventCreateForm() {
   );
 
   return (
-    <Form onSubmit={handleSubmit}>
+    <form method="POST" enctype="multipart/form-data" onSubmit={handleSubmit}>
       <Row className="d-flex justify-content-center">
         <Col md={8} lg={8}>
           <Container
@@ -292,6 +294,7 @@ function EventCreateForm() {
                 id="image-upload"
                 accept="image/*"
                 onChange={handleChangeImage}
+                required={false}
                 ref={imageInput}
               />
             </Form.Group>
@@ -311,7 +314,7 @@ function EventCreateForm() {
           <Container className={appStyles.Content}>{textFields}</Container>
         </Col>
       </Row>
-    </Form>
+    </form>
   );
 }
 
