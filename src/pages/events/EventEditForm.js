@@ -24,6 +24,7 @@ const EventEditForm = () => {
     end: "",
     allDay: "No",
     privacy: 0,
+    link: "",
   });
   const {
     title,
@@ -35,6 +36,7 @@ const EventEditForm = () => {
     end,
     allDay,
     privacy,
+    link,
   } = eventData;
 
   const imageInput = useRef(null);
@@ -56,6 +58,7 @@ const EventEditForm = () => {
           end,
           // allDay,
           privacy,
+          link,
         } = data;
 
         is_owner
@@ -68,12 +71,19 @@ const EventEditForm = () => {
               start,
               end,
               privacy,
+              link,
             })
           : history.push("/");
       } catch (err) {
-        console.log(err);
-        if (err.response?.status === 404 || err.response?.status === 400) {
-          history.push("/notfound");
+        for (let error in errors) {
+          console.log(errors);
+          if (errors[error] == "An event cannot end before it has started!") {
+            setErrors({ end: errors[error] });
+            console.log(errors);
+          }
+          if (err.response?.status === 404 || err.response?.status === 400) {
+            history.push("/notfound");
+          }
         }
       }
     };
@@ -113,6 +123,7 @@ const EventEditForm = () => {
     formData.append("end", end);
     // formData.append("all_day", allDay);
     formData.append("privacy", privacy);
+    formData.append("link", link);
 
     try {
       await axiosReq.put(`/events/${id}/`, formData);
@@ -228,6 +239,11 @@ const EventEditForm = () => {
           {message}
         </Alert>
       ))}
+      {errors?.non_field_errors?.map((message, idx) => (
+        <Alert variant="warning" key={idx}>
+          {message}
+        </Alert>
+      ))}
       {/* <Form.Group>
         <Form.Label>All day</Form.Label>
         <Form.Control
@@ -245,6 +261,22 @@ const EventEditForm = () => {
           {message}
         </Alert>
       ))} */}
+      <Form.Group>
+        <Form.Label>Link to Event</Form.Label>
+        <Form.Control
+          type="text"
+          name="link"
+          value={link}
+          onChange={handleChange}
+          required={false}
+        />
+      </Form.Group>
+      {errors?.link?.map((message, idx) => (
+        <Alert variant="warning" key={idx}>
+          {message}
+        </Alert>
+      ))}
+
       <Form.Group>
         <Form.Label>Privacy</Form.Label>
         <Form.Control
