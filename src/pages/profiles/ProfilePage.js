@@ -24,13 +24,11 @@ import Post from "../posts/Post";
 import { fetchMoreData } from "../../utils/utils";
 import NoResults from "../../assets/no-results.png";
 import { ProfileEditDropdown } from "../../components/MoreDropdown";
-import { Link } from "react-router-dom/cjs/react-router-dom.min";
-import NotFound from "../../components/NotFound";
+import { Link, useHistory } from "react-router-dom/cjs/react-router-dom.min";
 
 function ProfilePage() {
   const [hasLoaded, setHasLoaded] = useState(false);
   const [profilePosts, setProfilePosts] = useState({ results: [] });
-  const [errorMsgs, setErrorMsgs] = useState(false);
 
   const currentUser = useCurrentUser();
   const { id } = useParams();
@@ -40,6 +38,7 @@ function ProfilePage() {
 
   const [profile] = pageProfile.results;
   const is_owner = currentUser?.username === profile?.owner;
+  const history = useHistory();
 
   useEffect(() => {
     const fetchData = async () => {
@@ -57,11 +56,13 @@ function ProfilePage() {
         setHasLoaded(true);
       } catch (err) {
         console.log(err);
-        setErrorMsgs(true);
+        if (err.response?.status === 404 || err.response?.status === 400) {
+          history.push("/notfound");
+        }
       }
     };
     fetchData();
-  }, [id, setProfileData]);
+  }, [id, setProfileData, history]);
 
   const mainProfile = (
     <>
@@ -152,33 +153,25 @@ function ProfilePage() {
     </>
   );
 
-  return errorMsgs ? (
-    <>
-      <Col className="py-2 p-0 p-lg-2">
-        <NotFound />
+  return (
+    <Row>
+      <Col className="py-2 p-0 p-lg-2" lg={8}>
+        <PopularProfiles mobile />
+        <Container className={appStyles.Content}>
+          {hasLoaded ? (
+            <>
+              {mainProfile}
+              {mainProfilePosts}
+            </>
+          ) : (
+            <Asset spinner />
+          )}
+        </Container>
       </Col>
-    </>
-  ) : (
-    <>
-      <Row>
-        <Col className="py-2 p-0 p-lg-2" lg={8}>
-          <PopularProfiles mobile />
-          <Container className={appStyles.Content}>
-            {hasLoaded ? (
-              <>
-                {mainProfile}
-                {mainProfilePosts}
-              </>
-            ) : (
-              <Asset spinner />
-            )}
-          </Container>
-        </Col>
-        <Col lg={4} className="d-none d-lg-block p-0 p-lg-2">
-          <PopularProfiles />
-        </Col>
-      </Row>
-    </>
+      <Col lg={4} className="d-none d-lg-block p-0 p-lg-2">
+        <PopularProfiles />
+      </Col>
+    </Row>
   );
 }
 
