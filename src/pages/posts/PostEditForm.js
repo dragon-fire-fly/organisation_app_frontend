@@ -48,6 +48,9 @@ function PostEditForm() {
           : history.push("/");
       } catch (err) {
         console.log(err);
+        if (err.response?.status === 404 || err.response?.status === 400) {
+          history.push("/notfound");
+        }
       }
     };
     handleMount();
@@ -55,21 +58,25 @@ function PostEditForm() {
 
   useEffect(() => {
     async function fetchEvents() {
-      // Fetch data
-      const { data } = await axiosReq.get(
-        `/events/calendars/${currentUser.pk}/`
-      );
-      const results = [];
-      // Store results in the results array
-      data.results.forEach((value) => {
-        results.push({
-          key: value.title,
-          value: value.id,
+      try {
+        // Fetch data
+        const { data } = await axiosReq.get(
+          `/events/calendars/${currentUser.pk}/`
+        );
+        const results = [];
+        // Store results in the results array
+        data.results.forEach((value) => {
+          results.push({
+            key: value.title,
+            value: value.id,
+          });
         });
-      });
-      // Update the events state
-      setEvents([{ key: "Select an event", value: "" }, ...results]);
-      setHasLoaded(true);
+        // Update the events state
+        setEvents([{ key: "Select an event", value: "" }, ...results]);
+        setHasLoaded(true);
+      } catch (err) {
+        console.log(err);
+      }
     }
 
     // Trigger the fetch
