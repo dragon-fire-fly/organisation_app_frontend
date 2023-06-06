@@ -43,21 +43,24 @@ function PostCreateForm() {
   useEffect(() => {
     async function fetchEvents() {
       // Fetch data
-      const { data } = await axiosReq.get(
-        `/events/calendars/${currentUser.pk}/`
-      );
-      const results = [];
-      // Store results in the results array
-      data.results.forEach((value) => {
-        results.push({
-          key: value.title,
-          value: value.id,
+      try {
+        const { data } = await axiosReq.get(
+          `/events/calendars/${currentUser.pk}/`
+        );
+        const results = [];
+        // Store results in the results array
+        data.results.forEach((value) => {
+          results.push({
+            key: value.title,
+            value: value.id,
+          });
         });
-      });
-      // Update the events state
-      setEvents([{ key: "Select an event", value: "" }, ...results]);
+        // Update the events state
+        setEvents([{ key: "Select an event", value: "" }, ...results]);
+      } catch (err) {
+        console.log(err);
+      }
     }
-
     // Trigger the fetch
     fetchEvents();
   }, []);
@@ -173,7 +176,7 @@ function PostCreateForm() {
   );
 
   return (
-    <form method="POST" enctype="multipart/form-data" onSubmit={handleSubmit}>
+    <Form onSubmit={handleSubmit}>
       <Row>
         <Col className="py-2 p-0 p-md-2" md={7} lg={8}>
           <Container
@@ -227,7 +230,7 @@ function PostCreateForm() {
           <Container className={appStyles.Content}>{textFields}</Container>
         </Col>
       </Row>
-    </form>
+    </Form>
   );
 }
 
