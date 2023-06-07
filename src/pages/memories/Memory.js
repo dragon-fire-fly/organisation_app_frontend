@@ -7,6 +7,7 @@ import { useCurrentUser } from "../../contexts/CurrentUserContext";
 import { MoreDropdown } from "../../components/MoreDropdown";
 import { axiosRes } from "../../api/axiosDefaults";
 import MemoryEditForm from "./MemoryEditForm";
+import DeleteConfirmModal from "../../components/DeleteConfirmModal";
 
 const Memory = (props) => {
   const {
@@ -28,6 +29,16 @@ const Memory = (props) => {
 
   const currentUser = useCurrentUser();
   const is_owner = currentUser?.username === owner;
+
+  const [show, setShow] = useState(false);
+  const [message, setMessage] = useState("");
+
+  const handleShow = () => {
+    setShow(true);
+    setMessage(`Are you sure you want to delete you memory "${content}"?`);
+  };
+
+  const handleClose = () => setShow(false);
 
   useEffect(() => {
     if (
@@ -89,10 +100,16 @@ const Memory = (props) => {
         {is_owner && !showEditForm && (
           <MoreDropdown
             handleEdit={() => setShowEditForm(true)}
-            handleDelete={handleDelete}
+            handleShow={handleShow}
           />
         )}
       </Media>
+      <DeleteConfirmModal
+        showModal={show}
+        handleClose={handleClose}
+        handleDelete={handleDelete}
+        message={message}
+      />
     </>
   );
 };
