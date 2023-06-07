@@ -18,3 +18,7 @@
     background-color: aliceblue;
     color: #242a3d;
   }
+
+  .AssetImgMini {
+    max-height: 100px;
+}
