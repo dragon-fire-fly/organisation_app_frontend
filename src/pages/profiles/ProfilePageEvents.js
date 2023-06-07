@@ -25,6 +25,7 @@ import NoResults from "../../assets/no-results.png";
 import { ProfileEditDropdown } from "../../components/MoreDropdown";
 import { Link } from "react-router-dom/cjs/react-router-dom.min";
 import Event from "../events/Event";
+import SelectorSwitch from "../../components/SelectorSwitch";
 
 function ProfilePageEvents() {
   const [hasLoaded, setHasLoaded] = useState(false);
@@ -119,13 +120,12 @@ function ProfilePageEvents() {
   const mainProfileEvents = (
     <>
       <hr />
-      <div className="text-center">
-        <span>
-          <Link to={`/profiles/${id}/`}>{profile?.owner}'s posts</Link>
-        </span>
-        <span> | </span>
-        <span>{profile?.owner}'s events</span>
-      </div>
+      <SelectorSwitch
+        left={`${profile?.owner}'s posts`}
+        right={`${profile?.owner}'s events`}
+        linkLeft={true}
+        linkto={`/profiles/${id}/`}
+      />
 
       <hr />
       {profileEvents.results.length ? (

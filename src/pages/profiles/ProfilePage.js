@@ -25,6 +25,7 @@ import { fetchMoreData } from "../../utils/utils";
 import NoResults from "../../assets/no-results.png";
 import { ProfileEditDropdown } from "../../components/MoreDropdown";
 import { Link, useHistory } from "react-router-dom/cjs/react-router-dom.min";
+import SelectorSwitch from "../../components/SelectorSwitch";
 
 function ProfilePage() {
   const [hasLoaded, setHasLoaded] = useState(false);
@@ -123,15 +124,12 @@ function ProfilePage() {
   const mainProfilePosts = (
     <>
       <hr />
-      <div className="text-center">
-        <span>{profile?.owner}'s posts</span>
-        <span> | </span>
-        <span>
-          <Link to={`/profiles/${profile?.id}/events/`}>
-            {profile?.owner}'s events
-          </Link>
-        </span>
-      </div>
+      <SelectorSwitch
+        left={`${profile?.owner}'s posts`}
+        right={`${profile?.owner}'s events`}
+        linkLeft={false}
+        linkto={`/profiles/${profile?.id}/events/`}
+      />
 
       <hr />
       {profilePosts.results.length ? (
