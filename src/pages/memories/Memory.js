@@ -1,6 +1,6 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import styles from "../../styles/Memory.module.css";
-import { Media } from "react-bootstrap";
+import { Image, Media } from "react-bootstrap";
 import { Link } from "react-router-dom/cjs/react-router-dom.min";
 import Avatar from "../../components/Avatar";
 import { useCurrentUser } from "../../contexts/CurrentUserContext";
@@ -15,15 +15,26 @@ const Memory = (props) => {
     owner,
     updated_at,
     content,
+    image,
     id,
     setEvent,
     setMemories,
   } = props;
 
   const [showEditForm, setShowEditForm] = useState(false);
+  const [defaultImg, setDefaultImg] = useState(false);
 
   const currentUser = useCurrentUser();
   const is_owner = currentUser?.username === owner;
+
+  useEffect(() => {
+    if (
+      image ==
+      "https://res.cloudinary.com/djlm3llv5/image/upload/v1/media/../sd2as2klixs1ijw9022d"
+    ) {
+      setDefaultImg(true);
+    }
+  }, []);
 
   const handleDelete = async () => {
     try {
@@ -58,12 +69,18 @@ const Memory = (props) => {
               id={id}
               profile_id={profile_id}
               content={content}
+              image={image}
               profileImage={profile_image}
               setMemories={setMemories}
               setShowEditForm={setShowEditForm}
             />
           ) : (
-            <p>{content}</p>
+            <div>
+              <>
+                <p>{content}</p>
+              </>
+              {defaultImg ? <></> : <Image src={image} />}
+            </div>
           )}
         </Media.Body>
         {is_owner && !showEditForm && (
