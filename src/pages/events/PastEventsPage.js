@@ -1,10 +1,9 @@
 import React, { useEffect, useState } from "react";
 import { Col, Container, Form, Row } from "react-bootstrap";
-import { Link, useLocation } from "react-router-dom/cjs/react-router-dom.min";
+import { useLocation } from "react-router-dom/cjs/react-router-dom.min";
 import { axiosReq } from "../../api/axiosDefaults";
 import appStyles from "../../App.module.css";
 import styles from "../../styles/EventsPage.module.css";
-import PopularProfiles from "../profiles/PopularProfiles";
 import InfiniteScroll from "react-infinite-scroll-component";
 import NoResults from "../../assets/no-results.png";
 import Asset from "../../components/Asset";
@@ -12,6 +11,7 @@ import Event from "./Event";
 import { fetchMoreData } from "../../utils/utils";
 import UpcomingEvents from "./UpcomingEvents";
 import dateFormat from "dateformat";
+import SelectorSwitch from "../../components/SelectorSwitch";
 
 function PastEventsPage({ message, filter = "" }) {
   const [events, setEvents] = useState({ results: [] });
@@ -30,7 +30,6 @@ function PastEventsPage({ message, filter = "" }) {
         );
 
         setEvents(data);
-        console.log(events);
         setHasLoaded(true);
       } catch (err) {
         console.log(err);
@@ -44,19 +43,6 @@ function PastEventsPage({ message, filter = "" }) {
       clearTimeout(timer);
     };
   }, [filter, query, pathname]);
-
-  const pastFutureSelector = (
-    <>
-      <hr />
-      <div className="text-center">
-        <span>
-          <Link to={`/events/`}>Upcoming Events</Link>
-        </span>
-        <span> | </span>
-        <span>Past Events</span>
-      </div>
-    </>
-  );
 
   return (
     <Row className="h-100">
@@ -78,7 +64,12 @@ function PastEventsPage({ message, filter = "" }) {
             placeholder="Search Events"
           />
         </Form>
-        <>{pastFutureSelector}</>
+        <SelectorSwitch
+          left="Upcoming events"
+          right="Past Events"
+          linkLeft={true}
+          linkto="/events/"
+        />
         {hasLoaded ? (
           <>
             {events.results.filter((event) => event["past"] === true)

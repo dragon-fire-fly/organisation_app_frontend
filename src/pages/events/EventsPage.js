@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Col, Container, Form, Row } from "react-bootstrap";
-import { Link, useLocation } from "react-router-dom/cjs/react-router-dom.min";
+import { useLocation } from "react-router-dom/cjs/react-router-dom.min";
 import { axiosReq } from "../../api/axiosDefaults";
 import appStyles from "../../App.module.css";
 import styles from "../../styles/EventsPage.module.css";
@@ -11,6 +11,7 @@ import Event from "./Event";
 import { fetchMoreData } from "../../utils/utils";
 import UpcomingEvents from "./UpcomingEvents";
 import dateFormat from "dateformat";
+import SelectorSwitch from "../../components/SelectorSwitch";
 
 function EventsPage({ message, filter = "" }) {
   const [events, setEvents] = useState({ results: [] });
@@ -42,19 +43,6 @@ function EventsPage({ message, filter = "" }) {
     };
   }, [filter, query, pathname]);
 
-  const pastFutureSelector = (
-    <>
-      <hr />
-      <div className="text-center">
-        <span>Upcoming Events</span>
-        <span> | </span>
-        <span>
-          <Link to={`/events/past`}>Past Events</Link>
-        </span>
-      </div>
-    </>
-  );
-
   return (
     <Row className="h-100">
       <Col md={4} className="d-none d-lg-block p-0 p-lg-2">
@@ -80,7 +68,12 @@ function EventsPage({ message, filter = "" }) {
             placeholder="Search Events"
           />
         </Form>
-        {pastFutureSelector}
+        <SelectorSwitch
+          left="Upcoming events"
+          right="Past Events"
+          linkLeft={false}
+          linkto="/events/past"
+        />
         {hasLoaded ? (
           <>
             {events.results.length ? (
