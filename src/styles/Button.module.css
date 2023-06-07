@@ -71,3 +71,16 @@
   .DeleteBtn {
     background-color: red;
   }
+
+  .SelectorBtn {
+    margin: 10px;
+    background-color: #21ca89;
+    border-color: transparent;
+    color: #000;
+  }
+
+  .SelectorBtn:hover {
+    background-color: #177f57;
+    border-color: transparent;
+    color: #fff;
+  }

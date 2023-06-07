@@ -123,7 +123,6 @@ function ProfilePage() {
 
   const mainProfilePosts = (
     <>
-      <hr />
       <SelectorSwitch
         left={`${profile?.owner}'s posts`}
         right={`${profile?.owner}'s events`}
@@ -131,7 +130,6 @@ function ProfilePage() {
         linkto={`/profiles/${profile?.id}/events/`}
       />
 
-      <hr />
       {profilePosts.results.length ? (
         <InfiniteScroll
           children={profilePosts.results.map((post) => (
