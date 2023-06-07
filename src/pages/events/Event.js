@@ -22,6 +22,7 @@ const Event = (props) => {
     location,
     start,
     end,
+    link,
     // all_day,
     privacy,
     memories_count,
