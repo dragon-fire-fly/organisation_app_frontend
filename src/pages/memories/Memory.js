@@ -21,6 +21,8 @@ const Memory = (props) => {
     setMemories,
   } = props;
 
+  const [memory, setMemory] = useState({ content: content, image: image });
+
   const [showEditForm, setShowEditForm] = useState(false);
   const [defaultImg, setDefaultImg] = useState(false);
 
@@ -68,16 +70,17 @@ const Memory = (props) => {
             <MemoryEditForm
               id={id}
               profile_id={profile_id}
-              content={content}
-              image={image}
+              memory={memory}
+              setMemory={setMemory}
               profileImage={profile_image}
               setMemories={setMemories}
               setShowEditForm={setShowEditForm}
+              defaultImg={defaultImg}
             />
           ) : (
             <div>
               <>
-                <p>{content}</p>
+                <p>{memory.content}</p>
               </>
               {defaultImg ? <></> : <Image src={image} />}
             </div>

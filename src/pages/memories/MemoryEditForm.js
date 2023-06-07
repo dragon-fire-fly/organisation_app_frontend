@@ -10,23 +10,23 @@ import Upload from "../../assets/upload.png";
 import { Image } from "react-bootstrap";
 
 function MemoryEditForm(props) {
-  const { id, event, content, image, setShowEditForm, setMemories } = props;
+  const { id, memory, setMemory, setShowEditForm, setMemories, defaultImg } =
+    props;
 
-  const [memoryContent, setMemoryContent] = useState(content);
-  const [memoryImage, setMemoryImage] = useState(image);
+  const [memoryContent, setMemoryContent] = useState(memory.content);
+  const [memoryImage, setMemoryImage] = useState(memory.image);
 
-  const imageInput = useRef(null);
+  const imageInput = useRef(memory.image);
 
   const handleChange = (event) => {
     setMemoryContent(event.target.value);
-    console.log(memoryContent);
   };
 
-  const handleChangeImage = (event) => {
+  const handleEditImage = (event) => {
     if (event.target.files.length) {
-      URL.revokeObjectURL(image);
+      URL.revokeObjectURL(memory.image);
+
       setMemoryImage(URL.createObjectURL(event.target.files[0]));
-      console.log(memoryImage);
     }
   };
 
@@ -35,12 +35,13 @@ function MemoryEditForm(props) {
     const formData = new FormData();
 
     formData.append("content", memoryContent);
-    if (imageInput.current.files.length) {
+    if (imageInput.current?.files.length) {
       formData.append("image", imageInput.current?.files[0]);
     }
 
     try {
       await axiosRes.put(`/memories/${id}/`, formData);
+      setMemory({ content: memoryContent, image: memoryImage });
       setMemories((prevMemories) => ({
         ...prevMemories,
         results: prevMemories.results.map((memory) => {
@@ -73,31 +74,10 @@ function MemoryEditForm(props) {
         />
       </Form.Group>
       <Form.Group className="text-center">
-        {image ? (
-          <>
-            <figure>
-              <Image className={appStyles.Image} src={image} rounded />
-            </figure>
-            <div>
-              <Form.Label
-                className={`${btnStyles.Button} ${btnStyles.Blue} btn`}
-                htmlFor="image-upload"
-              >
-                Add an image
-              </Form.Label>
-              <Form.File
-                id="image-upload"
-                accept="image/*"
-                required={false}
-                onChange={handleChangeImage}
-                ref={imageInput}
-              />
-            </div>
-          </>
-        ) : (
+        {defaultImg ? (
           <Form.Label
-            className="d-flex justify-content-center"
-            htmlFor="image-upload"
+            // className="d-flex justify-content-center"
+            htmlFor="image-edit"
           >
             <img
               src={Upload}
@@ -106,6 +86,27 @@ function MemoryEditForm(props) {
             />
             {/* <Asset src={Upload} message="Click or tap to upload an image" /> */}
           </Form.Label>
+        ) : (
+          <>
+            <figure>
+              <Image className={appStyles.Image} src={memoryImage} rounded />
+            </figure>
+            <div>
+              <Form.Label
+                className={`${btnStyles.Button} ${btnStyles.Blue} btn`}
+                htmlFor="image-edit"
+              >
+                Change image
+              </Form.Label>
+              <Form.File
+                id="image-edit"
+                accept="image/*"
+                required={false}
+                onChange={handleEditImage}
+                ref={imageInput}
+              />
+            </div>
+          </>
         )}
       </Form.Group>
       <div className="text-right">
@@ -118,7 +119,7 @@ function MemoryEditForm(props) {
         </button>
         <button
           className={styles.Button}
-          disabled={!content.trim()}
+          disabled={!memory.content.trim()}
           type="submit"
         >
           save
