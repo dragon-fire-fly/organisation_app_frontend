@@ -69,6 +69,7 @@ function EventPage() {
                   event={id}
                   setEvent={setEvent}
                   setMemories={setMemories}
+                  past={event.results[0].past}
                 />
               ) : memories.results.length ? (
                 "Memories"

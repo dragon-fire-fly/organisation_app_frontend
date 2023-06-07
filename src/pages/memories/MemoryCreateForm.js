@@ -1,4 +1,4 @@
-import React, { useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { Link } from "react-router-dom";
 
 import Form from "react-bootstrap/Form";
@@ -14,20 +14,29 @@ import Asset from "../../components/Asset";
 import { Alert, Image } from "react-bootstrap";
 
 function MemoryCreateForm(props) {
-  const { event, setEvent, setMemories, profileImage, profile_id } = props;
+  const { event, setEvent, setMemories, profileImage, profile_id, past } =
+    props;
   const [memory, setMemory] = useState({
     content: "",
     image: "",
-    event: event,
   });
   const { content, image } = memory;
   const [errors, setErrors] = useState({});
 
+  const [placeholder, setPlaceholder] = useState(
+    "It's all part of the plan..."
+  );
+
   const imageInput = useRef(null);
+
+  useEffect(() => {
+    if (past) {
+      setPlaceholder("my memory...");
+    }
+  }, [past]);
 
   const handleChange = (event) => {
     setMemory({ ...memory, [event.target.name]: event.target.value });
-    console.log(memory);
   };
 
   const handleChangeImage = (event) => {
@@ -37,7 +46,6 @@ function MemoryCreateForm(props) {
         ...memory,
         image: URL.createObjectURL(event.target.files[0]),
       });
-      console.log(memory);
     }
   };
 
@@ -52,7 +60,6 @@ function MemoryCreateForm(props) {
     }
 
     try {
-      console.log(event);
       const { data } = await axiosRes.post("/memories/", formData);
       setMemories((prevMemories) => ({
         ...prevMemories,
@@ -66,7 +73,10 @@ function MemoryCreateForm(props) {
           },
         ],
       }));
-      setMemory("");
+      setMemory({
+        content: "",
+        image: "",
+      });
     } catch (err) {
       console.log(err);
     }
@@ -82,7 +92,7 @@ function MemoryCreateForm(props) {
           <Form.Control
             className={styles.Form}
             name="content"
-            placeholder="my memory..."
+            placeholder={placeholder}
             as="textarea"
             value={content}
             onChange={handleChange}
