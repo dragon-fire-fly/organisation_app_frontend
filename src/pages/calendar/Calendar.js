@@ -55,7 +55,6 @@ function EventCalendar(props) {
 
   const handleEventClick = (arg) => {
     setHeader(arg.event.title);
-    console.log(arg.event.id);
     let dayEvents = [];
     for (let x in props.events) {
       if (arg.event.id == props.events[x].id) {
@@ -65,7 +64,6 @@ function EventCalendar(props) {
         eventDetails["title"] = props.events[x].title;
         eventDetails["start"] = props.events[x].start;
         eventDetails["end"] = props.events[x].end;
-        console.log(eventDetails);
         dayEvents.push(eventDetails);
       }
     }

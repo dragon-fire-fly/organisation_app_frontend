@@ -36,8 +36,6 @@ function Friends({ message, filter = "" }) {
 
   return (
     <>
-      <Row className="h-100">Friends</Row>
-
       {hasLoaded ? (
         <>
           {friends.results.length ? (
