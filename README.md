@@ -177,6 +177,9 @@ The 404 page contains a button which links back to the homepage (post feed page)
 <details> 
 <summary>Posts</summary>
 
+The posts page can be accessed through the base route of the application and is in a "feed" style with `<Post />` components from all users loaded on top of one another, starting from the most recent. 10 posts are loaded on page load, with another 10 being loaded when the user scrolls to the bottom, infinitely until the end of the post list is reached.
+Each `<Post />` component contains the poster's avatar, name and a link to their profile, the date of posting, the image (if present), title, post content and a link to the event (if added). Each post can be liked by all logged in users except the post owner. Any logged in user may comment on a post.
+
 components:
 
 - likes
@@ -199,8 +202,12 @@ pages:
 
 components:
 
-- watch
-- add to calendar
+- watch event  
+  ![watch event](documentation/features/watched-events.png)
+
+- add event to calendar  
+  ![add to calendar](documentation/features/add-event-to-calendar.png)
+
 - memories
 - upcoming events
 
