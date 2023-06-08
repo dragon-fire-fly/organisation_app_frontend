@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from "react";
 import { Button, Modal } from "react-bootstrap";
-import { Link, useHistory } from "react-router-dom/cjs/react-router-dom.min";
+import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
 import EventMini from "../pages/events/EventMini";
+import btnStyles from "../styles/Button.module.css";
 
 const EventModal = (props) => {
-  // console.log(props);
   const { show, setShow, handleClose, header, body, specificEvent } = props;
   const [eventId, setEventId] = useState("");
   let eventLink = `/events/${eventId}`;
@@ -47,9 +47,16 @@ const EventModal = (props) => {
         <Button onClick={handleClose}>cancel</Button>
 
         {specificEvent ? (
-          <Button onClick={viewEventRedirect}>view event</Button>
+          <Button
+            onClick={viewEventRedirect}
+            className={btnStyles.SelectorBtn}
+          >
+            view event
+          </Button>
         ) : (
-          <Button onClick={addEventRedirect}>add event</Button>
+          <Button onClick={addEventRedirect} className={btnStyles.SelectorBtn}>
+            add event
+          </Button>
         )}
       </Modal.Footer>
     </Modal>

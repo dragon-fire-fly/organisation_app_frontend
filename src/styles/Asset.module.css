@@ -8,3 +8,7 @@
 .AssetImg {
     max-width: 100%;
 }
+
+.AssetImgMini {
+    max-height: 50px;
+}

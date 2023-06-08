@@ -19,6 +19,7 @@
     color: #2142b2;
   }
 
-  /* .EyesOutline:hover {
-    color: #167b25;
-  } */
+  .bold {
+    font-weight: 700;
+    font-size: 1.5rem;
+  }
