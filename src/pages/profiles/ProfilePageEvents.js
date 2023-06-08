@@ -101,14 +101,14 @@ function ProfilePageEvents() {
                 className={`${btnStyles.Button} ${btnStyles.BlackOutline}`}
                 onClick={() => handleUnfollow(profile)}
               >
-                unfollow
+                remove friend
               </Button>
             ) : (
               <Button
                 className={`${btnStyles.Button} ${btnStyles.Black}`}
                 onClick={() => handleFollow(profile)}
               >
-                follow
+                add friend
               </Button>
             ))}
         </Col>
