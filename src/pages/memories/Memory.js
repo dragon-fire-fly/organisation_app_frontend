@@ -35,7 +35,7 @@ const Memory = (props) => {
 
   const handleShow = () => {
     setShow(true);
-    setMessage(`Are you sure you want to delete you memory "${content}"?`);
+    setMessage(`Are you sure you want to delete your memory "${content}"?`);
   };
 
   const handleClose = () => setShow(false);

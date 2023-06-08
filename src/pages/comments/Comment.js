@@ -31,7 +31,7 @@ const Comment = (props) => {
 
   const handleShow = () => {
     setShow(true);
-    setMessage(`Are you sure you want to delete you comment "${content}"?`);
+    setMessage(`Are you sure you want to delete your comment "${content}"?`);
   };
 
   const handleClose = () => setShow(false);

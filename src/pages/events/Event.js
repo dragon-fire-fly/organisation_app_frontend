@@ -43,7 +43,7 @@ const Event = (props) => {
 
   const handleShow = () => {
     setShow(true);
-    setMessage(`Are you sure you want to delete you event "${title}"?`);
+    setMessage(`Are you sure you want to delete your event "${title}"?`);
   };
 
   const handleClose = () => setShow(false);

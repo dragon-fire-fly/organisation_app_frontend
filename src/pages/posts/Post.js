@@ -35,7 +35,7 @@ const Post = (props) => {
 
   const handleShow = () => {
     setShow(true);
-    setMessage(`Are you sure you want to delete you post "${title}"?`);
+    setMessage(`Are you sure you want to delete your post "${title}"?`);
   };
 
   const handleClose = () => setShow(false);
