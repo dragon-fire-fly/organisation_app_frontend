@@ -50,47 +50,138 @@ Todo: Insert kanban screenshots here
 
 All user stories can be found in this [google docs](https://docs.google.com/spreadsheets/d/1-8NA5gjndIE3oYSuDAwsheJqryA4tlZQ6CmLRp4fKt8/edit?usp=sharing) document.
 
-Main features
-Existing
+## UX
 
-- Signup
-  ![Signup-page](documentation/features/signup-page.png)
+### Wireframes
 
-- Signin
-  ![Signin-page](documentation/features/signin-page.png)
+<details> 
+<summary>The wrieframes for the project can be found in this toggle</summary>
+- Home page?
 
-- Posts
-  - likes
-  - comments
-  - popular profiles
-- Events
-  - watch
-  - add to calendar
-  - memories
-  - upcoming events
-- Calendars
-  - different views
-  - scrolling through
-  - interactivity
-- Profiles
-  - add picture
-  - friends
-  - posts
-  - events
+- Post list view
 
-Components
+- Post detail view
 
+- Event list view
+  ![Event Page](documentation/wireframes/event_page.png)
+- Event detail view
+  ![Individual Event Page](documentation/wireframes/individual_event.png)
+- Calendar page
+  ![Calendar Page](documentation/wireframes/calendar_page.png)
+
+- Profile page
+
+</details>
+
+### User Stories
+
+### Site structure
+
+### Design choices
+
+- colour scheme
+- typography
+
+## Main features
+
+### Existing
+
+One of the main purposes of the React framework is the creation and use of reusable components. This improves efficiency and reability of the code and allows global changes to be made with ease. This also reduces repetition in the code which is time consuming and liable to errors when one piece of code is updated and this must be correctly updated all areas where the original code was reused.
+
+For this project, several reusable components were created and used throughout various pages. First I will detail the reusable components, then the pages in which some of these components were utilised.
+
+<details> 
+<summary>Reusable Components</summary>
 - Navbar
-  - dropdown
-  - asset
-  - avatar
+- dropdown
+- asset
+- avatar
+- event modal
+- delete modal
+- Selector switch
 
-Future
-Link to google maps (through API)
+</details>
 
-- Reuse of components
+<details> 
+<summary>Signup</summary>
 
-credits  
+</details>
+
+<details> 
+<summary>Signin</summary>
+
+</details>
+
+<details> 
+<summary>404 page</summary>
+
+</details>
+
+<details> 
+<summary>Posts</summary>
+
+components:
+
+- likes
+- comments
+- popular profiles
+
+pages:
+
+- Posts page
+- Posts detail page
+
+</details>
+
+<details> 
+<summary>Events</summary>
+
+components:
+
+- watch
+- add to calendar
+- memories
+- upcoming events
+
+pages:
+
+- Events page
+- Events detail page
+
+</details>
+
+<details> 
+<summary>Calendars</summary>
+
+- different views
+- scrolling through
+- modals
+
+</details>
+
+<details> 
+<summary>Profiles</summary>
+
+components:
+
+- add picture
+- friends
+- posts
+- events
+
+pages:
+
+- Profile page
+
+</details>
+
+### Future Features
+
+Link to google calendar (through API)
+Link to google maps for location
+
+## credits
+
 Lantern photo
 https://www.pexels.com/photo/selective-focus-photography-of-lanterns-1313817/
 
@@ -102,6 +193,8 @@ https://react-bootstrap.github.io/components/modal/
 https://www.npmjs.com/package/react-spinners
 
 https://stackoverflow.com/questions/72301355/how-to-populate-select-options-from-an-api-call-in-react-js-on-page-load - for event drop down in postcreateform
+
+https://nicepage.com/website-design/preview/404-not-found-error-message-389597?device=desktop - 404
 
 ---
 
