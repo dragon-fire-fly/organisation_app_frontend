@@ -91,22 +91,27 @@ One of the main purposes of the React framework is the creation and use of reusa
 For this project, several reusable components were created and used throughout various pages. First I will detail the reusable components, then the pages in which some of these components were utilised.
 
 ![](documentation/features)
+`< />`
 
 <details> 
 <summary>Reusable Components</summary>
 
 - Navbar
 
-- dropdown
+- Dropdown
   The `<MoreDropdown />` component is present on all editable and deletable components, including `<Post />`, `<Event />`, `<Comment />`, `<Memory />` and gives asset owners the option to edit and delete their assets. This component takes the handleEdit and handleShow (necessary for the confirma deletion modal) methods directly as props.
 
 The `<ProfileEditDropdown />` component is present on the `<Profile />`component and handles redirects to the change password, change username and edit profile pages.
 
 ![dropdown component](documentation/features/dropdown-component.png)
 
-- asset
+- Asset
+  The `<Asset />` is a reusable component, useful for displaying a variety of, well... assets. This includes the image for the `<NotFound />` page, the images for upload and no results, and the spinners used throughout the site.
 
-- avatar
+![asset component](documentation/features/asset-component.png)
+
+- Avatar
+  The `<Avatar />` component contains the profile image of users and is used in many other components. This includes each user's `<Profile />`, the `<Navbar />` component (as the dropdown menu toggle), part of the `<Profile />` component for the `<PopularProfiles />` sidebar, and at the top of each `<Post />` and `<Event />` asset.
 
 ![avatar component](documentation/features/avatar-component.png)
 
@@ -114,9 +119,9 @@ The `<ProfileEditDropdown />` component is present on the `<Profile />`component
 
 - Event mini
 
-The `<EventMini />` component takes the key details from each event (the title, image and start date) and makes a small component which is used in the calendar event modals and upcoming events sidebar.
+  The `<EventMini />` component takes the key details from each event (the title, image and start date) and makes a small component which is used in the calendar event modals and upcoming events sidebar.
 
-![event mini component](documentation/features/event-mini-component.png)
+  ![event mini component](documentation/features/event-mini-component.png)
 
 - Event modal
   In the `<Calendar />` component, both the `dateClick` and `eventClick` functionalities from FullCalendar are used to determine user clicks on a whole day or on a specific event. When either of these is clicked, relevant information is passed to the `<EventModal />` component to render the relevant event(s) in the modal.
@@ -125,13 +130,13 @@ The `<EventMini />` component takes the key details from each event (the title, 
 
   If a whole day is clicked, "Events for `<date clicked>`" becomes the modal title and each of the events taking place that day are listed as `<EventMini />` components. The footer of the modal contains a cancel or "view event" button to take the user to the "create new event" page so a user can create a new event. A future feature could automatically populate the new event form with the clicked date.
 
-![calendar modals](documentation/features/calendar-modals.png)
+  ![calendar modals](documentation/features/calendar-modals.png)
 
 - Delete modal  
   The delete confirm modal is used in each of the places where assets can be deleted. This includes the `<Post />`, `<Event />`, `<Comment />` and `<Memory />` components. Each time the modal component is used, props in the form of a custom confirmation message and the specific handleDelete method are passed to the modal. This makes the modal completely interchangable for all delete instances.  
   ![delete modals](documentation/features/delete-modals.png)
 
-The selector switch was designed as there were multiple places where multiple versions of a page could be displayed so I wanted a reusable component which could handle each of these instances. The switch has a left and right hand side and props are passed to it to determine what text is rendered and which side has a link (and where the link leads). This makes the component reusable on the profile page (for switching between a user's posts and events) and on the main events page to switch between events in the past and those in the future.
+  The selector switch was designed as there were multiple places where multiple versions of a page could be displayed so I wanted a reusable component which could handle each of these instances. The switch has a left and right hand side and props are passed to it to determine what text is rendered and which side has a link (and where the link leads). This makes the component reusable on the profile page (for switching between a user's posts and events) and on the main events page to switch between events in the past and those in the future.
 
 - Selector switch  
   ![selector switch](documentation/features/selector-switch.png)
@@ -141,21 +146,29 @@ The selector switch was designed as there were multiple places where multiple ve
 <details> 
 <summary>Signup</summary>
 
-![Signup-page](documentation/features/signup-page.png)
+![signup page](documentation/features/signup-page.png)
 
 </details>
 
 <details> 
 <summary>Signin</summary>
 
-![Signin-page](documentation/features/signin-page.png)
+![signin page](documentation/features/signin-page.png)
 
 </details>
 
 <details> 
 <summary>404 page</summary>
 
-![Signin-page](documentation/features/404-page.png)
+A '404 page not found' page replaces the default React 404 page. The `<NotFound />` component contains the `<Asset />` container with a custom "not found" image.
+
+The 404 page will be rendered whenever a page not on the list of routes in `<App />` is entered, for example https://organisation-app-frontend.herokuapp.com/nonexistantpage/
+
+Custom routing has also been added for when the API returns a 400 or 404 error, for example when a resource does not exist. This means that if a non-existant resource id is entered (in an otherwise valid route), the 404 page will be returned. For example https://organisation-app-frontend.herokuapp.com/notfound.
+
+The 404 page contains a button which links back to the homepage (post feed page).
+
+![page not found 404](documentation/features/404-page.png)
 
 </details>
 
