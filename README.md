@@ -98,6 +98,8 @@ For this project, several reusable components were created and used throughout v
 
 - Navbar
 
+![navbar component](documentation/features/navbar-main.png)
+
 - Dropdown
   The `<MoreDropdown />` component is present on all editable and deletable components, including `<Post />`, `<Event />`, `<Comment />`, `<Memory />` and gives asset owners the option to edit and delete their assets. This component takes the handleEdit and handleShow (necessary for the confirma deletion modal) methods directly as props.
 
@@ -183,10 +185,12 @@ components:
 
 pages:
 
-- Posts page
+- Posts page  
   ![posts list page](documentation/features/posts-page-main.png)
-- Posts detail page
+- Posts detail page  
   ![posts detail page](documentation/features/post-detail-main.png)
+- Create post page
+  ![create post page](documentation/features/create-post-main.png)
 
 </details>
 
@@ -202,15 +206,20 @@ components:
 
 pages:
 
-- Events page
+- Events page  
   ![events list page](documentation/features/events-page-main.png)
-- Events detail page
+- Events detail page  
   ![events detail page](documentation/features/event-detail-main.png)
+- Create event page
+  ![create event page](documentation/features/create-event-main.png)
+  ![create event page detail](documentation/features/create-event.png)
 
 </details>
 
 <details> 
 <summary>Calendars</summary>
+
+- Calendar  
   ![calendar page](documentation/features/calendar-page-main.png)
 
 - different views
