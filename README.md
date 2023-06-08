@@ -101,19 +101,19 @@ For this project, several reusable components were created and used throughout v
 - Dropdown
   The `<MoreDropdown />` component is present on all editable and deletable components, including `<Post />`, `<Event />`, `<Comment />`, `<Memory />` and gives asset owners the option to edit and delete their assets. This component takes the handleEdit and handleShow (necessary for the confirma deletion modal) methods directly as props.
 
-The `<ProfileEditDropdown />` component is present on the `<Profile />`component and handles redirects to the change password, change username and edit profile pages.
+  The `<ProfileEditDropdown />` component is present on the `<Profile />`component and handles redirects to the change password, change username and edit profile pages.
 
-![dropdown component](documentation/features/dropdown-component.png)
+  ![dropdown component](documentation/features/dropdown-component.png)
 
 - Asset
   The `<Asset />` is a reusable component, useful for displaying a variety of, well... assets. This includes the image for the `<NotFound />` page, the images for upload and no results, and the spinners used throughout the site.
 
-![asset component](documentation/features/asset-component.png)
+  ![asset component](documentation/features/asset-component.png)
 
 - Avatar
   The `<Avatar />` component contains the profile image of users and is used in many other components. This includes each user's `<Profile />`, the `<Navbar />` component (as the dropdown menu toggle), part of the `<Profile />` component for the `<PopularProfiles />` sidebar, and at the top of each `<Post />` and `<Event />` asset.
 
-![avatar component](documentation/features/avatar-component.png)
+  ![avatar component](documentation/features/avatar-component.png)
 
 - profile
 
@@ -184,7 +184,9 @@ components:
 pages:
 
 - Posts page
+  ![posts list page](documentation/features/posts-page-main.png)
 - Posts detail page
+  ![posts detail page](documentation/features/post-detail-main.png)
 
 </details>
 
@@ -201,12 +203,15 @@ components:
 pages:
 
 - Events page
+  ![events list page](documentation/features/events-page-main.png)
 - Events detail page
+  ![events detail page](documentation/features/event-detail-main.png)
 
 </details>
 
 <details> 
 <summary>Calendars</summary>
+  ![calendar page](documentation/features/calendar-page-main.png)
 
 - different views
 - scrolling through
@@ -219,6 +224,7 @@ pages:
 
 - Profile page
   ![profile page](documentation/features/profile_page.png)
+  ![profile page](documentation/features/profile_page_main.png)
 
   The profile page is made up of several different components
 
