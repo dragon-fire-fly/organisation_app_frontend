@@ -105,15 +105,21 @@ For this project, several reusable components were created and used throughout v
 <details> 
 <summary>Signup</summary>
 
+![Signup-page](documentation/features/signup-page.png)
+
 </details>
 
 <details> 
 <summary>Signin</summary>
 
+![Signin-page](documentation/features/signin-page.png)
+
 </details>
 
 <details> 
 <summary>404 page</summary>
+
+![Signin-page](documentation/features/404-page.png)
 
 </details>
 
@@ -162,16 +168,35 @@ pages:
 <details> 
 <summary>Profiles</summary>
 
-components:
-
-- add picture
-- friends
-- posts
-- events
-
-pages:
-
 - Profile page
+  ![profile page](documentation/features/profile_page.png)
+
+  The profile page is made up of several different components
+
+  1. `<Avatar />`
+  2. profile details supplied in`<ProfilePage />`
+  3. `<ProfileEditDropdown />`
+  4. `<SelectorSwitch />`
+  5. `<Post />` or `<Event />` component, depending on which view is chosen
+  6. `<PopularProfiles />`
+     ![profile page components](documentation/features/profile-anatomy.png)
+
+  If it is another user's profile, the edit dropdown menu is not visible, but the button to add/remove friend is visible.
+  The `<Asset />` component (the empty treasure chest here) is displayed if the user hasn't posted/added events yet.  
+  ![other user's profile page](documentation/features/other-user-profile.png)
+
+The dropdown menu on a user's own profile allows the following actions:
+
+Change username  
+![](documentation/features)
+![change username](documentation/features/username-change.png)
+
+Change password  
+![change password](documentation/features/change-password.png)
+
+Update profile details  
+Registered users can update their profile picture and profile details at any time with the profile edit form.  
+![update profile details](documentation/features/update-profile.png)
 
 </details>
 
