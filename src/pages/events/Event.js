@@ -31,6 +31,7 @@ const Event = (props) => {
     calendars,
     eventPage,
     setEvents,
+    past,
   } = props;
 
   const currentUser = useCurrentUser();
@@ -175,9 +176,15 @@ const Event = (props) => {
             </div>
           </Media>
         </Card.Body>
-        <Link to={`/events/${id}`}>
-          <Card.Img src={image} alt={title} />
-        </Link>
+        {past ? (
+          <Link to={`/events/${id}/past/`}>
+            <Card.Img src={image} alt={title} />
+          </Link>
+        ) : (
+          <Link to={`/events/${id}/`}>
+            <Card.Img src={image} alt={title} />
+          </Link>
+        )}
         <Card.Body className="text-center">
           {title && (
             <Card.Title className={`text-center ${styles.bold}`}>
@@ -188,16 +195,16 @@ const Event = (props) => {
           {event_type && (
             <Card.Text>
               <u>
-                <strong>Type:</strong>
-              </u>{" "}
+                <strong>Event type: </strong>
+              </u>
               {event_type}
             </Card.Text>
           )}
           {start && (
             <Card.Text>
               <u>
-                <strong>When:</strong>
-              </u>{" "}
+                <strong>When: </strong>
+              </u>
               {dateFormat(start, "mmmm dS 'yy HH:MM")}-
               {dateFormat(end, "mmmm dS 'yy HH:MM")}
             </Card.Text>
@@ -205,9 +212,18 @@ const Event = (props) => {
           {location && (
             <Card.Text>
               <u>
-                <strong>Where:</strong>
-              </u>{" "}
+                <strong>Where: </strong>
+              </u>
               {location}
+            </Card.Text>
+          )}
+          {link && (
+            <Card.Text>
+              <a href={link}>
+                <u>
+                  <strong>More info here</strong>
+                </u>
+              </a>
             </Card.Text>
           )}
 

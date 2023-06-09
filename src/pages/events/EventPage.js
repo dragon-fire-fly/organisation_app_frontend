@@ -5,6 +5,7 @@ import Row from "react-bootstrap/Row";
 import Container from "react-bootstrap/Container";
 
 import appStyles from "../../App.module.css";
+import styles from "../../styles/EventPlanMemory.module.css";
 import {
   useHistory,
   useParams,
@@ -68,6 +69,7 @@ function EventPage() {
                 linkLeft={false}
                 linkto={`/events/${id}/past`}
               />
+
               {currentUser ? (
                 <MemoryCreateForm
                   profile_id={currentUser.profile_id}
@@ -80,6 +82,7 @@ function EventPage() {
               ) : memories.results.length ? (
                 "Plans"
               ) : null}
+              <div className={styles.MemoryTitle}>Plans</div>
               {memories.results.length ? (
                 <InfiniteScroll
                   children={memories.results

@@ -5,6 +5,7 @@ import Row from "react-bootstrap/Row";
 import Container from "react-bootstrap/Container";
 
 import appStyles from "../../App.module.css";
+import styles from "../../styles/EventPlanMemory.module.css";
 import {
   useHistory,
   useParams,
@@ -80,6 +81,7 @@ function EventPagePast() {
               ) : memories.results.length ? (
                 "Memories"
               ) : null}
+              <div className={styles.MemoryTitle}>Memories</div>
               {memories.results.length ? (
                 <InfiniteScroll
                   children={memories.results
