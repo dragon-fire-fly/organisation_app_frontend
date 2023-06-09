@@ -10,8 +10,15 @@ import Upload from "../../assets/upload.png";
 import { Image } from "react-bootstrap";
 
 function MemoryEditForm(props) {
-  const { id, memory, setMemory, setShowEditForm, setMemories, defaultImg } =
-    props;
+  const {
+    id,
+    memory,
+    setMemory,
+    setShowEditForm,
+    setMemories,
+    setDefaultImg,
+    defaultImg,
+  } = props;
 
   const [memoryContent, setMemoryContent] = useState(memory.content);
   const [memoryImage, setMemoryImage] = useState(memory.image);
@@ -26,7 +33,9 @@ function MemoryEditForm(props) {
     if (event.target.files.length) {
       URL.revokeObjectURL(memory.image);
 
+      setDefaultImg(false);
       setMemoryImage(URL.createObjectURL(event.target.files[0]));
+      setMemory({ ...memory, image: memoryImage });
     }
   };
 
@@ -74,18 +83,35 @@ function MemoryEditForm(props) {
         />
       </Form.Group>
       <Form.Group className="text-center">
+        {/* if user has not added an image to the original memory */}
         {defaultImg ? (
-          <Form.Label
-            // className="d-flex justify-content-center"
-            htmlFor="image-edit"
-          >
-            <img
-              src={Upload}
-              alt="Click or tap to upload an image"
-              className={styles.AssetImgMini}
-            />
-            {/* <Asset src={Upload} message="Click or tap to upload an image" /> */}
-          </Form.Label>
+          <>
+            <Form.Label
+              className="d-flex justify-content-center"
+              htmlFor="image-edit"
+            >
+              <img
+                src={Upload}
+                alt="Click or tap to upload an image"
+                className={styles.AssetImgMini}
+              />
+            </Form.Label>
+            <div>
+              <Form.Label
+                className={`${btnStyles.Button} ${btnStyles.Blue} btn`}
+                htmlFor="image-edit"
+              >
+                Add image
+              </Form.Label>
+              <Form.File
+                id="image-edit"
+                accept="image/*"
+                required={false}
+                onChange={handleEditImage}
+                ref={imageInput}
+              />
+            </div>
+          </>
         ) : (
           <>
             <figure>

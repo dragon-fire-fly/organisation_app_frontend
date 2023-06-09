@@ -94,6 +94,7 @@ const Memory = (props) => {
               profileImage={profile_image}
               setMemories={setMemories}
               setShowEditForm={setShowEditForm}
+              setDefaultImg={setDefaultImg}
               defaultImg={defaultImg}
             />
           ) : (
