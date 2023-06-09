@@ -24,6 +24,7 @@ import ProfilePageEvents from "./pages/profiles/ProfilePageEvents";
 import Friends from "./pages/profiles/Friends";
 import PastEventsPage from "./pages/events/PastEventsPage";
 import NotFound from "./pages/NotFound";
+import EventPagePast from "./pages/events/EventPagePast";
 
 function App() {
   const currentUser = useCurrentUser();
@@ -135,6 +136,11 @@ function App() {
             )}
           />
           <Route exact path="/events/:id" render={() => <EventPage />} />
+          <Route
+            exact
+            path="/events/:id/past"
+            render={() => <EventPagePast />}
+          />
           <Route
             exact
             path="/events/:id/edit"

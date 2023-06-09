@@ -35,7 +35,7 @@ function MemoryEditForm(props) {
     const formData = new FormData();
 
     formData.append("content", memoryContent);
-    if (imageInput.current?.files.length) {
+    if (imageInput.current?.files?.length) {
       formData.append("image", imageInput.current?.files[0]);
     }
 

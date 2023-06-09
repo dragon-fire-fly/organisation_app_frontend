@@ -14,6 +14,7 @@ const Memory = (props) => {
     profile_id,
     profile_image,
     owner,
+    created_at,
     updated_at,
     content,
     image,
@@ -74,9 +75,16 @@ const Memory = (props) => {
         <Link to={`/profiles/${profile_id}`}>
           <Avatar src={profile_image} />
         </Link>
-        <Media.Body className="align-self-center ml-2">
-          <span className={styles.Owner}>{owner}</span>
-          <span className={styles.Date}>{updated_at}</span>
+        <Media.Body className={`align-self-center ml-2 `}>
+          <div className={`d-flex flex-row justify-content-between`}>
+            <span className={styles.Owner}>{owner}</span>
+            {updated_at != created_at ? (
+              <span className={styles.Date}>updated:{updated_at}</span>
+            ) : (
+              <></>
+            )}
+            <span className={styles.Date}>posted: {created_at}</span>
+          </div>
           {showEditForm ? (
             <MemoryEditForm
               id={id}

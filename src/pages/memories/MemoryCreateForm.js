@@ -24,14 +24,14 @@ function MemoryCreateForm(props) {
   const [errors, setErrors] = useState({});
 
   const [placeholder, setPlaceholder] = useState(
-    "It's all part of the plan..."
+    "This event is upcoming... add plans here!"
   );
 
   const imageInput = useRef(null);
 
   useEffect(() => {
     if (past) {
-      setPlaceholder("my memory...");
+      setPlaceholder("This event has passed... add a memory here!");
     }
   }, [past]);
 
@@ -126,10 +126,8 @@ function MemoryCreateForm(props) {
               alt="Click or tap to upload an image"
               className={styles.AssetImgMini}
             />
-            {/* <Asset src={Upload} message="Click or tap to upload an image" /> */}
           </Form.Label>
         )}
-
         <Form.File
           id="image-upload"
           accept="image/*"
@@ -137,6 +135,7 @@ function MemoryCreateForm(props) {
           onChange={handleChangeImage}
           ref={imageInput}
         />
+        Upload an image (optional)
       </Form.Group>
       {errors?.image?.map((message, idx) => (
         <Alert variant="warning" key={idx}>
@@ -146,7 +145,7 @@ function MemoryCreateForm(props) {
 
       <button
         className={`${styles.Button} btn d-block ml-auto`}
-        // disabled={!memory.trim()}
+        disabled={!content.trim()}
         type="submit"
       >
         post

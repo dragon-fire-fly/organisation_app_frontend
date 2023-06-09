@@ -20,7 +20,7 @@ import { fetchMoreData } from "../../utils/utils";
 import UpcomingEvents from "./UpcomingEvents";
 import SelectorSwitch from "../../components/SelectorSwitch";
 
-function EventPage() {
+function EventPagePast() {
   const { id } = useParams();
   const [event, setEvent] = useState({ results: [] });
   const [hasLoaded, setHasLoaded] = useState(false);
@@ -65,8 +65,8 @@ function EventPage() {
               <SelectorSwitch
                 left="Plans"
                 right="Memories"
-                linkLeft={false}
-                linkto={`/events/${id}/past`}
+                linkLeft={true}
+                linkto={`/events/${id}`}
               />
               {currentUser ? (
                 <MemoryCreateForm
@@ -78,12 +78,12 @@ function EventPage() {
                   past={event.results[0].past}
                 />
               ) : memories.results.length ? (
-                "Plans"
+                "Memories"
               ) : null}
               {memories.results.length ? (
                 <InfiniteScroll
                   children={memories.results
-                    .filter((memory) => memory.plan)
+                    .filter((memory) => !memory.plan)
                     .map((memory) => (
                       <Memory
                         key={memory.id}
@@ -99,14 +99,16 @@ function EventPage() {
                 />
               ) : currentUser ? (
                 event.results[0].past ? (
-                  <span>No plans were added for this event!</span>
+                  <span>No memories yet, be the first to add one!</span>
                 ) : (
-                  <span>No plans yet, be the first to add one!</span>
+                  <span>
+                    No memories yet.. we hope it'll be a great event!
+                  </span>
                 )
               ) : event.results[0].past ? (
-                <span>No plans were added for this event!</span>
+                <span>No memories... yet</span>
               ) : (
-                <span>No plans... yet</span>
+                <span>No memories... check back after the event!</span>
               )}
             </Container>
           </Col>
@@ -120,4 +122,4 @@ function EventPage() {
   );
 }
 
-export default EventPage;
+export default EventPagePast;
