@@ -55,7 +55,7 @@ All user stories can be found in this [google docs](https://docs.google.com/spre
 ### Wireframes
 
 <details> 
-<summary>The wrieframes for the project can be found in this toggle</summary>
+<summary>The wireframes for the project can be found in this toggle</summary>
 - Home page?
 
 - Post list view
@@ -86,7 +86,7 @@ All user stories can be found in this [google docs](https://docs.google.com/spre
 
 ### Existing
 
-One of the main purposes of the React framework is the creation and use of reusable components. This improves efficiency and reability of the code and allows global changes to be made with ease. This also reduces repetition in the code which is time consuming and liable to errors when one piece of code is updated and this must be correctly updated all areas where the original code was reused.
+One of the main purposes of the React framework is the creation and use of reusable components. This improves efficiency and readability of the code and allows global changes to be made with ease. This also reduces repetition in the code which is time consuming and liable to errors when a piece of code is updated and this must be correctly updated all areas where the original code was reused.
 
 For this project, several reusable components were created and used throughout various pages. First I will detail the reusable components, then the pages in which some of these components were utilised.
 
@@ -100,19 +100,19 @@ For this project, several reusable components were created and used throughout v
 
 ![navbar component](documentation/features/navbar-main.png)
 
-- Dropdown
-  The `<MoreDropdown />` component is present on all editable and deletable components, including `<Post />`, `<Event />`, `<Comment />`, `<Memory />` and gives asset owners the option to edit and delete their assets. This component takes the handleEdit and handleShow (necessary for the confirma deletion modal) methods directly as props.
+- Dropdown  
+  The `<MoreDropdown />` component is present on all editable and deletable components, including `<Post />`, `<Event />`, `<Comment />`, `<Memory />` and gives asset owners the option to edit and delete their assets. This component takes the handleEdit and handleShow (necessary for the confirm deletion modal) methods directly as props.
 
-  The `<ProfileEditDropdown />` component is present on the `<Profile />`component and handles redirects to the change password, change username and edit profile pages.
+  The `<ProfileEditDropdown />` component is present on the `<Profile />` component and handles redirects to the change password, change username and edit profile pages.
 
   ![dropdown component](documentation/features/dropdown-component.png)
 
-- Asset
-  The `<Asset />` is a reusable component, useful for displaying a variety of, well... assets. This includes the image for the `<NotFound />` page, the images for upload and no results, and the spinners used throughout the site.
+- Asset  
+  The `<Asset />` is a reusable component, useful for displaying a variety of, well... assets. This includes the image for the `<NotFound />` page, the images for upload and no results, and the loading spinners used throughout the site.
 
   ![asset component](documentation/features/asset-component.png)
 
-- Avatar
+- Avatar  
   The `<Avatar />` component contains the profile image of users and is used in many other components. This includes each user's `<Profile />`, the `<Navbar />` component (as the dropdown menu toggle), part of the `<Profile />` component for the `<PopularProfiles />` sidebar, and at the top of each `<Post />` and `<Event />` asset.
 
   ![avatar component](documentation/features/avatar-component.png)
@@ -125,37 +125,41 @@ For this project, several reusable components were created and used throughout v
 
   ![event mini component](documentation/features/event-mini-component.png)
 
-- Event modal
+- Event modal  
   In the `<Calendar />` component, both the `dateClick` and `eventClick` functionalities from FullCalendar are used to determine user clicks on a whole day or on a specific event. When either of these is clicked, relevant information is passed to the `<EventModal />` component to render the relevant event(s) in the modal.
 
   If a specific event is clicked, the name of that event becomes the modal title and the specific event is displayed in the body through the `<EventMini />` component. The footer of the modal contains a cancel or "view event" button to take the user to that specific event detail page (where it can be edited or deleted, if the user owns the event).
 
-  If a whole day is clicked, "Events for `<date clicked>`" becomes the modal title and each of the events taking place that day are listed as `<EventMini />` components. The footer of the modal contains a cancel or "view event" button to take the user to the "create new event" page so a user can create a new event. A future feature could automatically populate the new event form with the clicked date.
+  If a whole day is clicked, "Events for `<date clicked>`" becomes the modal title and each of the events taking place that day are listed as `<EventMini />` components. The footer of the modal contains a cancel or "add event" button to take the user to the "create new event" page so a user can create a new event. A future feature could automatically populate the new event form with the clicked date.
 
   ![calendar modals](documentation/features/calendar-modals.png)
 
 - Delete modal  
-  The delete confirm modal is used in each of the places where assets can be deleted. This includes the `<Post />`, `<Event />`, `<Comment />` and `<Memory />` components. Each time the modal component is used, props in the form of a custom confirmation message and the specific handleDelete method are passed to the modal. This makes the modal completely interchangable for all delete instances.  
+  The delete confirm modal is used in each of the places where assets can be deleted. This includes the `<Post />`, `<Event />`, `<Comment />` and `<Memory />` components. Each time the modal component is used, props in the form of a custom confirmation message and the specific `handleDelete` method are passed to the modal. This makes the modal completely interchangable for all delete instances.
+
   ![delete modals](documentation/features/delete-modals.png)
 
-  The selector switch was designed as there were multiple places where multiple versions of a page could be displayed so I wanted a reusable component which could handle each of these instances. The switch has a left and right hand side and props are passed to it to determine what text is rendered and which side has a link (and where the link leads). This makes the component reusable on the profile page (for switching between a user's posts and events) and on the main events page to switch between events in the past and those in the future.
-
 - Selector switch  
+  The selector switch was designed as there were a few places where multiple versions of a page could be displayed so I wanted a reusable component which could handle each of these instances. The switch has a left and right hand side and props are passed to it to determine the text rendered on each side, which side contains a link and the route for the link. This makes the component reusable on the profile page (for switching between a user's posts and events) and on the main events page to switch between events in the past and those in the future.
+
   ![selector switch](documentation/features/selector-switch.png)
 
 </details>
 
 <details> 
-<summary>Signup</summary>
+<summary>Signup and Signin</summary>
 
-![signup page](documentation/features/signup-page.png)
+- Signup
 
-</details>
+  The signup page was taken from the Code Institute Moments walkthrough project. The image was changed to a photo of lanterns but is otherwise unchanged from the walkthrough.
 
-<details> 
-<summary>Signin</summary>
+  ![signup page](documentation/features/signup-page.png)
 
-![signin page](documentation/features/signin-page.png)
+  - Signin
+
+  The signin page was also taken from the Code Institute Moments walkthrough project. The image was changed to a photo of confetti at an event but is otherwise unchanged from the walkthrough.
+
+  ![signin page](documentation/features/signin-page.png)
 
 </details>
 
@@ -166,7 +170,7 @@ A '404 page not found' page replaces the default React 404 page. The `<NotFound 
 
 The 404 page will be rendered whenever a page not on the list of routes in `<App />` is entered, for example https://organisation-app-frontend.herokuapp.com/nonexistantpage/
 
-Custom routing has also been added for when the API returns a 400 or 404 error, for example when a resource does not exist. This means that if a non-existant resource id is entered (in an otherwise valid route), the 404 page will be returned. For example https://organisation-app-frontend.herokuapp.com/notfound.
+Custom routing has also been added for when the API returns a 400 or 404 error, for example when a resource does not exist. This means that if a non-existant resource id is entered (in an otherwise valid route), the 404 page will be returned. For example https://organisation-app-frontend.herokuapp.com/events/999.
 
 The 404 page contains a button which links back to the homepage (post feed page).
 
@@ -217,9 +221,35 @@ pages:
   ![events list page](documentation/features/events-page-main.png)
 - Events detail page  
   ![events detail page](documentation/features/event-detail-main.png)
-- Create event page
-  ![create event page](documentation/features/create-event-main.png)
+- Create event page  
+  ![create event page](documentation/features/create-event-main.png)  
   ![create event page detail](documentation/features/create-event.png)
+  </details>
+
+  <details> 
+  <summary>Plans and Memories</summary>
+    - Plans and Memories
+
+  Plans and Memories are variants of the same component, depending on whether they were created before or after the start date of their associated event. "Plans" are created when the asset is created before the start of the event, otherwise the asset is a "Memory".
+
+  The `<EventPage />` displays the detailed view of an event and also displays any plans that were created.
+  The `<EventPastPage />` also displays the detailed view of an event, but also displays the associated memories.
+  The `<SelectorSwtich />` component is reused here to switch between the two views.
+
+  Placeholder text is rendered conditionally depending on whether the event's start date has passed ("The event is upcoming... add plans here!" if so, "This event has passed... add a memory here!" if not).
+
+  ![plan or memory placeholder text](documentation/features/plan-memory-placeholder.png)
+
+  Users may add a plan or memory with text content and an image (optional). The `<MemoryCreateForm />` component is embedded inline and plans/memories are added to the top of the list without causing a full page refresh.
+
+  ![plan or memory crud](documentation/features/plan-memory-crud.png)
+
+  ![plan or memory crud](documentation/features/plans-memories.png)
+
+  The following shows the message displayed to the user when there are no plans or memories, depending on whether the event's start date is in the past or future and whether the user is logged in or not.  
+   ![no plan or memory message grid](documentation/features/plan-memory-grid.png)
+
+  `< />`
 
 </details>
 
