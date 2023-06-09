@@ -82,7 +82,7 @@ function EventPagePast() {
                 "Memories"
               ) : null}
               <div className={styles.MemoryTitle}>Memories</div>
-              {memories.results.length ? (
+              {memories.results.filter((memory) => !memory.plan)?.length ? (
                 <InfiniteScroll
                   children={memories.results
                     .filter((memory) => !memory.plan)
@@ -99,18 +99,22 @@ function EventPagePast() {
                   hasMore={!!memories.next}
                   next={() => fetchMoreData(memories, setMemories)}
                 />
-              ) : currentUser ? (
-                event.results[0].past ? (
-                  <span>No memories yet, be the first to add one!</span>
-                ) : (
-                  <span>
-                    No memories yet.. we hope it'll be a great event!
-                  </span>
-                )
-              ) : event.results[0].past ? (
-                <span>No memories... yet</span>
               ) : (
-                <span>No memories... check back after the event!</span>
+                <div className="text-center">
+                  {currentUser ? (
+                    event.results[0].past ? (
+                      <span>No memories yet, be the first to add one!</span>
+                    ) : (
+                      <span>
+                        No memories yet.. we hope it'll be a great event!
+                      </span>
+                    )
+                  ) : event.results[0].past ? (
+                    <span>No memories... yet</span>
+                  ) : (
+                    <span>No memories... check back after the event!</span>
+                  )}
+                </div>
               )}
             </Container>
           </Col>

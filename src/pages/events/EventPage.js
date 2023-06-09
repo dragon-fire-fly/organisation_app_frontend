@@ -100,16 +100,20 @@ function EventPage() {
                   hasMore={!!memories.next}
                   next={() => fetchMoreData(memories, setMemories)}
                 />
-              ) : currentUser ? (
-                event.results[0].past ? (
-                  <span>No plans were added for this event!</span>
-                ) : (
-                  <span>No plans yet, be the first to add one!</span>
-                )
-              ) : event.results[0].past ? (
-                <span>No plans were added for this event!</span>
               ) : (
-                <span>No plans... yet</span>
+                <div className="text-center">
+                  {currentUser ? (
+                    event.results[0].past ? (
+                      <span>No plans were added for this event!</span>
+                    ) : (
+                      <span>No plans yet, be the first to add one!</span>
+                    )
+                  ) : event.results[0].past ? (
+                    <span>No plans were added for this event!</span>
+                  ) : (
+                    <span>No plans... yet</span>
+                  )}
+                </div>
               )}
             </Container>
           </Col>
