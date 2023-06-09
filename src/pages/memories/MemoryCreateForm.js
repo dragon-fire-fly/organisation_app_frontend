@@ -22,12 +22,11 @@ function MemoryCreateForm(props) {
   });
   const { content, image } = memory;
   const [errors, setErrors] = useState({});
+  const [selectedFile, setSelectedFile] = useState();
 
   const [placeholder, setPlaceholder] = useState(
     "This event is upcoming... add plans here!"
   );
-
-  const imageInput = useRef(null);
 
   useEffect(() => {
     if (past) {
@@ -39,14 +38,25 @@ function MemoryCreateForm(props) {
     setMemory({ ...memory, [event.target.name]: event.target.value });
   };
 
-  const handleChangeImage = (event) => {
-    if (event.target.files.length) {
-      URL.revokeObjectURL(image);
-      setMemory({
-        ...memory,
-        image: URL.createObjectURL(event.target.files[0]),
-      });
+  useEffect(() => {
+    if (!selectedFile) {
+      return;
     }
+    const objectUrl = URL.createObjectURL(selectedFile);
+    setMemory({ ...memory, image: objectUrl });
+    console.log(memory);
+    console.log(image);
+
+    // free memory when the component is unmounted
+    return () => URL.revokeObjectURL(objectUrl);
+  }, [selectedFile]);
+
+  const handleChangeImage = (e) => {
+    if (!e.target.files || e.target.files.length === 0) {
+      setSelectedFile(undefined);
+      return;
+    }
+    setSelectedFile(e.target.files[0]);
   };
 
   const handleSubmit = async (e) => {
@@ -55,8 +65,8 @@ function MemoryCreateForm(props) {
 
     formData.append("event", event);
     formData.append("content", content);
-    if (imageInput.current.files.length) {
-      formData.append("image", imageInput.current?.files[0]);
+    if (image) {
+      formData.append("image", selectedFile);
     }
 
     try {
@@ -133,7 +143,6 @@ function MemoryCreateForm(props) {
           accept="image/*"
           required={false}
           onChange={handleChangeImage}
-          ref={imageInput}
         />
         Upload an image (optional)
       </Form.Group>
@@ -145,7 +154,7 @@ function MemoryCreateForm(props) {
 
       <button
         className={`${styles.Button} btn d-block ml-auto`}
-        disabled={!content.trim()}
+        // disabled={!content.trim()}
         type="submit"
       >
         post
