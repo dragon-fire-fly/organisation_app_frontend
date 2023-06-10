@@ -1,4 +1,6 @@
+import jwtDecode from "jwt-decode";
 import { axiosReq } from "../api/axiosDefaults";
+
 export const fetchMoreData = async (resource, setResource) => {
   try {
     const { data } = await axiosReq.get(resource.next);
@@ -11,7 +13,9 @@ export const fetchMoreData = async (resource, setResource) => {
           : [...acc, cur];
       }, prevResource.results),
     }));
-  } catch (err) {}
+  } catch (err) {
+    console.log(err);
+  }
 };
 export const followHelper = (profile, clickedProfile, following_id) => {
   return profile.id === clickedProfile.id
@@ -37,4 +41,17 @@ export const unfollowHelper = (profile, clickedProfile) => {
     : profile.is_owner // check if the profile in the array we're iterating over is owner by the currently logged in user
     ? { ...profile, following_count: profile.following_count - 1 } // if so, decrease that profile's following count by one
     : profile; // return the profile without changing it
+};
+
+export const setTokenTimestamp = (data) => {
+  const refreshTokenTimestamp = jwtDecode(data?.refresh_token).exp;
+  localStorage.setItem("refreshTokenTimestamp", refreshTokenTimestamp);
+};
+
+export const shouldRefreshToken = () => {
+  return !!localStorage.getItem("refreshTokenTimestamp");
+};
+
+export const removeTokenTimestamp = () => {
+  localStorage.removeItem("refreshTokenTimestamp");
 };

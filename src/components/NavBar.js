@@ -1,5 +1,8 @@
 import React, { useEffect, useState } from "react";
-import { Navbar, Container, Nav, Dropdown } from "react-bootstrap";
+import Navbar from "react-bootstrap/Navbar";
+import Container from "react-bootstrap/Container";
+import Nav from "react-bootstrap/Nav";
+import Dropdown from "react-bootstrap/Dropdown";
 import NavDropdown from "react-bootstrap/NavDropdown";
 import logo from "../assets/logo.png";
 import styles from "../styles/NavBar.module.css";
@@ -12,14 +15,13 @@ import Avatar from "./Avatar";
 import axios from "axios";
 import useClickOutside from "../hooks/useClickOutside";
 import { Link } from "react-router-dom/cjs/react-router-dom.min";
+import { removeTokenTimestamp } from "../utils/utils";
 
 const NavBar = () => {
   const currentUser = useCurrentUser();
   const setCurrentUser = useSetCurrentUser();
   const [windowWidth, setWindowWidth] = useState(window.innerWidth);
-
   const { expanded, setExpanded, ref } = useClickOutside();
-  // const [toggleNavBar, setToggleNavBar] = useState(false);
 
   useEffect(() => {
     const handleResize = () => {
@@ -37,6 +39,7 @@ const NavBar = () => {
     try {
       await axios.post("dj-rest-auth/logout/");
       setCurrentUser(null);
+      removeTokenTimestamp();
     } catch (err) {
       console.log(err);
     }
