@@ -7,7 +7,6 @@ import btnStyles from "../styles/Button.module.css";
 const EventModal = (props) => {
   const { show, setShow, handleClose, header, body, specificEvent } = props;
   const [eventId, setEventId] = useState("");
-  let eventLink = `/events/${eventId}`;
 
   useEffect(() => {
     const fetchEvent = () => {
@@ -25,8 +24,8 @@ const EventModal = (props) => {
   const viewEventRedirect = () => history.push(`/events/${eventId}`);
 
   return (
-    // <Modal show={show} onHide={() => setShow(false)}>
-    <Modal show={show}>
+    <Modal show={show} onHide={() => setShow(false)}>
+      {/* <Modal show={show}> */}
       <Modal.Header>{header}</Modal.Header>
       <Modal.Body>
         {specificEvent ? (

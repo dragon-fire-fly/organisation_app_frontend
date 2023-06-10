@@ -115,14 +115,14 @@ const NavBar = () => {
           <i className="fa-solid fa-user-group"></i> My Friends
         </NavDropdown.Item>
         <NavDropdown.Item className={styles.NavLink} as={Link} to={"/feed"}>
-          <i className="fa-solid fa-message"></i> My Friend's Posts
+          <i className="fa-solid fa-message"></i> My Friend&#39;s Posts
         </NavDropdown.Item>
         <NavDropdown.Item
           className={styles.NavLink}
           as={Link}
           to={"/events/friends"}
         >
-          <i className="fa-solid fa-calendar-days"></i> My Friend's Events
+          <i className="fa-solid fa-calendar-days"></i> My Friend&#39;s Events
         </NavDropdown.Item>
         <Dropdown.Divider />
         <NavDropdown.Item

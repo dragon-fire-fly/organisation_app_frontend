@@ -9,8 +9,6 @@ import { Container } from "react-bootstrap";
 const PopularProfiles = ({ mobile }) => {
   const { popularProfiles } = useProfileData();
 
-  const [refresh, setRefresh] = useState(false);
-
   return (
     <Container
       className={`${appStyles.Content} ${
@@ -23,21 +21,12 @@ const PopularProfiles = ({ mobile }) => {
           {mobile ? (
             <div className="d-flex justify-content-around">
               {popularProfiles.results.slice(0, 4).map((profile) => (
-                <Profile
-                  key={profile.id}
-                  profile={profile}
-                  mobile
-                  setRefresh={setRefresh}
-                />
+                <Profile key={profile.id} profile={profile} mobile />
               ))}
             </div>
           ) : (
             popularProfiles.results.map((profile) => (
-              <Profile
-                key={profile.id}
-                profile={profile}
-                setRefresh={setRefresh}
-              />
+              <Profile key={profile.id} profile={profile} />
             ))
           )}
         </>

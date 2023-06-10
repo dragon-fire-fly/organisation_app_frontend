@@ -23,7 +23,6 @@ import InfiniteScroll from "react-infinite-scroll-component";
 import { fetchMoreData } from "../../utils/utils";
 import NoResults from "../../assets/no-results.png";
 import { ProfileEditDropdown } from "../../components/MoreDropdown";
-import { Link } from "react-router-dom/cjs/react-router-dom.min";
 import Event from "../events/Event";
 import SelectorSwitch from "../../components/SelectorSwitch";
 

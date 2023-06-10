@@ -11,7 +11,7 @@ const NotFound = () => {
       <div className={styles.NotFound}>
         <div className={styles.Error404}>404!</div>
         <div className={styles.NotFoundText}>
-          Sorry, that page couldn't be found!
+          Sorry, that page couldn&#39;t be found!
         </div>
         <div>
           <Asset src={NotFoundImg} />

@@ -231,7 +231,9 @@ const Event = (props) => {
             {is_owner ? (
               <OverlayTrigger
                 placement="top"
-                overlay={<Tooltip>You can't watch your own Event!</Tooltip>}
+                overlay={
+                  <Tooltip>You can&#39;t watch your own Event!</Tooltip>
+                }
               >
                 <i className="fa-regular fa-eye" />
               </OverlayTrigger>

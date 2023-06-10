@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import appStyles from "../../App.module.css";
 import Asset from "../../components/Asset";
 import styles from "../../styles/UpcomingEvents.module.css";
-import { Container, Image } from "react-bootstrap";
+import { Container } from "react-bootstrap";
 import { axiosReq } from "../../api/axiosDefaults";
 import { useCurrentUser } from "../../contexts/CurrentUserContext";
 import EventMini from "./EventMini";
@@ -69,8 +69,8 @@ const UpcomingEvents = ({ events, mobile }) => {
               <p className={styles.Title}>Your Upcoming Events</p>
               <p>You have no upcoming events.</p>
               <p>
-                Create an event or add someone else's event to your calendar to
-                get started!
+                Create an event or add someone else&#39;s event to your
+                calendar to get started!
               </p>
             </>
           )

@@ -106,7 +106,7 @@ function EventPagePast() {
                       <span>No memories yet, be the first to add one!</span>
                     ) : (
                       <span>
-                        No memories yet.. we hope it'll be a great event!
+                        No memories yet.. we hope it&#39;ll be a great event!
                       </span>
                     )
                   ) : event.results[0].past ? (
