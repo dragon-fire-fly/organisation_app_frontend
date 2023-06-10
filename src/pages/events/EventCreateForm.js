@@ -29,7 +29,6 @@ function EventCreateForm() {
     location: "",
     start: "",
     end: "",
-    allDay: "No",
     privacy: 0,
     link: "",
   });
@@ -41,7 +40,6 @@ function EventCreateForm() {
     location,
     start,
     end,
-    allDay,
     privacy,
     link,
   } = postData;
@@ -79,7 +77,6 @@ function EventCreateForm() {
     formData.append("location", location);
     formData.append("start", start);
     formData.append("end", end);
-    // formData.append("allDay", allDay);
     formData.append("privacy", privacy);
     formData.append("link", link);
     try {
@@ -208,23 +205,6 @@ function EventCreateForm() {
           {message}
         </Alert>
       ))}
-      {/* <Form.Group>
-        <Form.Label>All day</Form.Label>
-        <Form.Control
-          as="select"
-          name="allDay"
-          value={allDay}
-          onChange={handleChange}
-        >
-          <option value="False">No</option>
-          <option value="True">Yes</option>
-        </Form.Control>
-      </Form.Group>
-      {errors?.allDay?.map((message, idx) => (
-        <Alert variant="warning" key={idx}>
-          {message}
-        </Alert>
-      ))} */}
       <Form.Group>
         <Form.Label>Link to Event</Form.Label>
         <Form.Control

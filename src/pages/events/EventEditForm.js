@@ -22,7 +22,6 @@ const EventEditForm = () => {
     location: "",
     start: "",
     end: "",
-    allDay: "No",
     privacy: 0,
     link: "",
   });
@@ -34,7 +33,6 @@ const EventEditForm = () => {
     location,
     start,
     end,
-    allDay,
     privacy,
     link,
   } = eventData;
@@ -56,7 +54,6 @@ const EventEditForm = () => {
           location,
           start,
           end,
-          // allDay,
           privacy,
           link,
         } = data;
@@ -121,7 +118,6 @@ const EventEditForm = () => {
     formData.append("location", location);
     formData.append("start", start);
     formData.append("end", end);
-    // formData.append("all_day", allDay);
     formData.append("privacy", privacy);
     formData.append("link", link);
 
@@ -244,23 +240,6 @@ const EventEditForm = () => {
           {message}
         </Alert>
       ))}
-      {/* <Form.Group>
-        <Form.Label>All day</Form.Label>
-        <Form.Control
-          as="select"
-          name="allDay"
-          value={allDay}
-          onChange={handleChange}
-        >
-          <option value="False">No</option>
-          <option value="True">Yes</option>
-        </Form.Control>
-      </Form.Group>
-      {errors?.allDay?.map((message, idx) => (
-        <Alert variant="warning" key={idx}>
-          {message}
-        </Alert>
-      ))} */}
       <Form.Group>
         <Form.Label>Link to Event</Form.Label>
         <Form.Control
