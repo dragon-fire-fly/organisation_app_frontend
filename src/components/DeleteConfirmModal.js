@@ -1,11 +1,9 @@
 import React from "react";
-import {
-  Button,
-  Modal,
-  ModalBody,
-  ModalFooter,
-  ModalTitle,
-} from "react-bootstrap";
+import Button from "react-bootstrap/Button";
+import Modal from "react-bootstrap/Modal";
+import ModalBody from "react-bootstrap/ModalBody";
+import ModalFooter from "react-bootstrap/ModalFooter";
+import ModalTitle from "react-bootstrap/ModalTitle";
 import ModalHeader from "react-bootstrap/esm/ModalHeader";
 import btnStyles from "../styles/Button.module.css";
 

@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useLocation } from "react-router-dom/cjs/react-router-dom.min";
 import { axiosReq } from "../../api/axiosDefaults";
-import { Container, Row } from "react-bootstrap";
+import Container from "react-bootstrap/Container";
 import appStyles from "../../App.module.css";
 import Asset from "../../components/Asset";
 import NoResults from "../../assets/no-results.png";
@@ -36,6 +36,7 @@ function Friends({ message, filter = "" }) {
 
   return (
     <>
+      <h2>Friends</h2>
       {hasLoaded ? (
         <>
           {friends.results.length ? (

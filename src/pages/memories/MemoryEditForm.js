@@ -1,13 +1,11 @@
 import React, { useRef, useState } from "react";
-
 import Form from "react-bootstrap/Form";
 import { axiosRes } from "../../api/axiosDefaults";
-
 import styles from "../../styles/MemoryCreateEditForm.module.css";
 import appStyles from "../../App.module.css";
 import btnStyles from "../../styles/Button.module.css";
 import Upload from "../../assets/upload.png";
-import { Image } from "react-bootstrap";
+import Image from "react-bootstrap/Image";
 
 function MemoryEditForm(props) {
   const {

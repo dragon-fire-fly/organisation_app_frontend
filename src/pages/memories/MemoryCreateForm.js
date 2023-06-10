@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import Form from "react-bootstrap/Form";
 import InputGroup from "react-bootstrap/InputGroup";
@@ -8,7 +8,8 @@ import appStyles from "../../App.module.css";
 import btnStyles from "../../styles/Button.module.css";
 import Avatar from "../../components/Avatar";
 import { axiosRes } from "../../api/axiosDefaults";
-import { Alert, Image } from "react-bootstrap";
+import Alert from "react-bootstrap/Alert";
+import Image from "react-bootstrap/Image";
 
 function MemoryCreateForm(props) {
   const { event, setEvent, setMemories, profileImage, profile_id, past } =
@@ -83,6 +84,9 @@ function MemoryCreateForm(props) {
         image: "",
       });
     } catch (err) {
+      if (err.response?.status !== 401) {
+        setErrors(err.response?.data);
+      }
       console.log(err);
     }
   };

@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import styles from "../../styles/Memory.module.css";
-import { Image, Media } from "react-bootstrap";
+import Image from "react-bootstrap/Image";
+import Media from "react-bootstrap/Media";
 import { Link } from "react-router-dom/cjs/react-router-dom.min";
 import Avatar from "../../components/Avatar";
 import { useCurrentUser } from "../../contexts/CurrentUserContext";

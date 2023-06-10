@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import EventCalendar from "./Calendar";
 import { axiosReq } from "../../api/axiosDefaults";
-import { Container } from "react-bootstrap";
+import Container from "react-bootstrap/Container";
 import { PacmanLoader } from "react-spinners";
 import { useCurrentUser } from "../../contexts/CurrentUserContext";
 import styles from "../../styles/CalendarPage.module.css";

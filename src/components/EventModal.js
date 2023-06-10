@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
-import { Button, Modal } from "react-bootstrap";
+import Button from "react-bootstrap/Button";
+import Modal from "react-bootstrap/Modal";
 import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
 import EventMini from "./EventMini";
 import btnStyles from "../styles/Button.module.css";
