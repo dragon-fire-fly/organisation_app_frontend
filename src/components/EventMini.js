@@ -1,15 +1,11 @@
 import React from "react";
-import styles from "../../styles/Profile.module.css";
-import { useCurrentUser } from "../../contexts/CurrentUserContext";
 import { Link } from "react-router-dom";
-import EventImage from "../../components/EventImage";
+import EventImage from "./EventImage";
 import dateFormat from "dateformat";
 
 const EventMini = (props) => {
-  const { event, mobile, imageSize = 55, setRefresh } = props;
-  const { id, owner, title, image, location, start, end } = event;
-  const currentUser = useCurrentUser();
-  const is_owner = currentUser?.username === owner;
+  const { event, mobile, imageSize = 55 } = props;
+  const { id, title, image, start } = event;
 
   return (
     <div

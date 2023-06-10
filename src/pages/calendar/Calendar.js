@@ -9,7 +9,6 @@ import EventModal from "../../components/EventModal";
 import dateFormat from "dateformat";
 
 function EventCalendar(props) {
-  const events = props.events;
   const [show, setShow] = useState(false);
   const [header, setHeader] = useState("");
   const [body, setBody] = useState("");
@@ -17,7 +16,7 @@ function EventCalendar(props) {
   const [windowWidth, setWindowWidth] = useState(window.innerWidth);
 
   const handleClose = () => setShow(false);
-  const handleShow = () => setShow(true);
+  // const handleShow = () => setShow(true);
 
   useEffect(() => {
     const handleResize = () => {

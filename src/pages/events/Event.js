@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import styles from "../../styles/Event.module.css";
 import { Link, useHistory } from "react-router-dom/cjs/react-router-dom.min";
 import { useCurrentUser } from "../../contexts/CurrentUserContext";
@@ -23,8 +23,6 @@ const Event = (props) => {
     start,
     end,
     link,
-    // all_day,
-    privacy,
     memories_count,
     watches_count,
     watch_id,

@@ -1,16 +1,13 @@
 import React, { useEffect, useRef, useState } from "react";
 import { Link } from "react-router-dom";
-
 import Form from "react-bootstrap/Form";
 import InputGroup from "react-bootstrap/InputGroup";
 import Upload from "../../assets/upload.png";
-
 import styles from "../../styles/MemoryCreateEditForm.module.css";
 import appStyles from "../../App.module.css";
 import btnStyles from "../../styles/Button.module.css";
 import Avatar from "../../components/Avatar";
 import { axiosRes } from "../../api/axiosDefaults";
-import Asset from "../../components/Asset";
 import { Alert, Image } from "react-bootstrap";
 
 function MemoryCreateForm(props) {
@@ -44,8 +41,6 @@ function MemoryCreateForm(props) {
     }
     const objectUrl = URL.createObjectURL(selectedFile);
     setMemory({ ...memory, image: objectUrl });
-    console.log(memory);
-    console.log(image);
 
     // free memory when the component is unmounted
     return () => URL.revokeObjectURL(objectUrl);

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import appStyles from "../../App.module.css";
 import Asset from "../../components/Asset";
 import styles from "../../styles/PopularProfiles.module.css";

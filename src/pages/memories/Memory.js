@@ -65,7 +65,9 @@ const Memory = (props) => {
         ...prevMemories,
         results: prevMemories.results.filter((memory) => memory.id !== id),
       }));
-    } catch (err) {}
+    } catch (err) {
+      console.log(err);
+    }
   };
 
   return (

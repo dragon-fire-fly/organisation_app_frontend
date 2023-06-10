@@ -5,7 +5,7 @@ import styles from "../../styles/UpcomingEvents.module.css";
 import { Container } from "react-bootstrap";
 import { axiosReq } from "../../api/axiosDefaults";
 import { useCurrentUser } from "../../contexts/CurrentUserContext";
-import EventMini from "./EventMini";
+import EventMini from "../../components/EventMini";
 
 const UpcomingEvents = ({ events, mobile }) => {
   const currentUser = useCurrentUser();

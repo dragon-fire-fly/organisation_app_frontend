@@ -20,8 +20,6 @@ function PastEventsPage({ message, filter = "" }) {
   const { pathname } = useLocation();
   const [query, setQuery] = useState("");
 
-  const now = dateFormat(new Date(), "yyyy-mm-dd HH:MM:ss");
-
   useEffect(() => {
     const fetchEvents = async () => {
       try {
