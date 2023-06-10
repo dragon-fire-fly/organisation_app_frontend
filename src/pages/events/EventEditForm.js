@@ -77,10 +77,10 @@ const EventEditForm = () => {
           : history.push("/");
       } catch (err) {
         for (let error in errors) {
-          console.log(errors);
+          // console.log(errors);
           if (errors[error] == "An event cannot end before it has started!") {
             setErrors({ end: errors[error] });
-            console.log(errors);
+            // console.log(errors);
           }
           if (err.response?.status === 404 || err.response?.status === 400) {
             history.push("/notfound");
@@ -129,7 +129,7 @@ const EventEditForm = () => {
       await axiosReq.put(`/events/${id}/`, formData);
       history.push(`/events/${id}`);
     } catch (err) {
-      console.log(err);
+      // console.log(err);
       if (err.response?.status !== 401) {
         setErrors(err.response?.data);
       }

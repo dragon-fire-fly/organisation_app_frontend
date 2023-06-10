@@ -87,7 +87,7 @@ function MemoryCreateForm(props) {
       if (err.response?.status !== 401) {
         setErrors(err.response?.data);
       }
-      console.log(err);
+      // console.log(err);
     }
   };
 

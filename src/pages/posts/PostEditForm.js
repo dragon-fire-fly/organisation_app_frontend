@@ -47,7 +47,7 @@ function PostEditForm() {
           ? setPostData({ title, content, image, event })
           : history.push("/");
       } catch (err) {
-        console.log(err);
+        // console.log(err);
         if (err.response?.status === 404 || err.response?.status === 400) {
           history.push("/notfound");
         }
@@ -75,7 +75,7 @@ function PostEditForm() {
         setEvents([{ key: "Select an event", value: "" }, ...results]);
         setHasLoaded(true);
       } catch (err) {
-        console.log(err);
+        // console.log(err);
       }
     }
 
@@ -122,7 +122,7 @@ function PostEditForm() {
       await axiosReq.patch(`/posts/${id}/edit/`, formData);
       history.push(`/posts/${id}`);
     } catch (err) {
-      console.log(err);
+      // console.log(err);
       if (err.response?.status !== 401) {
         setErrors(err.response?.data);
       }

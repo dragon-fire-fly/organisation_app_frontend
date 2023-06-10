@@ -26,7 +26,7 @@ function Friends({ message, filter = "" }) {
         setFriends(data);
         setHasLoaded(true);
       } catch (err) {
-        console.log(err);
+        // console.log(err);
       }
     };
     setRefresh(false);

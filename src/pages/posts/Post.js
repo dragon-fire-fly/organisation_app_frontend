@@ -52,7 +52,7 @@ const Post = (props) => {
       await axiosRes.delete(`/posts/${id}/edit/`);
       history.push("/");
     } catch (err) {
-      console.log(err);
+      // console.log(err);
     }
   };
 
@@ -68,7 +68,7 @@ const Post = (props) => {
         }),
       }));
     } catch (err) {
-      console.log(err);
+      // console.log(err);
     }
   };
   const handleUnlike = async () => {
@@ -83,7 +83,7 @@ const Post = (props) => {
         }),
       }));
     } catch (err) {
-      console.log(err);
+      // console.log(err);
     }
   };
   return (

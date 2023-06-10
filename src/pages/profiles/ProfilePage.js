@@ -56,7 +56,7 @@ function ProfilePage() {
         setProfilePosts(profilePosts);
         setHasLoaded(true);
       } catch (err) {
-        console.log(err);
+        // console.log(err);
         if (err.response?.status === 404 || err.response?.status === 400) {
           history.push("/notfound");
         }

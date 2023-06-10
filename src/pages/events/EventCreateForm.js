@@ -82,15 +82,15 @@ function EventCreateForm() {
       const { data } = await axiosReq.post("/events/", formData);
       history.push(`/events/${data.id}`);
     } catch (err) {
-      console.log(err);
+      // console.log(err);
       if (err.response?.status !== 401) {
         setErrors(err.response?.data);
       }
       for (let error in errors) {
-        console.log(errors);
+        // console.log(errors);
         if (errors[error] == "An event cannot end before it has started!") {
           setErrors({ end: errors[error] });
-          console.log(errors);
+          // console.log(errors);
         }
       }
     }

@@ -32,7 +32,7 @@ const GoogleCalendarAPI = () => {
     });
     if (error) {
       alert("Error logging in to Google provider with Supabase");
-      console.log(error);
+      // console.log(error);
     }
   }
 
@@ -46,7 +46,7 @@ const GoogleCalendarAPI = () => {
     });
     if (error) {
       alert("Error logging in to Google provider with Supabase");
-      console.log(error);
+      // console.log(error);
     }
   }
 
@@ -60,7 +60,7 @@ const GoogleCalendarAPI = () => {
     });
     if (error) {
       alert("Error logging in to Google provider with Supabase");
-      console.log(error);
+      // console.log(error);
     }
   }
 
@@ -69,7 +69,7 @@ const GoogleCalendarAPI = () => {
   }
 
   async function createCalendarEvent() {
-    console.log("Creating calendar event");
+    // console.log("Creating calendar event");
     const event = {
       summary: eventName,
       description: eventDescription,
@@ -97,15 +97,15 @@ const GoogleCalendarAPI = () => {
         return data.json();
       })
       .then((data) => {
-        console.log(data);
+        // console.log(data);
         alert("Event created, check your Google calendar!");
       });
   }
 
-  console.log(session);
-  console.log(start);
-  console.log(eventName);
-  console.log(eventDescription);
+  // console.log(session);
+  // console.log(start);
+  // console.log(eventName);
+  // console.log(eventDescription);
 
   return (
     <div className="App">

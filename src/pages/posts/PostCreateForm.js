@@ -52,7 +52,7 @@ function PostCreateForm() {
         // Update the events state
         setEvents([{ key: "Select an event", value: "" }, ...results]);
       } catch (err) {
-        console.log(err);
+        // console.log(err);
       }
     }
     // Trigger the fetch
@@ -91,7 +91,7 @@ function PostCreateForm() {
       const { data } = await axiosReq.post("/posts/create/", formData);
       history.push(`/posts/${data.id}`);
     } catch (err) {
-      console.log(err);
+      // console.log(err);
       if (err.response?.status !== 401) {
         setErrors(err.response?.data);
       }
