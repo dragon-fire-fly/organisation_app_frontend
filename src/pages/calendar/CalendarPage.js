@@ -5,8 +5,10 @@ import Container from "react-bootstrap/Container";
 import { PacmanLoader } from "react-spinners";
 import { useCurrentUser } from "../../contexts/CurrentUserContext";
 import styles from "../../styles/CalendarPage.module.css";
+import { useRedirect } from "../../hooks/useRedirect";
 
 function CalendarPage() {
+  useRedirect("loggedOut");
   const [events, setEvents] = useState({ results: [] });
   const [hasLoaded, setHasLoaded] = useState(false);
 
