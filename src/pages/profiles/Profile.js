@@ -31,15 +31,26 @@ const Profile = (props) => {
           currentUser &&
           !is_owner &&
           (following_id ? (
-            <Button
-              className={`${btnStyles.Button} ${btnStyles.BlackOutline}`}
-              onClick={() => {
-                handleUnfollow(profile);
-                setRefresh(true);
-              }}
-            >
-              remove friend
-            </Button>
+            setRefresh ? (
+              <Button
+                className={`${btnStyles.Button} ${btnStyles.BlackOutline}`}
+                onClick={() => {
+                  handleUnfollow(profile);
+                  setRefresh(true);
+                }}
+              >
+                remove friend
+              </Button>
+            ) : (
+              <Button
+                className={`${btnStyles.Button} ${btnStyles.BlackOutline}`}
+                onClick={() => {
+                  handleUnfollow(profile);
+                }}
+              >
+                remove friend
+              </Button>
+            )
           ) : (
             <Button
               className={`${btnStyles.Button} ${btnStyles.Black}`}
