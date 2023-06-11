@@ -13,7 +13,6 @@ import Asset from "../../components/Asset";
 import Event from "./Event";
 import { fetchMoreData } from "../../utils/utils";
 import UpcomingEvents from "./UpcomingEvents";
-import dateFormat from "dateformat";
 import SelectorSwitch from "../../components/SelectorSwitch";
 
 function EventsPage({ message, filter = "" }) {
