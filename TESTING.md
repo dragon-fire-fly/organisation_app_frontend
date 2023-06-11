@@ -227,12 +227,13 @@ These routes address the following user stories:
 <details> 
 <summary>See testing</summary>
 
-| Login state                | URI          | Action                                     | Expected result                                    | Passes testing? | Screenshot |
-| -------------------------- | ------------ | ------------------------------------------ | -------------------------------------------------- | --------------- | ---------- |
-| any                        | /likes/      | view all likes (access non existant route) | 404 page does not exist                            | &check;         |            |
-| not logged in              | /posts/{id}/ | add/remove like                            | users must be logged in to like a post             | &check;         |            |
-| logged in (post owner)     | /posts/{id}/ | add/remove like                            | post owners cannot like their own posts            |                 |            |
-| logged in (not post owner) | /posts/{id}/ | add/remove like                            | users can like or dislike any post they do not own |                 |            |
+| Login state                | URI          | Action                                     | Expected result                                                                                       | Passes testing? |
+| -------------------------- | ------------ | ------------------------------------------ | ----------------------------------------------------------------------------------------------------- | --------------- |
+| any                        | /likes/      | view all likes (access non existant route) | 404 page does not exist                                                                               | &check;         |
+| not logged in              | /posts/{id}/ | add/remove like                            | users must be logged in to like a post                                                                | &check;         |
+| logged in (post owner)     | /posts/{id}/ | add/remove like                            | post owners cannot like their own posts                                                               | &check;         |
+| logged in (not post owner) | /posts/{id}/ | add/remove like                            | users can like or dislike any post they do not own. If they like it, the like icon turns solid purple | &check;         |
+| any                        | /posts/{id}/ | add/remove like                            | post like count increases/decreases by 1 when added/removed                                           | &check;         |
 
 </details>
 
@@ -249,18 +250,18 @@ These routes address the following user stories:
 <details> 
 <summary>See testing</summary>
 
-| Login state           | URI           | Action                                        | Expected result                                                                                | Passes testing? | Screenshot |
-| --------------------- | ------------- | --------------------------------------------- | ---------------------------------------------------------------------------------------------- | --------------- | ---------- |
-| any                   | /memories/    | view all memories (access non existant route) | 404 page does not exist                                                                        | &check;         |            |
-| not logged in         | /events/{id}/ | view memory                                   | can view memories for specific post but cannot add, edit or delete memories                    | &check;         |            |
-| logged in (not owner) | /events/{id}/ | view memory                                   | can view memory but cannot edit or delete if not owner                                         |                 |            |
-| logged in (owner)     | /events/{id}/ | view memory                                   | user can see memory and edit and delete buttons                                                |                 |            |
+| Login state           | URI           | Action                                        | Expected result                                                                                | Passes testing? |
+| --------------------- | ------------- | --------------------------------------------- | ---------------------------------------------------------------------------------------------- | --------------- |
+| any                   | /memories/    | view all memories (access non existant route) | 404 page does not exist                                                                        | &check;         |
+| not logged in         | /events/{id}/ | view memory                                   | can view memories for specific post but cannot add, edit or delete memories                    | &check;         |
+| logged in (not owner) | /events/{id}/ | view memory                                   | can view memory but cannot edit or delete if not owner                                         | &check;         |
+| logged in (owner)     | /events/{id}/ | view memory                                   | user can see memory and edit and delete buttons                                                | &check;         |
 | not logged in         | /events/{id}/ | edit memory                                   | not possible to edit any memories                                                              | &check;         |
-| logged in (not owner) | /events/{id}/ | edit memory                                   | not possible to edit any memories that do not belong to user                                   |                 |            |
-| logged in (owner)     | /events/{id}/ | edit memory                                   | user can edit memory they own - memory edit form is rendered                                   |                 |            |
+| logged in (not owner) | /events/{id}/ | edit memory                                   | not possible to edit any memories that do not belong to user                                   | &check;         |
+| logged in (owner)     | /events/{id}/ | edit memory                                   | user can edit memory they own - memory edit form is rendered                                   | &check;         |
 | not logged in         | /events/{id}/ | delete memory                                 | not possible to delete any memories                                                            | &check;         |
-| logged in (not owner) | /events/{id}/ | delete memory                                 | not possible to delete any memories that do not belong to user                                 |                 |            |
-| logged in (owner)     | /events/{id}/ | delete memory                                 | user can delete memory they own - delete modal is rendered and if confirmed, memory is deleted |                 |            |
+| logged in (not owner) | /events/{id}/ | delete memory                                 | not possible to delete any memories that do not belong to user                                 | &check;         |
+| logged in (owner)     | /events/{id}/ | delete memory                                 | user can delete memory they own - delete modal is rendered and if confirmed, memory is deleted | &check;         |
 
 </details>
 
@@ -274,12 +275,12 @@ These routes address the following user stories:
 <details> 
 <summary>See testing</summary>
 
-| Login state                 | URI           | Action                                       | Expected result                                      | Passes testing? | Screenshot |
-| --------------------------- | ------------- | -------------------------------------------- | ---------------------------------------------------- | --------------- | ---------- |
-| any                         | /watches/     | view all watches (access non existant route) | 404 page does not exist                              | &check;         |            |
-| not logged in               | /events/{id}/ | add/remove watch                             | users must be logged in to watch a event             | &check;         |            |
-| logged in (event owner)     | /events/{id}/ | add/remove watch                             | event owners cannot watch their own events           |                 |            |
-| logged in (not event owner) | /events/{id}/ | add/remove watch                             | users can watch or unwatch any event they do not own |                 |            |
+| Login state                 | URI           | Action                                       | Expected result                                      | Passes testing? |
+| --------------------------- | ------------- | -------------------------------------------- | ---------------------------------------------------- | --------------- |
+| any                         | /watches/     | view all watches (access non existant route) | 404 page does not exist                              | &check;         |
+| not logged in               | /events/{id}/ | add/remove watch                             | users must be logged in to watch a event             | &check;         |
+| logged in (event owner)     | /events/{id}/ | add/remove watch                             | event owners cannot watch their own events           | &check;         |
+| logged in (not event owner) | /events/{id}/ | add/remove watch                             | users can watch or unwatch any event they do not own | &check;         |
 
 </details>
 
@@ -296,11 +297,11 @@ These routes address the following user stories:
 <details> 
 <summary>See testing</summary>
 
-| Login state   | URI               | Action                    | Expected result                                               | Passes testing? | Screenshot |
-| ------------- | ----------------- | ------------------------- | ------------------------------------------------------------- | --------------- | ---------- |
-| any           | /followers/       | access non existant route | 404 page does not exist                                       | &check;         |            |
-| not logged in | /, profiles/{id}/ | add/remove friend         | users must be logged in to add/remove friends                 | &check;         |            |
-| logged in     | /, profiles/{id}/ | add/remove friend         | users can add/remove any profile as a friend except their own |                 |            |
+| Login state   | URI                           | Action                    | Expected result                                               | Passes testing? |
+| ------------- | ----------------------------- | ------------------------- | ------------------------------------------------------------- | --------------- |
+| any           | /followers/                   | access non existant route | 404 page does not exist                                       | &check;         |
+| not logged in | /, /profiles/{id}/, /friends/ | add/remove friend         | users must be logged in to add/remove friends                 | &check;         |
+| logged in     | /, /profiles/{id}/, /friends/ | add/remove friend         | users can add/remove any profile as a friend except their own | &check;         |
 
 </details>
 
