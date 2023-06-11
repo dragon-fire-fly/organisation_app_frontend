@@ -26,7 +26,23 @@ There were, however, 707 warnings generated for the applcation. However, all of 
 
 ### ESLint
 
-### Automatic Testing
+A total of 294 ESLint errors were identified when the linter was first run
+![ESLint errors](documentation/testing/eslint-errors.png)
+
+Most of these were missing or unneeded imports which were easily resolved. The majority of the errors were "x is missing in props validation". These errors were suppressed by adding the following line to the .eslintrc.json file:
+
+```
+"rules": {
+        "react/prop-types": 0
+    }
+```
+
+After fixing all errors, the final linting looks like this:
+![ESLint results](documentation/testing/eslint-results.png)
+
+There are still "Do not pass children as props..." errors, but these have been ignored.
+
+## Automatic Testing
 
 ## Manual Testing
 
