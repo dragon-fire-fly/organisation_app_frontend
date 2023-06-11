@@ -28,6 +28,8 @@ These goals were split into four major themes and used as "Epics" for the agile 
 3. Events
 4. Calendar
 
+![epics completed](documentation/agile/epic-milestones.png)
+
 Each of the epics were then further split into "user stories", each of which representing one small, contained feature to be integrated into the site. Each user story contained an action statement in the format:
 
 As a **role** I can **capability** so that **received benefit**
@@ -36,19 +38,24 @@ Each user story then had a list of acceptance criteria (what the user needs to b
 
 Each story was assigned to its respective Epic and classified into one of each of the four MoSCoW categories:
 
-1. Must do. Approx 60%
-2. Should do. Approx 20%
-3. Could do. Approx 20%
-4. Won't do.
+1. Must do. High priority. Features that the application needs in order to be used. Should account for approx 60% stories
+2. Should do. Medium priority. Features that are not required for the feature to run, but significantly improve the application and/or user experience. Should account for approx 20% stories
+3. Could do. Low priority. Features that are not required for the application to run, but would make a nice addition if included. Should account for the remaining ~20% stories
+4. Won't do. This feature will not be added in this iteration of the application development.
 
 An example user story with acceptance criteria, task list, epic and MoSCoW assignment:
 ![]()
 
 As this project has both a backend and frontend component, each user story had associated frontend and backend tasks. Each repository, therefore, has its own github issue referencing each user story with the same user story and acceptance criteria, but with different tasks. The issue number for each user story is the same for both repositories and the corresponding user story to make tracking and review easy. Both sets of user stories can be found on the [associated project board](https://github.com/users/dragon-fire-fly/projects/5/views/1)
 
+All user stories can be found in the [User Story grid](https://docs.google.com/spreadsheets/d/1-8NA5gjndIE3oYSuDAwsheJqryA4tlZQ6CmLRp4fKt8/edit?usp=sharing)
+
+Each user story has details of it's EPIC, the user story number, the title, user story, acceptance criteria and both the backend and frontend tasks (with link to backend and frontend issues).
+
 Todo: Insert kanban screenshots here
 
-All user stories can be found in this [google docs](https://docs.google.com/spreadsheets/d/1-8NA5gjndIE3oYSuDAwsheJqryA4tlZQ6CmLRp4fKt8/edit?usp=sharing) document.
+![kanban in progress](documentation/agile/kanban-in-progress.png)
+![kanban completed](documentation/agile/kanban-board-complete.png)
 
 ## UX
 
@@ -81,6 +88,8 @@ All user stories can be found in this [google docs](https://docs.google.com/spre
 
 - colour scheme
 - typography
+
+#### Logo/favicon
 
 ## Main features
 
@@ -300,26 +309,41 @@ Registered users can update their profile picture and profile details at any tim
 
 </details>
 
+### handling user interaction
+
 ### Future Features
 
 Link to google calendar (through API)
 Link to google maps for location
 
-## credits
+## Testing
+
+[All testing can be found in a seperate md file here](TESTING.md)
+
+## Deployment
+
+### Security
+
+## Credits
+
+### Images
 
 Lantern photo
 https://www.pexels.com/photo/selective-focus-photography-of-lanterns-1313817/
 
+Confetti photo
 https://unsplash.com/photos/ZODcBkEohk8
 
-https://res.cloudinary.com/djlm3llv5/image/upload/v1684170746/ondpmcc22mtoxfuqdgsy.jpg
+Images for resource not found, image upload placeholder and 404 page were created using [dream.ai](https://dream.ai/)
 
-https://react-bootstrap.github.io/components/modal/
-https://www.npmjs.com/package/react-spinners
+### Code references
+
+https://react-bootstrap.github.io/components/modal/ - for creating modals
+https://www.npmjs.com/package/react-spinners - for custom spinner
 
 https://stackoverflow.com/questions/72301355/how-to-populate-select-options-from-an-api-call-in-react-js-on-page-load - for event drop down in postcreateform
 
-https://nicepage.com/website-design/preview/404-not-found-error-message-389597?device=desktop - 404
+https://stackoverflow.com/questions/38049966/get-image-preview-before-uploading-in-react - for uploading images without using useRef() hook
 
 ---
 
