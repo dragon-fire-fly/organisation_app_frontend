@@ -14,7 +14,7 @@ const EventModal = (props) => {
       try {
         setEventId(body[0][0].id);
       } catch (err) {
-        console.log(err);
+        // console.log(err);
       }
     };
     fetchEvent();
@@ -26,7 +26,6 @@ const EventModal = (props) => {
 
   return (
     <Modal show={show} onHide={() => setShow(false)}>
-      {/* <Modal show={show}> */}
       <Modal.Header>{header}</Modal.Header>
       <Modal.Body>
         {specificEvent ? (
