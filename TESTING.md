@@ -28,7 +28,25 @@ There were, however, 707 warnings generated for the applcation. However, all of 
 
 ### Automatic Testing
 
-### Manual Testing
+## Manual Testing
+
+### Components
+
+<details> 
+<summary>See testing</summary>
+
+| Component          | Login state | Expected result                                                                    | Passes testing? |
+| ------------------ | ----------- | ---------------------------------------------------------------------------------- | --------------- |
+| Navbar             | any         | All links in main navbar lead to correct URIs                                      | &check;         |
+| Navbar             | logged out  | Cannot see restricted links in navbar                                              | &check;         |
+| Navbar             | logged in   | All restricted links in dropdown menu lead to correct URIs                         | &check;         |
+| NotFound           | any         | Whenever a page cannot be found, the 404 not found page is displayed               | &check;         |
+| Avatar             | any         | Wherever an avatar should be, it is correctly displayed                            | &check;         |
+| Asset (no results) | any         | Wherever no results are found, the "not found" asset is correctly displayed        | &check;         |
+| Asset (upload)     | any         | Wherever an image can be uploaded, the "image upload" asset is correctly displayed | &check;         |
+| Asset (spinner)    | any         | Loading spinner assets are correctly displaed when data is being fetched from API  | &check;         |
+
+</details>
 
 ### Sign up
 
