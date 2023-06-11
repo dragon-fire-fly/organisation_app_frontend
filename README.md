@@ -43,8 +43,10 @@ Each story was assigned to its respective Epic and classified into one of each o
 3. Could do. Low priority. Features that are not required for the application to run, but would make a nice addition if included. Should account for the remaining ~20% stories
 4. Won't do. This feature will not be added in this iteration of the application development.
 
-An example user story with acceptance criteria, task list, epic and MoSCoW assignment:
-![]()
+In addition, "story points" were assigned to each of the user stories. These points denoted how difficult each user story is and how long it should take to complete, relative to the other stories. The points ranged from 1-8 on a logarithmic scale (i.e. the points available were 1, 2, 4 or 8, each being approximately double the difficulty and/or time requirement of the previous).
+
+User story issues on Github were assigned labels to keep track of which MoSCoW prioritisation and how mnay story points each story has.  
+![github lables](documentation/agile/user-story-labels.png)
 
 As this project has both a backend and frontend component, each user story had associated frontend and backend tasks. Each repository, therefore, has its own github issue referencing each user story with the same user story and acceptance criteria, but with different tasks. The issue number for each user story is the same for both repositories and the corresponding user story to make tracking and review easy. Both sets of user stories can be found on the [associated project board](https://github.com/users/dragon-fire-fly/projects/5/views/1)
 
@@ -52,9 +54,13 @@ All user stories can be found in the [User Story grid](https://docs.google.com/s
 
 Each user story has details of it's EPIC, the user story number, the title, user story, acceptance criteria and both the backend and frontend tasks (with link to backend and frontend issues).
 
-Todo: Insert kanban screenshots here
+User stories (and bugs) were tracked using a Kanban board. This board has 3 columns - Todo, in progress and done. All user stories start life in the "to do" column and get moved, a maximum of five at a time, to the "in progress" column. When tasks are completed, they are moved to the "done" column and a new task(s) may be moved to the "in progress" column to be worked on.
 
+An example of the kanban board during development and on completion of the application are shown below:
+
+Kanban board in progress:  
 ![kanban in progress](documentation/agile/kanban-in-progress.png)
+Kanban board with all tasks completed:  
 ![kanban completed](documentation/agile/kanban-board-complete.png)
 
 ## UX
