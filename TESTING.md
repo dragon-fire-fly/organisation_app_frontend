@@ -37,15 +37,15 @@ These routes address the following user stories:
 - As a **visitor** I can **register for an account** so that **I can have a user profile with picture and have full access to the site, make, comment on and like posts and events**
 
 <details> 
-<summary>See more</summary>
+<summary>See testing</summary>
 
-| Login state | URI | Testing | Response | Screenshot |
-| ----------- | --- | ------- | -------- | ---------- |
-|             |     |         |          |            |
-|             |     |         |          |            |
-|             |     |         |          |            |
-|             |     |         |          |            |
-|             |     |         |          |            |
+| Login state   | URI      | Expected result             | Passes testing? | Screenshot |
+| ------------- | -------- | --------------------------- | --------------- | ---------- |
+| not logged in | /signup/ | renders signin page         |                 |            |
+| logged in     | /signup/ | redirects to "/" home route |                 |            |
+|               |          |                             |                 |            |
+|               |          |                             |                 |            |
+|               |          |                             |                 |            |
 
 </details>
 
@@ -56,15 +56,15 @@ These routes address the following user stories:
 - As a **registered user** I can **log in to my account** so that **I can have full access to the site, make, comment on and like posts and events**
 
 <details> 
-<summary>See more</summary>
+<summary>See testing</summary>
 
-| Login state | URI | Testing | Response | Screenshot |
-| ----------- | --- | ------- | -------- | ---------- |
-|             |     |         |          |            |
-|             |     |         |          |            |
-|             |     |         |          |            |
-|             |     |         |          |            |
-|             |     |         |          |            |
+| Login state   | URI      | Expected result             | Passes testing? | Screenshot |
+| ------------- | -------- | --------------------------- | --------------- | ---------- |
+| not logged in | /signin/ | renders signin page         |                 |            |
+| logged in     | /signin/ | redirects to "/" home route |                 |            |
+|               |          |                             |                 |            |
+|               |          |                             |                 |            |
+|               |          |                             |                 |            |
 
 </details>
 
@@ -76,15 +76,18 @@ These routes address the following user stories:
 - As a **user** I can **have a profile created for me, add a profile picture and edit my profile** so that **I can have a custom profile picture and display information about myself**
 
 <details> 
-<summary>See more</summary>
+<summary>See testing</summary>
 
-| Login state | URI | Testing | Response | Screenshot |
-| ----------- | --- | ------- | -------- | ---------- |
-|             |     |         |          |            |
-|             |     |         |          |            |
-|             |     |         |          |            |
-|             |     |         |          |            |
-|             |     |         |          |            |
+| Login state           | URI             | Action                       | Expected result                                                   | Passes testing? | Screenshot |
+| --------------------- | --------------- | ---------------------------- | ----------------------------------------------------------------- | --------------- | ---------- |
+| any                   | /profiles/      | access profile list          | redirect to 404 page                                              |                 |            |
+| any                   | /profiles/999   | access non-existant resource | redirect to 404 page                                              |                 |            |
+| not logged in         | /profiles/{id}/ | view profile                 | view but not edit                                                 |                 |            |
+| logged in (not owner) | /profiles/{id}/ | view profile                 | view but not edit                                                 |                 |            |
+| logged in (owner)     | /profiles/{id}/ | view profile                 | can view and see edit buttons                                     |                 |            |
+| logged in (owner)     | /profiles/{id}/ | edit profile                 | redirect to edit page and can successfully edit                   |                 |            |
+| logged in (owner)     | /profiles/{id}/ | edit username                | redirect to username edit page and can successfully edit username |                 |            |
+| logged in (owner)     | /profiles/{id}/ | edit password                | redirect to password edit page and can successfully edit password |                 |            |
 
 </details>
 
@@ -103,15 +106,25 @@ These routes address the following user stories:
 - As a **user** I can **choose an event from my event list when I post** so that **I can make a post about that specific event**
 
 <details> 
-<summary>See more</summary>
+<summary>See testing</summary>
 
-| Login state | URI | Testing | Response | Screenshot |
-| ----------- | --- | ------- | -------- | ---------- |
-|             |     |         |          |            |
-|             |     |         |          |            |
-|             |     |         |          |            |
-|             |     |         |          |            |
-|             |     |         |          |            |
+| Login state                 | URI               | Action                       | Expected result                                                          | Passes testing? | Screenshot |
+| --------------------------- | ----------------- | ---------------------------- | ------------------------------------------------------------------------ | --------------- | ---------- |
+| any                         | /posts/           |                              | 404 page does not exist                                                  |                 |            |
+|                             | /posts/999/       | access non-existant resource | 404 page does not exist                                                  |                 |            |
+| not logged in               | /                 | view posts list              | can view posts                                                           |                 |            |
+| logged in                   | /                 | view posts list              | can view posts                                                           |                 |            |
+| not logged in               | /posts/create/    | create post                  | redirect to homepage                                                     |                 |            |
+| logged in                   | /posts/create/    | create post                  | redirect to create post form and can successfully add new post           |                 |            |
+| not logged in               | /posts/{id}/      | view post                    | view but not edit or delete                                              |                 |            |
+| logged in (not post owner)  | /posts/{id}/      | view post                    | view but not edit or delete                                              |                 |            |
+| logged in (post owner)      | /posts/{id}/      | view post                    | view and see buttons for edit and delete                                 |                 |            |
+| not logged in               | /posts/{id}/edit/ | edit post                    | redirect to homepage                                                     |                 |            |
+| logged in (not post owner)  | /posts/{id}/edit/ | edit post                    | redirect to homepage                                                     |                 |            |
+| logged in (post owner)      | /posts/{id}/edit/ | edit post                    | redirect to edit post page and can successfully edit                     |                 |            |
+| not logged in               | /posts/{id}/edit/ | delete post                  | not possible to delete any posts                                         |                 |            |
+| logged in (not event owner) | /posts/{id}/edit/ | delete post                  | not possible to delete any posts that do not belong to user              |                 |            |
+| logged in (post owner)      | /posts/{id}/edit/ | delete post                  | prompts delete confirm modal. On confirmation, deletes selected resource |                 |            |
 
 </details>
 
@@ -130,15 +143,27 @@ These routes address the following user stories:
 - As a **user** I can **see my upcoming events on a sidebar** so that **I can quickly see which of my events are coming up soon**
 
 <details> 
-<summary>See more</summary>
+<summary>See testing</summary>
 
-| Login state | URI | Testing | Response | Screenshot |
-| ----------- | --- | ------- | -------- | ---------- |
-|             |     |         |          |            |
-|             |     |         |          |            |
-|             |     |         |          |            |
-|             |     |         |          |            |
-|             |     |         |          |            |
+| Login state                 | URI                     | Action                       | Expected result                                                                | Passes testing? | Screenshot |
+| --------------------------- | ----------------------- | ---------------------------- | ------------------------------------------------------------------------------ | --------------- | ---------- |
+| any                         | /events/999/            | access non-existant resource | 404 page does not exist                                                        |                 |            |
+| not logged in               | /events/                | view events list             | can view events                                                                |                 |            |
+| logged in                   | /events/                | view events list             | can view events                                                                |                 |            |
+| not logged in               | /events/create/         | create new event             | redirect to homepage                                                           |                 |            |
+| logged in                   | /events/create/         | create new event             | redirect to create event form and can successfully add new event               |                 |            |
+| not logged in               | /events/{id}/           | view event                   | view but not edit or delete                                                    |                 |            |
+| logged in (not event owner) | /events/{id}/           | view event                   | view but not edit or delete                                                    |                 |            |
+| logged in (event owner)     | /events/{id}/           | view event                   | view and see buttons for edit and delete                                       |                 |            |
+| not logged in               | /events/{id}/edit/      | edit event                   | redirect to homepage                                                           |                 |            |
+| logged in (not event owner) | /events/{id}/edit/      | edit event                   | redirect to homepage                                                           |                 |            |
+| logged in (event owner)     | /events/{id}/edit/      | edit event                   | redirect to edit event page and can successfully edit                          |                 |            |
+| not logged in               | /events/{id}/           | delete event                 | not possible to delete any events                                              |                 |            |
+| logged in (not event owner) | /events/{id}/           | delete event                 | not possible to delete any events that do not belong to user                   |                 |            |
+| logged in (event owner)     | /events/{id}/           | delete post                  | prompts delete confirm modal. On confirmation, deletes selected resource       |                 |            |
+| not logged in               | /events/, /events/{id}/ | add event to calendar        | not possible to add events to calendar without logging in first                |                 |            |
+| logged in (not event owner) | /events/, /events/{id}/ | add event to calendar        | users who do not own the event may add it to their calendar                    |                 |            |
+| logged in (event owner)     | /events/, /events/{id}/ | add event to calendar        | event owners already have the event in their calendar and it cannot be removed |                 |            |
 
 </details>
 
@@ -158,15 +183,18 @@ These routes address the following user stories:
 - As a **user** I can **syncronise my events with my google calendar** so that **I can keep one universal collection of events wherever I am**
 
 <details> 
-<summary>See more</summary>
+<summary>See testing</summary>
 
-| Login state | URI | Testing | Response | Screenshot |
-| ----------- | --- | ------- | -------- | ---------- |
-|             |     |         |          |            |
-|             |     |         |          |            |
-|             |     |         |          |            |
-|             |     |         |          |            |
-|             |     |         |          |            |
+| Login state   | URI             | Action                         | Expected result                                                                                                       | Passes testing?                                                                                                                                              | Screenshot |
+| ------------- | --------------- | ------------------------------ | --------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------ | ---------- | --- |
+| any           | /calendar/{id}/ | access specific calendar by id | 404 page does not exist                                                                                               |                                                                                                                                                              |            |
+| not logged in | /calendar/      | access calendar                | redirect to homepage                                                                                                  | During testing, this was found not to redirect, but to just display the spinner forever. The useRedirect custom hook was added on the page to fix the issue. |            |
+| logged in     | /calendar/      | access calendar                | events in user's calendar are displayed                                                                               |                                                                                                                                                              |
+| logged in     | /calendar/      | user clicks event              | event modal pops up with details of specific event. Can click view event to be redirected to event detail view        |                                                                                                                                                              |            |
+| logged in     | /calendar/      | user clicks day                | day modal pops up with all events that will occur on that day. Can click add event to be redirected to add event page |                                                                                                                                                              |            |
+| logged in     | /calendar/      | user changes calendar view     | calendar changes to that view (year, month, week or day view)                                                         |                                                                                                                                                              |            |
+| logged in     | /calendar/      | user uses navigation arrows    | user can scroll through years/months/weeks/days depending on which view they are in                                   |                                                                                                                                                              |            |
+| logged in     | /calendar/      | user clicks "today"            | calendar focuses on today                                                                                             |                                                                                                                                                              |            |     |
 
 </details>
 
@@ -178,15 +206,20 @@ These routes address the following user stories:
 - As a **user** I can **edit and delete my own comments** so that **I can amend or remove the comment I wrote**
 
 <details> 
-<summary>See more</summary>
+<summary>See testing</summary>
 
-| Login state | URI | Testing | Response | Screenshot |
-| ----------- | --- | ------- | -------- | ---------- |
-|             |     |         |          |            |
-|             |     |         |          |            |
-|             |     |         |          |            |
-|             |     |         |          |            |
-|             |     |         |          |            |
+| Login state           | URI         | Action            | Expected result                                                                                  | Passes testing? | Screenshot |
+| --------------------- | ----------- | ----------------- | ------------------------------------------------------------------------------------------------ | --------------- | ---------- |
+| any                   | /comments/  | view all comments | 404 page does not exist                                                                          |                 |            |
+| not logged in         | /post/{id}/ | view comment      | can view comments for specific post but cannot add, edit or delete comments                      |                 |            |
+| logged in (not owner) | /post/{id}/ | view comment      | can view comment but cannot edit or delete if not owner                                          |                 |            |
+| logged in (owner)     | /post/{id}/ | view comment      | user can see comment and edit and delete buttons                                                 |                 |            |
+| not logged in         | /post/{id}/ | edit comment      | not possible to edit any comments                                                                |
+| logged in (not owner) | /post/{id}/ | edit comment      | not possible to edit any comments that do not belong to user                                     |                 |            |
+| logged in (owner)     | /post/{id}/ | edit comment      | user can edit comment they own - comment edit form is rendered                                   |                 |            |
+| not logged in         | /post/{id}/ | delete comment    | not possible to delete any comments                                                              |
+| logged in (not owner) | /post/{id}/ | delete comment    | not possible to delete any comments that do not belong to user                                   |                 |            |
+| logged in (owner)     | /post/{id}/ | delete comment    | user can delete comment they own - delete modal is rendered and if confirmed, comment is deleted |                 |            |
 
 </details>
 
@@ -198,15 +231,14 @@ These routes address the following user stories:
 - As a **user** I can **access a page containing posts I've liked** so that **I can easily find these posts again**
 
 <details> 
-<summary>See more</summary>
+<summary>See testing</summary>
 
-| Login state | URI | Testing | Response | Screenshot |
-| ----------- | --- | ------- | -------- | ---------- |
-|             |     |         |          |            |
-|             |     |         |          |            |
-|             |     |         |          |            |
-|             |     |         |          |            |
-|             |     |         |          |            |
+| Login state                | URI          | Action          | Expected result                                    | Passes testing? | Screenshot |
+| -------------------------- | ------------ | --------------- | -------------------------------------------------- | --------------- | ---------- |
+| any                        | /likes/      | view all likes  | 404 page does not exist                            |                 |            |
+| not logged in              | /posts/{id}/ | add/remove like | users must be logged in to like a post             |                 |            |
+| logged in (post owner)     | /posts/{id}/ | add/remove like | post owners cannot like their own posts            |                 |            |
+| logged in (not post owner) | /posts/{id}/ | add/remove like | users can like or dislike any post they do not own |                 |            |
 
 </details>
 
@@ -221,15 +253,20 @@ These routes address the following user stories:
 - As a **user** I can **switch between plans and memories** so that **I can see all information associated with an event**
 
 <details> 
-<summary>See more</summary>
+<summary>See testing</summary>
 
-| Login state | URI | Testing | Response | Screenshot |
-| ----------- | --- | ------- | -------- | ---------- |
-|             |     |         |          |            |
-|             |     |         |          |            |
-|             |     |         |          |            |
-|             |     |         |          |            |
-|             |     |         |          |            |
+| Login state           | URI           | Action            | Expected result                                                                                | Passes testing? | Screenshot |
+| --------------------- | ------------- | ----------------- | ---------------------------------------------------------------------------------------------- | --------------- | ---------- |
+| any                   | /memories/    | view all memories | 404 page does not exist                                                                        |                 |            |
+| not logged in         | /events/{id}/ | view memory       | can view memories for specific post but cannot add, edit or delete memories                    |                 |            |
+| logged in (not owner) | /events/{id}/ | view memory       | can view memory but cannot edit or delete if not owner                                         |                 |            |
+| logged in (owner)     | /events/{id}/ | view memory       | user can see memory and edit and delete buttons                                                |                 |            |
+| not logged in         | /events/{id}/ | edit memory       | not possible to edit any memories                                                              |
+| logged in (not owner) | /events/{id}/ | edit memory       | not possible to edit any memories that do not belong to user                                   |                 |            |
+| logged in (owner)     | /events/{id}/ | edit memory       | user can edit memory they own - memory edit form is rendered                                   |                 |            |
+| not logged in         | /events/{id}/ | delete memory     | not possible to delete any memories                                                            |
+| logged in (not owner) | /events/{id}/ | delete memory     | not possible to delete any memories that do not belong to user                                 |                 |            |
+| logged in (owner)     | /events/{id}/ | delete memory     | user can delete memory they own - delete modal is rendered and if confirmed, memory is deleted |                 |            |
 
 </details>
 
@@ -241,19 +278,18 @@ These routes address the following user stories:
 - As a **user** I can **view my watched events on a seperate page** so that **I can keep an eye on the event and easily find it again**
 
 <details> 
-<summary>See more</summary>
+<summary>See testing</summary>
 
-| Login state | URI | Testing | Response | Screenshot |
-| ----------- | --- | ------- | -------- | ---------- |
-|             |     |         |          |            |
-|             |     |         |          |            |
-|             |     |         |          |            |
-|             |     |         |          |            |
-|             |     |         |          |            |
+| Login state                 | URI           | Action           | Expected result                                      | Passes testing? | Screenshot |
+| --------------------------- | ------------- | ---------------- | ---------------------------------------------------- | --------------- | ---------- |
+| any                         | /watches/     | view all watches | 404 page does not exist                              |                 |            |
+| not logged in               | /events/{id}/ | add/remove watch | users must be logged in to watch a event             |                 |            |
+| logged in (event owner)     | /events/{id}/ | add/remove watch | event owners cannot watch their own events           |                 |            |
+| logged in (not event owner) | /events/{id}/ | add/remove watch | users can watch or unwatch any event they do not own |                 |            |
 
 </details>
 
-### Followers
+### Friends (Followers in API)
 
 These routes address the following user stories:
 
@@ -264,15 +300,13 @@ These routes address the following user stories:
 - As a **user** I can **view my friend's events on a seperate page** so that **I can quickly browse events most relevant to me**
 
 <details> 
-<summary>See more</summary>
+<summary>See testing</summary>
 
-| Login state | URI | Testing | Response | Screenshot |
-| ----------- | --- | ------- | -------- | ---------- |
-|             |     |         |          |            |
-|             |     |         |          |            |
-|             |     |         |          |            |
-|             |     |         |          |            |
-|             |     |         |          |            |
+| Login state   | URI               | Action            | Expected result                                               | Passes testing? | Screenshot |
+| ------------- | ----------------- | ----------------- | ------------------------------------------------------------- | --------------- | ---------- |
+| any           | /followers/       |                   | 404 page does not exist                                       |                 |            |
+| not logged in | /, profiles/{id}/ | add/remove friend | users must be logged in to add/remove friends                 |                 |            |
+| logged in     | /, profiles/{id}/ | add/remove friend | users can add/remove any profile as a friend except their own |                 |            |
 
 </details>
 
