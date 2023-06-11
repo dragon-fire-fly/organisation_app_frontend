@@ -39,13 +39,10 @@ These routes address the following user stories:
 <details> 
 <summary>See testing</summary>
 
-| Login state   | URI      | Expected result             | Passes testing? | Screenshot |
-| ------------- | -------- | --------------------------- | --------------- | ---------- |
-| not logged in | /signup/ | renders signin page         | &check;         |            |
-| logged in     | /signup/ | redirects to "/" home route |                 |            |
-|               |          |                             |                 |            |
-|               |          |                             |                 |            |
-|               |          |                             |                 |            |
+| Login state   | URI      | Expected result             | Passes testing? |
+| ------------- | -------- | --------------------------- | --------------- |
+| not logged in | /signup/ | renders signin page         | &check;         |
+| logged in     | /signup/ | redirects to "/" home route | &check;         |
 
 </details>
 
@@ -58,13 +55,10 @@ These routes address the following user stories:
 <details> 
 <summary>See testing</summary>
 
-| Login state   | URI      | Expected result             | Passes testing? | Screenshot |
-| ------------- | -------- | --------------------------- | --------------- | ---------- |
-| not logged in | /signin/ | renders signin page         | &check;         |            |
-| logged in     | /signin/ | redirects to "/" home route |                 |            |
-|               |          |                             |                 |            |
-|               |          |                             |                 |            |
-|               |          |                             |                 |            |
+| Login state   | URI      | Expected result             | Passes testing? |
+| ------------- | -------- | --------------------------- | --------------- |
+| not logged in | /signin/ | renders signin page         | &check;         |
+| logged in     | /signin/ | redirects to "/" home route | &check;         |
 
 </details>
 
@@ -78,16 +72,16 @@ These routes address the following user stories:
 <details> 
 <summary>See testing</summary>
 
-| Login state           | URI             | Action                       | Expected result                                                   | Passes testing? | Screenshot |
-| --------------------- | --------------- | ---------------------------- | ----------------------------------------------------------------- | --------------- | ---------- |
-| any                   | /profiles/      | access non existant route    | redirect to 404 page                                              | &check;         |            |
-| any                   | /profiles/999   | access non-existant resource | redirect to 404 page                                              | &check;         |            |
-| not logged in         | /profiles/{id}/ | view profile                 | view but not edit                                                 | &check;         |            |
-| logged in (not owner) | /profiles/{id}/ | view profile                 | view but not edit                                                 |                 |            |
-| logged in (owner)     | /profiles/{id}/ | view profile                 | can view and see edit buttons                                     |                 |            |
-| logged in (owner)     | /profiles/{id}/ | edit profile                 | redirect to edit page and can successfully edit                   |                 |            |
-| logged in (owner)     | /profiles/{id}/ | edit username                | redirect to username edit page and can successfully edit username |                 |            |
-| logged in (owner)     | /profiles/{id}/ | edit password                | redirect to password edit page and can successfully edit password |                 |            |
+| Login state           | URI             | Action                       | Expected result                                                   | Passes testing? |
+| --------------------- | --------------- | ---------------------------- | ----------------------------------------------------------------- | --------------- |
+| any                   | /profiles/      | access non existant route    | redirect to 404 page                                              | &check;         |
+| any                   | /profiles/999   | access non-existant resource | redirect to 404 page                                              | &check;         |
+| not logged in         | /profiles/{id}/ | view profile                 | view but not edit                                                 | &check;         |
+| logged in (not owner) | /profiles/{id}/ | view profile                 | view but not edit                                                 | &check;         |
+| logged in (owner)     | /profiles/{id}/ | view profile                 | can view and see edit buttons                                     | &check;         |
+| logged in (owner)     | /profiles/{id}/ | edit profile                 | redirect to edit page and can successfully edit                   | &check;         |
+| logged in (owner)     | /profiles/{id}/ | edit username                | redirect to username edit page and can successfully edit username | &check;         |
+| logged in (owner)     | /profiles/{id}/ | edit password                | redirect to password edit page and can successfully edit password | &check;         |
 
 </details>
 
@@ -108,23 +102,23 @@ These routes address the following user stories:
 <details> 
 <summary>See testing</summary>
 
-| Login state                 | URI               | Action                       | Expected result                                                                     | Passes testing? | Screenshot |
-| --------------------------- | ----------------- | ---------------------------- | ----------------------------------------------------------------------------------- | --------------- | ---------- |
-| any                         | /posts/           | access non existant route    | 404 page does not exist                                                             | &check;         |            |
-|                             | /posts/999/       | access non-existant resource | 404 page does not exist                                                             | &check;         |            |
-| not logged in               | /                 | view posts list              | can view posts                                                                      | &check;         |            |
-| logged in                   | /                 | view posts list              | can view posts                                                                      |                 |            |
-| not logged in               | /posts/create/    | create post                  | redirect to homepage                                                                |                 |            |
-| logged in                   | /posts/create/    | create post                  | redirect to create post form and can successfully add new post                      |                 |            |
-| not logged in               | /posts/{id}/      | view post                    | view but not edit or delete                                                         | &check;         |            |
-| logged in (not post owner)  | /posts/{id}/      | view post                    | view but not edit or delete                                                         |                 |            |
-| logged in (post owner)      | /posts/{id}/      | view post                    | view and see buttons for edit and delete                                            |                 |            |
-| not logged in               | /posts/{id}/edit/ | edit post                    | redirect to homepage                                                                | &check;         |            |
-| logged in (not post owner)  | /posts/{id}/edit/ | edit post                    | redirect to homepage                                                                |                 |            |
-| logged in (post owner)      | /posts/{id}/edit/ | edit post                    | redirect to edit post page and can successfully edit                                |                 |            |
-| not logged in               | /posts/{id}/edit/ | delete post                  | not possible to delete any posts (redirect to homepage)                             | &check;         |            |
-| logged in (not event owner) | /posts/{id}/edit/ | delete post                  | not possible to delete any posts that do not belong to user (redirects to homepage) |                 |            |
-| logged in (post owner)      | /posts/{id}/edit/ | delete post                  | prompts delete confirm modal. On confirmation, deletes selected resource            |                 |            |
+| Login state                 | URI               | Action                       | Expected result                                                                     | Passes testing? |
+| --------------------------- | ----------------- | ---------------------------- | ----------------------------------------------------------------------------------- | --------------- |
+| any                         | /posts/           | access non existant route    | 404 page does not exist                                                             | &check;         |
+| any                         | /posts/999/       | access non-existant resource | 404 page does not exist                                                             | &check;         |
+| not logged in               | /                 | view posts list              | can view posts                                                                      | &check;         |
+| logged in                   | /                 | view posts list              | can view posts                                                                      | &check;         |
+| not logged in               | /posts/create/    | create post                  | redirect to homepage                                                                | &check;         |
+| logged in                   | /posts/create/    | create post                  | redirect to create post form and can successfully add new post                      | &check;         |
+| not logged in               | /posts/{id}/      | view post                    | view but not edit or delete                                                         | &check;         |
+| logged in (not post owner)  | /posts/{id}/      | view post                    | view but not edit or delete                                                         | &check;         |
+| logged in (post owner)      | /posts/{id}/      | view post                    | view and see buttons for edit and delete                                            | &check;         |
+| not logged in               | /posts/{id}/edit/ | edit post                    | redirect to homepage                                                                | &check;         |
+| logged in (not post owner)  | /posts/{id}/edit/ | edit post                    | redirect to homepage                                                                | &check;         |
+| logged in (post owner)      | /posts/{id}/edit/ | edit post                    | redirect to edit post page and can successfully edit                                | &check;         |
+| not logged in               | /posts/{id}/edit/ | delete post                  | not possible to delete any posts (redirect to homepage)                             | &check;         |
+| logged in (not event owner) | /posts/{id}/edit/ | delete post                  | not possible to delete any posts that do not belong to user (redirects to homepage) | &check;         |
+| logged in (post owner)      | /posts/{id}/edit/ | delete post                  | prompts delete confirm modal. On confirmation, deletes selected resource            | &check;         |
 
 </details>
 
@@ -145,25 +139,25 @@ These routes address the following user stories:
 <details> 
 <summary>See testing</summary>
 
-| Login state                 | URI                     | Action                       | Expected result                                                                | Passes testing? | Screenshot |
-| --------------------------- | ----------------------- | ---------------------------- | ------------------------------------------------------------------------------ | --------------- | ---------- |
-| any                         | /events/999/            | access non-existant resource | 404 page does not exist                                                        |                 |            |
-| not logged in               | /events/                | view events list             | can view events but not watch/add to calendar                                  | &check;         |            |
-| logged in                   | /events/                | view events list             | can view events                                                                |                 |            |
-| not logged in               | /events/create/         | create new event             | redirect to homepage                                                           | &check;         |            |
-| logged in                   | /events/create/         | create new event             | redirect to create event form and can successfully add new event               |                 |            |
-| not logged in               | /events/{id}/           | view event                   | view but not watch/add to calendar or edit or delete                           | &check;         |            |
-| logged in (not event owner) | /events/{id}/           | view event                   | view but not edit or delete                                                    |                 |            |
-| logged in (event owner)     | /events/{id}/           | view event                   | view and see buttons for edit and delete                                       |                 |            |
-| not logged in               | /events/{id}/edit/      | edit event                   | redirect to homepage                                                           | &check;         |            |
-| logged in (not event owner) | /events/{id}/edit/      | edit event                   | redirect to homepage                                                           |                 |            |
-| logged in (event owner)     | /events/{id}/edit/      | edit event                   | redirect to edit event page and can successfully edit                          |                 |            |
-| not logged in               | /events/{id}/           | delete event                 | not possible to delete any events                                              |                 | &check;    |
-| logged in (not event owner) | /events/{id}/           | delete event                 | not possible to delete any events that do not belong to user                   |                 |            |
-| logged in (event owner)     | /events/{id}/           | delete post                  | prompts delete confirm modal. On confirmation, deletes selected resource       |                 |            |
-| not logged in               | /events/, /events/{id}/ | add event to calendar        | not possible to add events to calendar without logging in first                |                 | &check;    |
-| logged in (not event owner) | /events/, /events/{id}/ | add event to calendar        | users who do not own the event may add it to their calendar                    |                 |            |
-| logged in (event owner)     | /events/, /events/{id}/ | add event to calendar        | event owners already have the event in their calendar and it cannot be removed |                 |            |
+| Login state                 | URI                     | Action                       | Expected result                                                                | Passes testing? |
+| --------------------------- | ----------------------- | ---------------------------- | ------------------------------------------------------------------------------ | --------------- |
+| any                         | /events/999/            | access non-existant resource | 404 page does not exist                                                        | &check;         |
+| not logged in               | /events/                | view events list             | can view events but not watch/add to calendar                                  | &check;         |
+| logged in                   | /events/                | view events list             | can view events                                                                | &check;         |
+| not logged in               | /events/create/         | create new event             | redirect to homepage                                                           | &check;         |
+| logged in                   | /events/create/         | create new event             | redirect to create event form and can successfully add new event               | &check;         |
+| not logged in               | /events/{id}/           | view event                   | view but not watch/add to calendar or edit or delete                           | &check;         |
+| logged in (not event owner) | /events/{id}/           | view event                   | view but not edit or delete                                                    | &check;         |
+| logged in (event owner)     | /events/{id}/           | view event                   | view and see buttons for edit and delete                                       | &check;         |
+| not logged in               | /events/{id}/edit/      | edit event                   | redirect to homepage                                                           | &check;         |
+| logged in (not event owner) | /events/{id}/edit/      | edit event                   | redirect to homepage                                                           | &check;         |
+| logged in (event owner)     | /events/{id}/edit/      | edit event                   | redirect to edit event page and can successfully edit                          | &check;         |
+| not logged in               | /events/{id}/           | delete event                 | not possible to delete any events                                              | &check;         |
+| logged in (not event owner) | /events/{id}/           | delete event                 | not possible to delete any events that do not belong to user                   | &check;         |
+| logged in (event owner)     | /events/{id}/           | delete event                 | prompts delete confirm modal. On confirmation, deletes selected resource       | &check;         |
+| not logged in               | /events/, /events/{id}/ | add event to calendar        | not possible to add events to calendar without logging in first                | &check;         |
+| logged in (not event owner) | /events/, /events/{id}/ | add event to calendar        | users who do not own the event may add it to their calendar                    | &check;         |
+| logged in (event owner)     | /events/, /events/{id}/ | add event to calendar        | event owners already have the event in their calendar and it cannot be removed | &check;         |
 
 </details>
 
@@ -185,16 +179,16 @@ These routes address the following user stories:
 <details> 
 <summary>See testing</summary>
 
-| Login state   | URI             | Action                                                      | Expected result                                                                                                       | Passes testing?                                                                                                                                                      | Screenshot |
-| ------------- | --------------- | ----------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------- | --- |
-| any           | /calendar/{id}/ | access specific calendar by id (access non existant route ) | 404 page does not exist                                                                                               | &check;                                                                                                                                                              |            |
-| not logged in | /calendar/      | access calendar                                             | redirect to homepage                                                                                                  | During testing, this was found not to redirect, but to just display the spinner forever. The useRedirect custom hook was added on the page to fix the issue. &check; |            |
-| logged in     | /calendar/      | access calendar                                             | events in user's calendar are displayed                                                                               |                                                                                                                                                                      |
-| logged in     | /calendar/      | user clicks event                                           | event modal pops up with details of specific event. Can click view event to be redirected to event detail view        |                                                                                                                                                                      |            |
-| logged in     | /calendar/      | user clicks day                                             | day modal pops up with all events that will occur on that day. Can click add event to be redirected to add event page |                                                                                                                                                                      |            |
-| logged in     | /calendar/      | user changes calendar view                                  | calendar changes to that view (year, month, week or day view)                                                         |                                                                                                                                                                      |            |
-| logged in     | /calendar/      | user uses navigation arrows                                 | user can scroll through years/months/weeks/days depending on which view they are in                                   |                                                                                                                                                                      |            |
-| logged in     | /calendar/      | user clicks "today"                                         | calendar focuses on today                                                                                             |                                                                                                                                                                      |            |     |
+| Login state   | URI             | Action                                                      | Expected result                                                                                                       | Passes testing?                                                                                                                                                      |
+| ------------- | --------------- | ----------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| any           | /calendar/{id}/ | access specific calendar by id (access non existant route ) | 404 page does not exist                                                                                               | &check;                                                                                                                                                              |
+| not logged in | /calendar/      | access calendar                                             | redirect to homepage                                                                                                  | &check; During testing, this was found not to redirect, but to just display the spinner forever. The useRedirect custom hook was added on the page to fix the issue. |
+| logged in     | /calendar/      | access calendar                                             | events in user's calendar are displayed                                                                               | &check;                                                                                                                                                              |
+| logged in     | /calendar/      | user clicks event                                           | event modal pops up with details of specific event. Can click view event to be redirected to event detail view        | &check;                                                                                                                                                              |
+| logged in     | /calendar/      | user clicks day                                             | day modal pops up with all events that will occur on that day. Can click add event to be redirected to add event page | &check;                                                                                                                                                              |
+| logged in     | /calendar/      | user changes calendar view                                  | calendar changes to that view (year, month, week or day view)                                                         | &check;                                                                                                                                                              |
+| logged in     | /calendar/      | user uses navigation arrows                                 | user can scroll through years/months/weeks/days depending on which view they are in                                   | &check;                                                                                                                                                              |
+| logged in     | /calendar/      | user clicks "today"                                         | calendar focuses on today in                                                                                          | &check;                                                                                                                                                              |
 
 </details>
 
@@ -208,18 +202,18 @@ These routes address the following user stories:
 <details> 
 <summary>See testing</summary>
 
-| Login state           | URI         | Action                                         | Expected result                                                                                  | Passes testing? | Screenshot |
-| --------------------- | ----------- | ---------------------------------------------- | ------------------------------------------------------------------------------------------------ | --------------- | ---------- |
-| any                   | /comments/  | view all comments (access non existant route ) | 404 page does not exist                                                                          | &check;         |            |
-| not logged in         | /post/{id}/ | view comment                                   | can view comments for specific post but cannot add, edit or delete comments                      | &check;         |            |
-| logged in (not owner) | /post/{id}/ | view comment                                   | can view comment but cannot edit or delete if not owner                                          |                 |            |
-| logged in (owner)     | /post/{id}/ | view comment                                   | user can see comment and edit and delete buttons                                                 |                 |            |
+| Login state           | URI         | Action                                         | Expected result                                                                                  | Passes testing? |
+| --------------------- | ----------- | ---------------------------------------------- | ------------------------------------------------------------------------------------------------ | --------------- |
+| any                   | /comments/  | view all comments (access non existant route ) | 404 page does not exist                                                                          | &check;         |
+| not logged in         | /post/{id}/ | view comment                                   | can view comments for specific post but cannot add, edit or delete comments                      | &check;         |
+| logged in (not owner) | /post/{id}/ | view comment                                   | can view comment but cannot edit or delete if not owner                                          | &check;         |
+| logged in (owner)     | /post/{id}/ | view comment                                   | user can see comment and edit and delete buttons                                                 | &check;         |
 | not logged in         | /post/{id}/ | edit comment                                   | not possible to edit any comments                                                                | &check;         |
-| logged in (not owner) | /post/{id}/ | edit comment                                   | not possible to edit any comments that do not belong to user                                     |                 |            |
-| logged in (owner)     | /post/{id}/ | edit comment                                   | user can edit comment they own - comment edit form is rendered                                   |                 |            |
+| logged in (not owner) | /post/{id}/ | edit comment                                   | not possible to edit any comments that do not belong to user                                     | &check;         |
+| logged in (owner)     | /post/{id}/ | edit comment                                   | user can edit comment they own - comment edit form is rendered                                   | &check;         |
 | not logged in         | /post/{id}/ | delete comment                                 | not possible to delete any comments                                                              | &check;         |
-| logged in (not owner) | /post/{id}/ | delete comment                                 | not possible to delete any comments that do not belong to user                                   |                 |            |
-| logged in (owner)     | /post/{id}/ | delete comment                                 | user can delete comment they own - delete modal is rendered and if confirmed, comment is deleted |                 |            |
+| logged in (not owner) | /post/{id}/ | delete comment                                 | not possible to delete any comments that do not belong to user                                   | &check;         |
+| logged in (owner)     | /post/{id}/ | delete comment                                 | user can delete comment they own - delete modal is rendered and if confirmed, comment is deleted | &check;         |
 
 </details>
 
