@@ -370,15 +370,36 @@ Registered users can update their profile picture and profile details at any tim
 
 ### Validation
 
+#### Sign up
+
 ![sign up validation](documentation/validation/signup-validation-1.png)
 ![sign up validation](documentation/validation/signup-validation-2.png)
 ![sign up validation](documentation/validation/signup-validation-3.png)
 
+#### Sign in
+
 ![sign in validation](documentation/validation/signin-validation-1.png)
 ![sign in validation](documentation/validation/signin-validation-2.png)
 
+#### Images
+
 ![profile image validation](documentation/validation/profile-img-validation.png)
 ![profile image validation](documentation/validation/profile-img-validation-2.png)
+
+#### Posts
+
+The title field is madatory for post creation and so frontend validation is in place to prevent this field from being blank.
+
+![Post creation validation](documentation/validation/post-form-validation.png)
+
+#### Events
+
+The title, location and start and end time fields are madatory for event creation and so frontend validation is in place to prevent these fields from being blank. Privacy and event type are also mandatory, but these have default values and therefore are never blank and so do not cause validation errors.
+
+![Event creation validation](documentation/validation/event-form-validation.png)
+
+There is also a custom validator to ensure that end time for an event is after the start time:  
+![Event creation validation](documentation/validation/event-time-validation.png)
 
 handling user interaction
 
