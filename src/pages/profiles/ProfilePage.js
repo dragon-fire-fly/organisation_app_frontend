@@ -71,6 +71,7 @@ function ProfilePage() {
       <Row noGutters className="px-3 text-center">
         <Col lg={3} className="text-lg-left">
           <Image
+            alt={`${currentUser}'s avatar`}
             className={styles.ProfileImage}
             roundedCircle
             src={profile?.image}
