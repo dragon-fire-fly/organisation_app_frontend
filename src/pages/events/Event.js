@@ -107,9 +107,9 @@ const Event = (props) => {
     try {
       // retrieve the calendar, then add the event (appended to a list), THEN patch
 
-      const { data } = await axiosRes.get(`/events/${id}/`);
+      const { data } = await axiosRes.get(`/events/${id}/addevent/`);
       data.calendars.push(currentUser.pk);
-      await axiosRes.patch(`/events/${id}/`, {
+      await axiosRes.patch(`/events/${id}/addevent/`, {
         calendars: data.calendars,
       });
       setEvents((prevEvents) => ({
@@ -132,11 +132,11 @@ const Event = (props) => {
     try {
       // retrieve the calendar, then remove the event, THEN patch
 
-      const { data } = await axiosRes.get(`/events/${id}/`);
+      const { data } = await axiosRes.get(`/events/${id}/addevent/`);
 
       const userIndex = data.calendars.indexOf(currentUser.pk);
       data.calendars.splice(userIndex, 1);
-      await axiosRes.patch(`/events/${id}/`, {
+      await axiosRes.patch(`/events/${id}/addevent/`, {
         calendars: data.calendars,
       });
       setEvents((prevEvents) => ({
