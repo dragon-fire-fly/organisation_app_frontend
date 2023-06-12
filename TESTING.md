@@ -46,6 +46,8 @@ There are still "Do not pass children as props..." errors, but these have been i
 
 ## Manual Testing
 
+Each component of the application was manually tested against the user stories to ensure that the acceptance criteria had been met and that all components function correctly.
+
 ### Components
 
 <details> 
@@ -347,12 +349,36 @@ Three main breakpoint values were used for testing -
 
 ### Browser Compatibility
 
-### Lighthouse
+### Lighthouse Testing
+
+Google Lighthouse in Chrome Developer Tools was used to test the application within the areas of Performance, Accessibility, Best Practices and SEO. The testing showed the following:
+
+#### Sign in and Sign up
+
+![lighthouse testing signin and up](documentation/testing/lighthouse-signin-up.png)
+
+#### Posts
+
+![lighthouse testing posts](documentation/testing/lighthouse-posts.png)
+
+#### Events
+
+![lighthouse testing events](documentation/testing/lighthouse-events.png)
+
+#### Calendar, Profile & 404 not found
+
+![lighthouse testing calendar and profile](documentation/testing/lighthouse-other.png)
+
+Images used throughout the site were converted to WebP format where relevant to improve loading times.
+
+In all cases, the inclusion of react-bootstrap lowered the performance score and on all pages except the calendar page, the inclusion of user-uploaded images will always lower the performance score. This is mitigated slightly by the custom image validation which limits the size to 4MB and the height/width to 4096px. This could be further restrained by applying custom upload parameters in Cloudinary, such as converting all images to WebP format or decreasing the image height/width or quality.
+
+### Accessibility
 
 ### Bugs
 
 Resolved
-Many bugs were found and resolved throughout the development of the app. These were recorded using the standard "Bug report" issue template in Github.
+Many bugs were found and resolved throughout the development of the app. These were recorded using the standard "Bug report" issue template in Github. These can be viewed in the Gothub [bug log](https://github.com/dragon-fire-fly/organisation_app_frontend/issues?q=label%3Abug+is%3Aclosed) for the project.
 
 | Issue # | Bug title                                                                                                                                                       | Resolved |
 | :-----: | :-------------------------------------------------------------------------------------------------------------------------------------------------------------- | :------- |
@@ -364,5 +390,3 @@ Many bugs were found and resolved throughout the development of the app. These w
 |   51    | [Editing an image in the edit memory form changes the image in the memory create form ](https://github.com/dragon-fire-fly/organisation_app_frontend/issues/51) | &check;  |
 |   52    | [Cannot add an image when memory is edited if no image in original memory ](https://github.com/dragon-fire-fly/organisation_app_frontend/issues/52)             | &check;  |
 |   53    | [Last image added to memory not cleared from form](https://github.com/dragon-fire-fly/organisation_app_frontend/issues/53)                                      | &check;  |
-
-### Accessibility
