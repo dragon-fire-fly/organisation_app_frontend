@@ -1,6 +1,6 @@
 .NavBar {
   background-color: #000;
-  background-image: url("https://images.pexels.com/photos/1933319/pexels-photo-1933319.jpeg");
+  background-image: url("https://res.cloudinary.com/djlm3llv5/image/upload/v1686564919/rid9oiz4tbi42rqrjkgk.webp");
   background-repeat: no-repeat;
   background-size: cover;
   /* border: 1px solid #dadadf; */
@@ -20,7 +20,7 @@
 
 .NavDropdown {
   background-color: #000;
-  background-image: url("https://images.pexels.com/photos/1933319/pexels-photo-1933319.jpeg");
+  background-image: url("https://res.cloudinary.com/djlm3llv5/image/upload/v1686564919/rid9oiz4tbi42rqrjkgk.webp");
   background-repeat: no-repeat;
   background-size: cover;
   padding: 0px;
