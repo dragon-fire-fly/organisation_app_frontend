@@ -218,14 +218,6 @@ The 404 page contains a button which links back to the homepage (post feed page)
 The posts page can be accessed through the base route of the application and is in a "feed" style with `<Post />` components from all users loaded on top of one another, starting from the most recent. 10 posts are loaded on page load, with another 10 being loaded when the user scrolls to the bottom, infinitely until the end of the post list is reached.
 Each `<Post />` component contains the poster's avatar, name and a link to their profile, the date of posting, the image (if present), title, post content and a link to the event (if added). Each post can be liked by all logged in users except the post owner. Any logged in user may comment on a post.
 
-components:
-
-- likes
-- comments
-- popular profiles
-
-pages:
-
 - Posts page  
   ![posts list page](documentation/features/posts-page-main.png)
 - Posts detail page  
@@ -249,20 +241,6 @@ pages:
 <details> 
 <summary>click to expand</summary>
 
-components:
-
-- watch event  
-  ![watch event](documentation/features/watched-events.png)
-
-- add event to calendar  
-  ![add to calendar](documentation/features/add-event-to-calendar.png)
-
-- memories
-- upcoming events
-  ![upcoming events](documentation/features/upcoming-events.png)
-
-pages:
-
 - Events page  
   ![events list page](documentation/features/events-page-main.png)
 - Events detail page  
@@ -273,11 +251,26 @@ pages:
 
   Events can be watched and/or have a plan/memory added by appropriately logged in users. Logged out users cannot watch or make a plan/memory on any events or add an event to their calendar, event owners can leave a plan/memory on but not watch their own events or remove them from their calendar and logged in users who do not own the event may watch/unwatch and leave plans/memories on any event they do not own, plus add that event to their calendar.
 
-  ![watch icon](documentation/features/event-watch.png)  
-  ![plan/memory icon](documentation/features/event-memory.png)  
-  ![add to calendar icon](documentation/features/event-calendar.png)
+  - watch icon  
+    ![watch icon](documentation/features/event-watch.png)
+  - plan/memory icon  
+    ![plan/memory icon](documentation/features/event-memory.png)
+  - add to calendar icon  
+    ![add to calendar icon](documentation/features/event-calendar.png)
 
-  </details>
+- watch event  
+  Users can "watch" events if they do not own them. This adds them to their "watched events" page to make locating them again easier.  
+  ![watch event](documentation/features/watched-events.png)
+
+- add event to calendar  
+  Users can add and remove events they do not own to their calendar. This allows the event to be seen on the main Calendar page as well as the upcoming events sidepanel (if event is in the future)  
+  ![add to calendar](documentation/features/add-event-to-calendar.png)
+
+- upcoming events  
+ Events in a user's calendar contain a boolean variable called "past" which indicates whether an event has already started or is upcoming. Upcoming events are displayed in a sidepanel on the "events" page and can be clicked to view more details of each individual event.  
+![upcoming events](documentation/features/upcoming-events.png)
+
+ </details>
 
 #### Plans and Memories
 
