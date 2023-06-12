@@ -21,7 +21,7 @@ The primary goal of this project was to create a full stack application where us
 
 ## Agile
 
-These goals were split into four major themes and used as "Epics" for the agile development of the application. The epics were as follows:
+These goals were split into four major themes and used as "Epics" for the agile development of the application. The Epics were as follows:
 
 1. Account management
 2. Posts
@@ -43,16 +43,16 @@ Each story was assigned to its respective Epic and classified into one of each o
 3. Could do. Low priority. Features that are not required for the application to run, but would make a nice addition if included. Should account for the remaining ~20% stories
 4. Won't do. This feature will not be added in this iteration of the application development.
 
-In addition, "story points" were assigned to each of the user stories. These points denoted how difficult each user story is and how long it should take to complete, relative to the other stories. The points ranged from 1-8 on a logarithmic scale (i.e. the points available were 1, 2, 4 or 8, each being approximately double the difficulty and/or time requirement of the previous).
+In addition, "story points" were assigned to each of the user stories. These points denoted how difficult each user story is and/or how long it should take to complete, relative to the other stories. The points ranged from 1-8 on a logarithmic scale (i.e. the points available were 1, 2, 4 or 8, each being approximately double the difficulty and/or time requirement of the previous).
 
-User story issues on Github were assigned labels to keep track of which MoSCoW prioritisation and how mnay story points each story has.  
+User story issues on Github were assigned labels to keep track of which MoSCoW prioritisation and number of story points each story has.  
 ![github lables](documentation/agile/user-story-labels.png)
 
 As this project has both a backend and frontend component, each user story had associated frontend and backend tasks. Each repository, therefore, has its own github issue referencing each user story with the same user story and acceptance criteria, but with different tasks. The issue number for each user story is the same for both repositories and the corresponding user story to make tracking and review easy. Both sets of user stories can be found on the [associated project board](https://github.com/users/dragon-fire-fly/projects/5/views/1)
 
 All user stories can be found in the [User Story grid](https://docs.google.com/spreadsheets/d/1-8NA5gjndIE3oYSuDAwsheJqryA4tlZQ6CmLRp4fKt8/edit?usp=sharing)
 
-Each user story has details of it's EPIC, the user story number, the title, user story, acceptance criteria and both the backend and frontend tasks (with link to backend and frontend issues).
+In the grid, each user story has details of it's EPIC, the user story number, the title, user story, acceptance criteria and both the backend and frontend tasks (with link to backend and frontend issues).
 
 User stories (and bugs) were tracked using a Kanban board. This board has 3 columns - Todo, in progress and done. All user stories start life in the "to do" column and get moved, a maximum of five at a time, to the "in progress" column. When tasks are completed, they are moved to the "done" column and a new task(s) may be moved to the "in progress" column to be worked on.
 
@@ -67,13 +67,12 @@ Kanban board with all tasks completed:
 
 ### Wireframes
 
+Prior to starting work on the project, wireframes were designed to plan the basic structure and layout of some of the pages on the site. This helped when designing components in React to see how the components fit together an what differences (if any) are present for different screen sizes.
+
+Wireframes were made for three screen sizes - mobile, tablet and desktop - to help guide styling from a "mobile-first" perspective.
+
 <details> 
 <summary>The wireframes for the project can be found in this toggle</summary>
-- Home page?
-
-- Post list view
-
-- Post detail view
 
 - Event list view
   ![Event Page](documentation/wireframes/event_page.png)
@@ -82,20 +81,18 @@ Kanban board with all tasks completed:
 - Calendar page
   ![Calendar Page](documentation/wireframes/calendar_page.png)
 
-- Profile page
-
 </details>
-
-### User Stories
-
-### Site structure
 
 ### Design choices
 
 - colour scheme
 - typography
 
-#### Logo/favicon
+### Logo/favicon
+
+A basic logo featuring a blue gemstone was used as a "home" button on the navbar and for the favicon.
+
+![logo and favicon](documentation/features/logo-favicon.png)
 
 ## Main features
 
@@ -105,15 +102,18 @@ One of the main purposes of the React framework is the creation and use of reusa
 
 For this project, several reusable components were created and used throughout various pages. First I will detail the reusable components, then the pages in which some of these components were utilised.
 
-![](documentation/features)
-`< />`
+#### Reusable Components
 
 <details> 
-<summary>Reusable Components</summary>
+<summary>click to expand</summary>
 
 - Navbar
 
-![navbar component](documentation/features/navbar-main.png)
+  The navbar is featured on every page and helps the user to effectively navigate through the site without having to enter routes into the url bar manually.
+
+  The navbar renders different content depending on whether the user is logged in or not
+
+  ![navbar component](documentation/features/navbar-main.png)
 
 - Dropdown  
   The `<MoreDropdown />` component is present on all editable and deletable components, including `<Post />`, `<Event />`, `<Comment />`, `<Memory />` and gives asset owners the option to edit and delete their assets. This component takes the handleEdit and handleShow (necessary for the confirm deletion modal) methods directly as props.
@@ -161,8 +161,10 @@ For this project, several reusable components were created and used throughout v
 
 </details>
 
+#### Signup and Signin
+
 <details> 
-<summary>Signup and Signin</summary>
+<summary>click to expand</summary>
 
 - Signup
 
@@ -178,8 +180,10 @@ For this project, several reusable components were created and used throughout v
 
 </details>
 
+#### 404 page
+
 <details> 
-<summary>404 page</summary>
+<summary>click to expand</summary>
 
 A '404 page not found' page replaces the default React 404 page. The `<NotFound />` component contains the `<Asset />` container with a custom "not found" image.
 
@@ -193,8 +197,10 @@ The 404 page contains a button which links back to the homepage (post feed page)
 
 </details>
 
+#### Posts
+
 <details> 
-<summary>Posts</summary>
+<summary>click to expand</summary>
 
 The posts page can be accessed through the base route of the application and is in a "feed" style with `<Post />` components from all users loaded on top of one another, starting from the most recent. 10 posts are loaded on page load, with another 10 being loaded when the user scrolls to the bottom, infinitely until the end of the post list is reached.
 Each `<Post />` component contains the poster's avatar, name and a link to their profile, the date of posting, the image (if present), title, post content and a link to the event (if added). Each post can be liked by all logged in users except the post owner. Any logged in user may comment on a post.
@@ -216,8 +222,10 @@ pages:
 
 </details>
 
+#### Events
+
 <details> 
-<summary>Events</summary>
+<summary>click to expand</summary>
 
 components:
 
@@ -241,38 +249,61 @@ pages:
   ![create event page detail](documentation/features/create-event.png)
   </details>
 
-  <details> 
-  <summary>Plans and Memories</summary>
-    - Plans and Memories
+#### Plans and Memories
 
+  <details> 
+  <summary>click to expand</summary>
   Plans and Memories are variants of the same component, depending on whether they were created before or after the start date of their associated event. "Plans" are created when the asset is created before the start of the event, otherwise the asset is a "Memory".
 
-  The `<EventPage />` displays the detailed view of an event and also displays any plans that were created.
-  The `<EventPastPage />` also displays the detailed view of an event, but also displays the associated memories.
-  The `<SelectorSwtich />` component is reused here to switch between the two views.
+The `<EventPage />` displays the detailed view of an event and also displays any plans that were created.
+The `<EventPastPage />` also displays the detailed view of an event, but also displays the associated memories.
+The `<SelectorSwtich />` component is reused here to switch between the two views.
 
-  Placeholder text is rendered conditionally depending on whether the event's start date has passed ("The event is upcoming... add plans here!" if so, "This event has passed... add a memory here!" if not).
+Placeholder text is rendered conditionally depending on whether the event's start date has passed ("The event is upcoming... add plans here!" if so, "This event has passed... add a memory here!" if not).
 
-  ![plan or memory placeholder text](documentation/features/plan-memory-placeholder.png)
+![plan or memory placeholder text](documentation/features/plan-memory-placeholder.png)
 
-  Users may add a plan or memory with text content and an image (optional). The `<MemoryCreateForm />` component is embedded inline and plans/memories are added to the top of the list without causing a full page refresh.
+Users may add a plan or memory with text content and an image (optional). The `<MemoryCreateForm />` component is embedded inline and plans/memories are added to the top of the list without causing a full page refresh.
 
-  ![plan or memory crud](documentation/features/plan-memory-crud.png)
+![plan or memory crud](documentation/features/plan-memory-crud.png)
 
-  ![plan or memory crud](documentation/features/plans-memories.png)
+![plan or memory crud](documentation/features/plans-memories.png)
 
-  The following shows the message displayed to the user when there are no plans or memories, depending on whether the event's start date is in the past or future and whether the user is logged in or not.  
-   ![no plan or memory message grid](documentation/features/plan-memory-grid.png)
+The following shows the message displayed to the user when there are no plans or memories, depending on whether the event's start date is in the past or future and whether the user is logged in or not.  
+ ![no plan or memory message grid](documentation/features/plan-memory-grid.png)
 
-  `< />`
+`< />`
 
 </details>
 
-<details> 
-<summary>Calendars</summary>
+#### Calendars
 
-- Calendar  
-  ![calendar page](documentation/features/calendar-page-main.png)
+<details> 
+<summary>click to expand</summary>
+- Calendar
+
+![calendar responsive](documentation/features/calendar-page-main.png)
+
+The calendar page makes heavy use of the [FullCalendar](https://fullcalendar.io/) component which generates the actual calendar grid. The project uses 3 plugins from FullCalendar to display different calendar views:
+
+dayGridPlugin - provides the month and week views  
+timeGridPlugin - provides the day view (split into hours)  
+multiMonthPlugin - provides the year-at-a-glance view
+
+```
+initialView="dayGridMonth"
+headerToolbar={{
+  start: "today prevYear,prev,next,nextYear",
+  center: "title",
+  end: "multiMonthYear,dayGridMonth,timeGridWeek,timeGridDay",
+}}
+```
+
+![calendar views](documentation/features/calendar-views.png)
+
+The project also uses the interactionPlugin to allow targeting of the day or a specific event. This is used for the day and event modals which display detail of event(s) to the user. More detail about these modals can be found in the [reusable component section](#reusable-components) above.
+
+![calendar modals](documentation/features/calendar-modals.png)
 
 - different views
 - scrolling through
@@ -280,8 +311,10 @@ pages:
 
 </details>
 
+#### Profiles
+
 <details> 
-<summary>Profiles</summary>
+<summary>click to expand</summary>
 
 - Profile page
   ![profile page](documentation/features/profile_page.png)
@@ -328,6 +361,27 @@ Link to google maps for location
 
 ## Deployment
 
+## Technologies and Tools
+
+- [HTML](https://en.wikipedia.org/wiki/HTML) used for the main site content.
+- [CSS](https://en.wikipedia.org/wiki/CSS) used for the main site design and layout.
+- [JavaScript](https://en.wikipedia.org/wiki/JavaScript) used to create the interactive elements of the website
+- [React.js](<https://en.wikipedia.org/wiki/React_(software)>) used as the frontend framework
+
+- [React Bootstrap](https://react-bootstrap.github.io/) - A CSS framework that helps build solid, responsive, mobile-first sites
+- [Balsamiq](https://balsamiq.com/) used to create the wireframes
+- [Git](https://git-scm.com) used for version control. (`git add`, `git commit`, `git push`)
+- [GitHub](https://github.com) used for secure online code storage.
+- [Heroku](https://www.heroku.com) used for hosting the deployed front-end site.
+- [Visual Studio Code](https://code.visualstudio.com/) used as a local IDE for development.
+- [Lighthouse](https://developer.chrome.com/docs/lighthouse/overview/) used to test site performance.
+- [Google Chrome DevTools](https://developer.chrome.com/docs/devtools/) used to debug and test responsiveness.
+- [Cloudinary](https://cloudinary.com/) used to host image files for the project.
+- [HTML Validation](https://validator.w3.org/) used to validate HTML code
+- [CSS Validation](https://jigsaw.w3.org/css-validator/) used to validate CSS code
+- [ESLint](https://eslint.org/) used to lint JavaScript code
+- [FullCalendar](https://fullcalendar.io/) used to generate the calendar component for the calendar page
+
 ### Security
 
 ## Credits
@@ -339,6 +393,9 @@ https://www.pexels.com/photo/selective-focus-photography-of-lanterns-1313817/
 
 Confetti photo
 https://unsplash.com/photos/ZODcBkEohk8
+
+Navbar image
+https://images.pexels.com/photos/1933319/pexels-photo-1933319.jpeg
 
 Images for resource not found, image upload placeholder and 404 page were created using [dream.ai](https://dream.ai/)
 

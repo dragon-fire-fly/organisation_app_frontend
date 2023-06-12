@@ -2,7 +2,6 @@ import React, { useEffect, useState } from "react";
 import FullCalendar from "@fullcalendar/react"; // must go before plugins
 import dayGridPlugin from "@fullcalendar/daygrid"; // a plugin!
 import timeGridPlugin from "@fullcalendar/timegrid";
-import listPlugin from "@fullcalendar/list";
 import multiMonthPlugin from "@fullcalendar/multimonth";
 import interactionPlugin from "@fullcalendar/interaction";
 import EventModal from "../../components/EventModal";
@@ -89,7 +88,6 @@ function EventCalendar(props) {
           plugins={[
             dayGridPlugin,
             timeGridPlugin,
-            listPlugin,
             multiMonthPlugin,
             interactionPlugin,
           ]}
@@ -109,7 +107,6 @@ function EventCalendar(props) {
           plugins={[
             dayGridPlugin,
             timeGridPlugin,
-            listPlugin,
             multiMonthPlugin,
             interactionPlugin,
           ]}
