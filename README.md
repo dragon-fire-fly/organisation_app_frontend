@@ -267,8 +267,8 @@ Each `<Post />` component contains the poster's avatar, name and a link to their
   ![add to calendar](documentation/features/add-event-to-calendar.png)
 
 - upcoming events  
- Events in a user's calendar contain a boolean variable called "past" which indicates whether an event has already started or is upcoming. Upcoming events are displayed in a sidepanel on the "events" page and can be clicked to view more details of each individual event.  
-![upcoming events](documentation/features/upcoming-events.png)
+   Events in a user's calendar contain a boolean variable called "past" which indicates whether an event has already started or is upcoming. Upcoming events are displayed in a sidepanel on the "events" page and can be clicked to view more details of each individual event.  
+  ![upcoming events](documentation/features/upcoming-events.png)
 
  </details>
 
@@ -368,7 +368,19 @@ Registered users can update their profile picture and profile details at any tim
 
 </details>
 
-### handling user interaction
+### Validation
+
+![sign up validation](documentation/validation/signup-validation-1.png)
+![sign up validation](documentation/validation/signup-validation-2.png)
+![sign up validation](documentation/validation/signup-validation-3.png)
+
+![sign in validation](documentation/validation/signin-validation-1.png)
+![sign in validation](documentation/validation/signin-validation-2.png)
+
+![profile image validation](documentation/validation/profile-img-validation.png)
+![profile image validation](documentation/validation/profile-img-validation-2.png)
+
+handling user interaction
 
 ### Future Features
 
