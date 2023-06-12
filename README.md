@@ -124,7 +124,9 @@ For this project, several reusable components were created and used throughout v
 
   The navbar is featured on every page and helps the user to effectively navigate through the site without having to enter routes into the url bar manually.
 
-  The navbar renders different content depending on whether the user is logged in or not
+  The navbar renders different content depending on whether the user is logged in or not and features an image of the Northern Lights which can be seen when the dropdown menu is opened. From here, logged in users can add posts and events, navigate to the main posts and events pages, calendar, user's own profile and friends page. They can also nagivate the the filtered versions of posts and events (watched events, liked posts, friend's event and friends posts). They can also sign out of the site.
+
+  Logged out users may only view the posts and events page, sign up and sign in.
 
   ![navbar component](documentation/features/navbar-main.png)
 
@@ -144,8 +146,6 @@ For this project, several reusable components were created and used throughout v
   The `<Avatar />` component contains the profile image of users and is used in many other components. This includes each user's `<Profile />`, the `<Navbar />` component (as the dropdown menu toggle), part of the `<Profile />` component for the `<PopularProfiles />` sidebar, and at the top of each `<Post />` and `<Event />` asset.
 
   ![avatar component](documentation/features/avatar-component.png)
-
-- profile
 
 - Event mini
 
@@ -168,7 +168,7 @@ For this project, several reusable components were created and used throughout v
   ![delete modals](documentation/features/delete-modals.png)
 
 - Selector switch  
-  The selector switch was designed as there were a few places where multiple versions of a page could be displayed so I wanted a reusable component which could handle each of these instances. The switch has a left and right hand side and props are passed to it to determine the text rendered on each side, which side contains a link and the route for the link. This makes the component reusable on the profile page (for switching between a user's posts and events) and on the main events page to switch between events in the past and those in the future.
+  The selector switch was designed as there were a few places where multiple versions of a page could be displayed so I wanted a reusable component which could handle each of these instances. The switch has a left and right hand side and props are passed to it to determine the text rendered on each side, which side contains a link and the route for the link. This makes the component reusable on the profile page (for switching between a user's posts and events), on the main events page to switch between events in the past and those in the future and on individual events to switch between plans and memories.
 
   ![selector switch](documentation/features/selector-switch.png)
 
@@ -233,6 +233,15 @@ pages:
 - Create post page
   ![create post page](documentation/features/create-post-main.png)
 
+  Posts can be liked and/or commented on by appropriately logged in users. Logged out users cannot like or comment on any posts, post owners can comment on but not like their own posts and logged in users who do not own the post may like/dislike and comment on any post they do not own.
+
+  ![like icon](documentation/features/post-likes.png)  
+  ![comment icon](documentation/features/post-comment.png)
+
+  The posts page also contains the `<PopularProfiles/>` component which displays the most followed profiles.
+
+  ![popular profiles sidebar](documentation/features/popular-profiles.png)
+
 </details>
 
 #### Events
@@ -250,6 +259,7 @@ components:
 
 - memories
 - upcoming events
+  ![upcoming events](documentation/features/upcoming-events.png)
 
 pages:
 
@@ -260,6 +270,13 @@ pages:
 - Create event page  
   ![create event page](documentation/features/create-event-main.png)  
   ![create event page detail](documentation/features/create-event.png)
+
+  Events can be watched and/or have a plan/memory added by appropriately logged in users. Logged out users cannot watch or make a plan/memory on any events or add an event to their calendar, event owners can leave a plan/memory on but not watch their own events or remove them from their calendar and logged in users who do not own the event may watch/unwatch and leave plans/memories on any event they do not own, plus add that event to their calendar.
+
+  ![watch icon](documentation/features/event-watch.png)  
+  ![plan/memory icon](documentation/features/event-memory.png)  
+  ![add to calendar icon](documentation/features/event-calendar.png)
+
   </details>
 
 #### Plans and Memories
