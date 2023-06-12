@@ -48,24 +48,20 @@
   
   .Black,
   .BlackOutline:hover {
-    /* background-color: #242a3d;
-    color: white; */
-    background-color: #242a3d;
+    background-color: #000;
     color: aliceblue;
   }
   
   .Black:hover,
   .BlackOutline {
-    /* background-color: #dadadf;
-    color: #242a3d;
-    border-color: #242a3d; */
+
     background-color: aliceblue;
-    color: #242a3d;
+    color: #000;
   }
   
   .Bright {
-    background-color: #2ed9ff;
-    color: #2142b2;
+    background-color: #21ca89;
+    color: #000;
   }
 
   .DeleteBtn {

@@ -253,7 +253,7 @@ const Event = (props) => {
               </OverlayTrigger>
             )}
             {watches_count}
-            <Link to={`/events/${id}`}>
+            <Link aria-label={`event ${id}`} to={`/events/${id}`}>
               <i className="fa-solid fa-brain" />
             </Link>
             {memories_count}
