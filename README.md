@@ -85,8 +85,19 @@ Wireframes were made for three screen sizes - mobile, tablet and desktop - to he
 
 ### Design choices
 
-- colour scheme
-- typography
+#### Colour Scheme
+
+The colour scheme for the project was kept extremely minimal as the focus of the site is user uploaded images and having bold colours throughout the site may detract or even clash with user uploaded image colours.
+
+Colours were selected from the assets throughout the site to colour buttons and icons but otherwise most things were left with the default react-bootstrap colour scheme. This also improved accessibility by keeping contrast between backgrounds and text high.
+
+![colour scheme](documentation/design/colour-scheme.png)
+
+#### Typography
+
+DM-Sans was used as the typeface throughout the project as it is a sans-serif font designed to be readable at small text sizes and is compatible with FullCalendar. Reguls sans-serif is used as a backup font incase the google fonts typeface cannot be loaded.
+
+![DM Sans](documentation/design/dm-sans.png)
 
 ### Logo/favicon
 
@@ -98,7 +109,9 @@ A basic logo featuring a blue gemstone was used as a "home" button on the navbar
 
 ### Existing
 
-One of the main purposes of the React framework is the creation and use of reusable components. This improves efficiency and readability of the code and allows global changes to be made with ease. This also reduces repetition in the code which is time consuming and liable to errors when a piece of code is updated and this must be correctly updated all areas where the original code was reused.
+This project was developed using [React](https://react.dev/).
+
+One of the main advantages of the React framework is the ability to create and use reusable components. This improves efficiency and readability of the code and allows global changes to be made with ease. This also reduces repetition in the code which is time consuming and liable to errors when a piece of code is updated and this must be correctly updated all areas where the original code was reused.
 
 For this project, several reusable components were created and used throughout various pages. First I will detail the reusable components, then the pages in which some of these components were utilised.
 
@@ -272,8 +285,6 @@ Users may add a plan or memory with text content and an image (optional). The `<
 The following shows the message displayed to the user when there are no plans or memories, depending on whether the event's start date is in the past or future and whether the user is logged in or not.  
  ![no plan or memory message grid](documentation/features/plan-memory-grid.png)
 
-`< />`
-
 </details>
 
 #### Calendars
@@ -305,9 +316,8 @@ The project also uses the interactionPlugin to allow targeting of the day or a s
 
 ![calendar modals](documentation/features/calendar-modals.png)
 
-- different views
-- scrolling through
-- modals
+A custom pacman loading spinner makes this page a bit more fun as the API call can take a few seconds to complete  
+![pacman loading spinner](documentation/design/pacman-loader.png)
 
 </details>
 
@@ -398,6 +408,8 @@ Navbar image
 https://images.pexels.com/photos/1933319/pexels-photo-1933319.jpeg
 
 Images for resource not found, image upload placeholder and 404 page were created using [dream.ai](https://dream.ai/)
+
+jpg images were converted to webp using [timy-img](https://tiny-img.com/webp/)
 
 ### Code references
 
