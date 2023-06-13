@@ -5,7 +5,7 @@
 ## W3C HTML
 
 The [W3C HTL validation service](https://validator.w3.org/) was used to check the validity of HTML in the application.
-![Initial W3C test result](documentation/testing/w3c-initial.png)
+![Initial W3C test result](documentation/testing/w3c-html-initial.png)
 
 ## W3C CSS
 
@@ -42,7 +42,7 @@ After fixing all errors, the final linting looks like this:
 
 There are still "Do not pass children as props..." errors, but these have been ignored.
 
-## Automatic Testing
+## Automated Testing
 
 ## Manual Testing
 
@@ -345,9 +345,19 @@ These routes address the following user stories:
 
 The responsive design tests were carried out manually throughout the build using Google Chrome Dev Tools.
 
-Three main breakpoint values were used for testing -
+Three main breakpoint values were used for testing - 1440px for desktop, 768px for tablet and 375 px for mobile.
+
+Screenshots of pages at every device size can be seen in the features section of the [main README.md file](https://github.com/dragon-fire-fly/organisation_app_frontend#main-features).
+
+A smaller screen size (320px) was also tested to ensure no major issues at a small screen size and the navbar was found to overspill to the next Row, partially obscuring the "popular profiles" text. This was rectified by adding a media query to reduce the font size of the "Post" and "Event" text. This is still an issue with even smaller screen sizes (316px and below), but this is an uncommonly small screen size so this was not a concern.
+
+![navbar overspill](documentation/testing/navbar-overspill.png)
 
 ## Browser Compatibility
+
+The application was tested on Chrome, Firefox and Opera with no major difference or issues.
+
+The application was opened using Samsung Internet on a Samsung Galaxy S5 and it was not possible to log in. Each attempt briefly flashed the logged in version of the navbar, then redirected to the signin page. Chrome was also used on the same device with no problems.
 
 ## Lighthouse Testing
 

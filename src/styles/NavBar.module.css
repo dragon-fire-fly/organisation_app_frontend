@@ -49,8 +49,10 @@
     margin: 0px;
   }
 
-  /* .NavLink {
-    text-align: center;
-  } */
+}
 
+@media screen and (max-width: 350px)  {
+  .SmallDevice {
+    font-size: 1.25rem;
+  }
 }

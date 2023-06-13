@@ -52,14 +52,15 @@ const NavBar = () => {
         activeClassName={styles.Active}
         to="/posts/create"
       >
-        <i className="far fa-plus-square"></i> Post
+        <i className={`far fa-plus-square ${styles.SmallDevice}`}></i> Post
       </NavLink>
       <NavLink
         className={styles.NavLink}
         activeClassName={styles.Active}
         to="/events/create"
       >
-        <i className="fa-regular fa-calendar-plus"></i>Event
+        <i className={`fa-regular fa-calendar-plus ${styles.SmallDevice}`}></i>
+        Event
       </NavLink>
     </>
   );
