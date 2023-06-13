@@ -2,12 +2,12 @@
 
 [Return to the main README](README.md)
 
-### W3C HTML
+## W3C HTML
 
 The [W3C HTL validation service](https://validator.w3.org/) was used to check the validity of HTML in the application.
 ![Initial W3C test result](documentation/testing/w3c-initial.png)
 
-### W3C CSS
+## W3C CSS
 
 The [W3C CSS validation service](https://jigsaw.w3.org/css-validator/) was used to check the validity of CSS in the application. No errors were found with the CSS in the application/
 
@@ -24,7 +24,7 @@ The [W3C CSS validation service](https://jigsaw.w3.org/css-validator/) was used 
 There were, however, 707 warnings generated for the applcation. However, all of these warnings come from the import of bootstrap in the project:
 ![W3C CSS warnings](documentation/testing/w3c-css-warnings.png)
 
-### ESLint
+## ESLint
 
 A total of 294 ESLint errors were identified when the linter was first run
 ![ESLint errors](documentation/testing/eslint-errors.png)
@@ -341,31 +341,31 @@ These routes address the following user stories:
 
 </details>
 
-### Responsiveness
+## Responsiveness
 
 The responsive design tests were carried out manually throughout the build using Google Chrome Dev Tools.
 
 Three main breakpoint values were used for testing -
 
-### Browser Compatibility
+## Browser Compatibility
 
-### Lighthouse Testing
+## Lighthouse Testing
 
 Google Lighthouse in Chrome Developer Tools was used to test the application within the areas of Performance, Accessibility, Best Practices and SEO. The testing showed the following:
 
-#### Sign in and Sign up
+### Sign in and Sign up
 
 ![lighthouse testing signin and up](documentation/testing/lighthouse-signin-up.png)
 
-#### Posts
+### Posts
 
 ![lighthouse testing posts](documentation/testing/lighthouse-posts.png)
 
-#### Events
+### Events
 
 ![lighthouse testing events](documentation/testing/lighthouse-events.png)
 
-#### Calendar, Profile & 404 not found
+### Calendar, Profile & 404 not found
 
 ![lighthouse testing calendar and profile](documentation/testing/lighthouse-other.png)
 
@@ -373,9 +373,19 @@ Images used throughout the site were converted to WebP format where relevant to 
 
 In all cases, the inclusion of react-bootstrap lowered the performance score and on all pages except the calendar page, the inclusion of user-uploaded images will always lower the performance score. This is mitigated slightly by the custom image validation which limits the size to 4MB and the height/width to 4096px. This could be further restrained by applying custom upload parameters in Cloudinary, such as converting all images to WebP format or decreasing the image height/width or quality.
 
-### Accessibility
+## Accessibility
 
-### Bugs
+Accessibility of websites is extremely important so that users from all backgrounds can enjoy a website. Good website accessibility includes easy to read text (with a good contrast between text and background) as well as appropriately labelling elements so they may be read by screen reader technology.
+
+Lighthouse accessibility scores were all above 90% and can be seen in the [lighthouse](#lighthouse-testing) section above.
+
+Contrast between the colours used in this project were assessed using an [eight-shapes contrast grid](https://contrast-grid.eightshapes.com/?version=1.1.0&background-colors=&foreground-colors=%23FFFFFF%2C%20White%0D%0A%23000000%0D%0A%23F8E17B%0D%0A%2321CA89%0D%0A%23177F57%0D%0A%231A8DBE&es-color-form__tile-size=compact&es-color-form__show-contrast=aaa&es-color-form__show-contrast=aa&es-color-form__show-contrast=aa18&es-color-form__show-contrast=dnp). This gives a rating to show whether two colours are suitable to use together in terms of accessibility. If the rating is less than 4.5 (AA rating), the colour combination should not be used to display text on background (unless the text is very large). A combination with a rating of less than 3 (AA18 rating) should never be used.
+
+All texts used in this project were deemed to be acceptable in terms of colour contrast.
+
+![EightShapes grid](documentation/testing/eight-shapes-grid.png)
+
+## Bugs
 
 Resolved
 Many bugs were found and resolved throughout the development of the app. These were recorded using the standard "Bug report" issue template in Github. These can be viewed in the Gothub [bug log](https://github.com/dragon-fire-fly/organisation_app_frontend/issues?q=label%3Abug+is%3Aclosed) for the project.
