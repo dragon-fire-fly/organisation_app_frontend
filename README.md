@@ -629,11 +629,6 @@ https://stackoverflow.com/questions/72301355/how-to-populate-select-options-from
 
 https://stackoverflow.com/questions/38049966/get-image-preview-before-uploading-in-react - for uploading images without using useRef() hook
 
----
-
-for FullCalendar
-`npm install @fullcalendar/react @fullcalendar/core @fullcalendar/daygrid`
-
 ### Acknowledgements
 
 - I would like to thank my Code Institute mentor, Martina Terlevic for her support throughout the development of this project.
