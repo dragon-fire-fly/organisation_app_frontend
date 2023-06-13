@@ -75,11 +75,11 @@ Wireframes were made for three screen sizes - mobile, tablet and desktop - to he
 <summary>The wireframes for the project can be found in this toggle</summary>
 
 - Event list view
-  ![Event Page](documentation/wireframes/event_page.png)
+  ![Event Page](documentation/wireframes/event-page.png)
 - Event detail view
-  ![Individual Event Page](documentation/wireframes/individual_event.png)
+  ![Individual Event Page](documentation/wireframes/individual-event.png)
 - Calendar page
-  ![Calendar Page](documentation/wireframes/calendar_page.png)
+  ![Calendar Page](documentation/wireframes/calendar-page.png)
 
 </details>
 
@@ -342,8 +342,8 @@ A custom pacman loading spinner makes this page a bit more fun as the API call c
 <summary>click to expand</summary>
 
 - Profile page
-  ![profile page](documentation/features/profile_page.png)
-  ![profile page](documentation/features/profile_page_main.png)
+  ![profile page](documentation/features/profile-page.png)
+  ![profile page](documentation/features/profile-page-main.png)
 
   The profile page is made up of several different components
 
@@ -435,6 +435,7 @@ Alternatively, Websockets could be used to convey bi-directional (i.e. between t
 Link to google calendar (through API)
 Link to google maps for location
 Websockets for notifications
+Improve interface
 
 ## Testing
 
