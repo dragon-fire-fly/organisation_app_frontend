@@ -176,11 +176,6 @@ For this project, several reusable components were created and used throughout v
 
   ![selector switch](documentation/features/selector-switch.png)
 
-  - Alert notification bar
-    The component simply displays custom messages to the user in a notification bar at the top of the screen. It is used in the create and edit post and event forms to convey successful creation/update of these resources.
-
-  ![alert notification bar](documentation/validation/messages.png)
-
 </details>
 
 #### Signup and Signin
@@ -506,9 +501,7 @@ There is also a custom validator to ensure that end time for an event is after t
 
 #### Handling user interaction
 
-A custom `<AlertMsg />` component was created for displaying success/error messages to the user in a bar under the Navbar. This works correctly and can handle custom success messages, however due to page redirects following creation or editing of resources, the alert only shows briefly before redirect. Additionally, for event creation/editing, the message is shown at the top of the screen and so is not visible unless the user quickly scrolls to the top of the page.
-
-![notifications](documentation/validation/messages.png)
+A custom `<AlertMsg />` component was created for displaying success/error messages to the user in a bar under the Navbar. This could handle custom success and error messages, however due to page redirects following creation or editing of resources, the alert only shows briefly before redirect. Additionally, for event creation/editing, the message was shown at the top of the screen and so is not visible unless the user quickly scrolls to the top of the page. As it is obvious that a resource has been created, as a user is immediately redirected to the newly created resource, it was decided that this feature would not be included in the project.
 
 This could be improved in the future by designing a more sophisticated message handling system that lives, for example, in the `<NavBar />` component and receives props from other resources. This could then display the message at the top of the redirected page, removing both problems.
 
