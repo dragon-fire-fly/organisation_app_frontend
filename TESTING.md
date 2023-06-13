@@ -470,6 +470,6 @@ Occassionally 500 (Internal Server Error) errors can be seen in the console. Thi
 
 ![too many db connections](documentation/testing/too-many-db-connections.png)
 
-Some formatting issues remain, for example when an extremely long word/sentence is used as an event name, it stretches the "upcoming events" panel and the date spills out of the box.
+Some formatting issues remain, for example when an extremely long word/sentence is used as an event name, it stretches the "upcoming events" panel and the date spills out of the box at certain screen sizes.
 
 ![formatting issues](documentation/testing/sidepanel-formatting-issue.png)
