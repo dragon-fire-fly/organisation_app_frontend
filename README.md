@@ -414,6 +414,60 @@ Link to google maps for location
 
 ## Deployment
 
+### Deployment to Heroku
+
+This project uses [Heroku](https://www.heroku.com), a platform as a service (PaaS) that enables developers to build, run, and operate applications entirely in the cloud.
+
+Deployment steps are as follows, after account setup:
+
+- Select **New** in the top-right corner of your Heroku Dashboard, and select **Create new app** from the dropdown menu.
+- Your app name must be unique, and then choose a region closest to you (EU or USA), and finally, select **Create App**.
+
+Head into the 'Deploy' tab select GitHub as the 'deployment method', find your project repository and click 'Connect'.
+Click 'Deploy branch' to trigger Heroku to start building the application. You can also enable **automatic deployment** if you wish.
+Once you see the message saying 'build succeeded' you can click 'Open App' to see your application in the browser.
+
+### Connecting to the API
+
+In order to send and receive data to/from the API, the front and backend workspace need to be connected.
+
+First, make sure that the API is successfully deployed to Heroku with the "CLIENT_ORIGIN" variable correctly set to the deployed URL of the **frontend project** so that it can recieve requests from the front-end (here https://organisation-app-frontend.herokuapp.com/). More details on API deployment may be found in the [API respository for this project](https://github.com/dragon-fire-fly/organisation_app_api#heroku-deployment).
+
+Then follow these steps to connect the front-end to the API:
+
+- In the frontend workspace, install the Axios library using the command 'npm install axios'.
+- Create a folder called 'API' and inside it create a file called 'axiosDefaults'.
+- Import axios at the top of the file
+- Define the baseURL which is the unique URL of the deployed **API project** (here https://organisation-app-api.herokuapp.com/).
+- Set the content-type header to multi-part/form-data as the API will need to deal with images as well as text in it's requests.
+- Import axiosDefaults into App.js (`import "./api/axiosDefaults";`) so that it may be accessed globally.
+
+### Local Deployment
+
+This project can be cloned or forked in order to make a local copy on your own system.
+
+#### Cloning
+
+You can clone the repository by following these steps:
+
+1. Go to the [GitHub repository](https://github.com/dragon-fire-fly/organisation_app_frontend)
+2. Locate the Code button above the list of files and click it
+3. Select if you prefer to clone using HTTPS, SSH, or GitHub CLI and click the copy button to copy the URL to your clipboard
+4. Open Git Bash or Terminal
+5. Change the current working directory to the one where you want the cloned directory
+6. In your IDE Terminal, type the following command to clone my repository:
+   - `git clone https://github.com/dragon-fire-fly/organisation_app_frontend.git`
+7. Press Enter to create your local clone.
+
+#### Forking
+
+By forking the GitHub Repository, we make a copy of the original repository on our GitHub account to view and/or make changes without affecting the original owner's repository.
+You can fork this repository by using the following steps:
+
+1. Log in to GitHub and locate the [GitHub Repository](https://github.com/dragon-fire-fly/organisation_app_frontend/)
+2. At the top of the Repository (not top of page) just above the "Settings" Button on the menu, locate the "Fork" Button.
+3. Once clicked, you should now have a copy of the original repository in your own GitHub account!
+
 ## Technologies and Tools
 
 - [HTML](https://en.wikipedia.org/wiki/HTML) used for the main site content.
@@ -434,8 +488,6 @@ Link to google maps for location
 - [CSS Validation](https://jigsaw.w3.org/css-validator/) used to validate CSS code
 - [ESLint](https://eslint.org/) used to lint JavaScript code
 - [FullCalendar](https://fullcalendar.io/) used to generate the calendar component for the calendar page
-
-### Security
 
 ## Credits
 
@@ -464,16 +516,6 @@ https://stackoverflow.com/questions/72301355/how-to-populate-select-options-from
 https://stackoverflow.com/questions/38049966/get-image-preview-before-uploading-in-react - for uploading images without using useRef() hook
 
 ---
-
-Installing supabase libraries
-`npm install @supabase/supabase-js @supabase/auth-helpers-react`
-
-In >index.js
-`import { createClient } from '@supabase/supabase-js'`
-`import { SessionContextProvider } from '@supabase/auth-helpers-react'`
-
-For the date picker
-`npm install react-datetime-picker`
 
 for FullCalendar
 `npm install @fullcalendar/react @fullcalendar/core @fullcalendar/daygrid`
