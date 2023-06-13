@@ -4,7 +4,7 @@ import Modal from "react-bootstrap/Modal";
 import ModalBody from "react-bootstrap/ModalBody";
 import ModalFooter from "react-bootstrap/ModalFooter";
 import ModalTitle from "react-bootstrap/ModalTitle";
-import ModalHeader from "react-bootstrap/esm/ModalHeader";
+import ModalHeader from "react-bootstrap/ModalHeader";
 import btnStyles from "../styles/Button.module.css";
 
 const DeleteConfirmModal = (props) => {

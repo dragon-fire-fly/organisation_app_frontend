@@ -188,7 +188,11 @@ const NavBar = () => {
                 drop="left"
                 title={
                   <span>
-                    <Avatar src={currentUser?.profile_image} height={40} />
+                    <Avatar
+                      alt="Profile"
+                      src={currentUser?.profile_image}
+                      height={40}
+                    />
                   </span>
                 }
                 id="basic-nav-dropdown"
