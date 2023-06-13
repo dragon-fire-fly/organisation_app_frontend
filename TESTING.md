@@ -16,7 +16,7 @@ Otherwise, all pages passes through the validator with no errors or warnings
 | home (posts)  | https://organisation-app-frontend.herokuapp.com/              | &check; |
 | post          | https://organisation-app-frontend.herokuapp.com/posts/3       | &check; |
 | create post   | https://organisation-app-frontend.herokuapp.com/posts/create  | &check; |
-| edit post     | https://organisation-app-frontend.herokuapp.com/posts/3/edit  |         |
+| edit post     | https://organisation-app-frontend.herokuapp.com/posts/3/edit  | &check; |
 | events        | https://organisation-app-frontend.herokuapp.com/events        | &check; |
 | event         | https://organisation-app-frontend.herokuapp.com/events/3/     | &check; |
 | create event  | https://organisation-app-frontend.herokuapp.com/events/create | &check; |
