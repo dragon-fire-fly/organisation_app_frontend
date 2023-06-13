@@ -15,6 +15,7 @@ import { useHistory } from "react-router";
 import { axiosReq } from "../../api/axiosDefaults";
 import { useRedirect } from "../../hooks/useRedirect";
 import { useCurrentUser } from "../../contexts/CurrentUserContext";
+import AlertMsg from "../../components/AlertMsg";
 
 function PostCreateForm() {
   useRedirect("loggedOut");
@@ -33,6 +34,17 @@ function PostCreateForm() {
 
   const imageInput = useRef(null);
   const history = useHistory();
+
+  // variables for showing alerts on form submission
+  const [showAlert, setShowAlert] = useState(false);
+  const [variant, setVariant] = useState("");
+  const [alertMsg, setAlertMsg] = useState("");
+
+  const handleAlert = () => {
+    setShowAlert(true);
+    setVariant("success");
+    setAlertMsg("Your post was created successfully!");
+  };
 
   useEffect(() => {
     async function fetchEvents() {
@@ -163,6 +175,7 @@ function PostCreateForm() {
       <Button
         className={`${btnStyles.Button} ${btnStyles.Blue}`}
         type="submit"
+        onClick={handleAlert}
       >
         create
       </Button>
@@ -170,61 +183,69 @@ function PostCreateForm() {
   );
 
   return (
-    <Form onSubmit={handleSubmit}>
-      <Row>
-        <Col className="py-2 p-0 p-md-2" md={7} lg={8}>
-          <Container
-            className={`${appStyles.Content} ${styles.Container} d-flex flex-column justify-content-center`}
-          >
-            <Form.Group className="text-center">
-              {image ? (
-                <>
-                  <figure>
-                    <Image className={appStyles.Image} src={image} rounded />
-                  </figure>
-                  <div>
-                    <Form.Label
-                      className={`${btnStyles.Button} ${btnStyles.Blue} btn`}
-                      htmlFor="image-upload"
-                    >
-                      Change the image
-                    </Form.Label>
-                  </div>
-                </>
-              ) : (
-                <Form.Label
-                  className="d-flex justify-content-center"
-                  htmlFor="image-upload"
-                >
-                  <Asset
-                    src={Upload}
-                    message="Click or tap to upload an image"
-                  />
-                </Form.Label>
-              )}
+    <>
+      <AlertMsg
+        showAlert={showAlert}
+        setShowAlert
+        variant={variant}
+        alertMsg={alertMsg}
+      />
+      <Form onSubmit={handleSubmit}>
+        <Row>
+          <Col className="py-2 p-0 p-md-2" md={7} lg={8}>
+            <Container
+              className={`${appStyles.Content} ${styles.Container} d-flex flex-column justify-content-center`}
+            >
+              <Form.Group className="text-center">
+                {image ? (
+                  <>
+                    <figure>
+                      <Image className={appStyles.Image} src={image} rounded />
+                    </figure>
+                    <div>
+                      <Form.Label
+                        className={`${btnStyles.Button} ${btnStyles.Blue} btn`}
+                        htmlFor="image-upload"
+                      >
+                        Change the image
+                      </Form.Label>
+                    </div>
+                  </>
+                ) : (
+                  <Form.Label
+                    className="d-flex justify-content-center"
+                    htmlFor="image-upload"
+                  >
+                    <Asset
+                      src={Upload}
+                      message="Click or tap to upload an image"
+                    />
+                  </Form.Label>
+                )}
 
-              <Form.File
-                id="image-upload"
-                accept="image/*"
-                required={false}
-                onChange={handleChangeImage}
-                ref={imageInput}
-              />
-            </Form.Group>
-            {errors?.image?.map((message, idx) => (
-              <Alert variant="warning" key={idx}>
-                {message}
-              </Alert>
-            ))}
+                <Form.File
+                  id="image-upload"
+                  accept="image/*"
+                  required={false}
+                  onChange={handleChangeImage}
+                  ref={imageInput}
+                />
+              </Form.Group>
+              {errors?.image?.map((message, idx) => (
+                <Alert variant="warning" key={idx}>
+                  {message}
+                </Alert>
+              ))}
 
-            <div className="d-md-none">{textFields}</div>
-          </Container>
-        </Col>
-        <Col md={5} lg={4} className="d-none d-md-block p-0 p-md-2">
-          <Container className={appStyles.Content}>{textFields}</Container>
-        </Col>
-      </Row>
-    </Form>
+              <div className="d-md-none">{textFields}</div>
+            </Container>
+          </Col>
+          <Col md={5} lg={4} className="d-none d-md-block p-0 p-md-2">
+            <Container className={appStyles.Content}>{textFields}</Container>
+          </Col>
+        </Row>
+      </Form>
+    </>
   );
 }
 
