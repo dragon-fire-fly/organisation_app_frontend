@@ -5,7 +5,27 @@
 ## W3C HTML
 
 The [W3C HTL validation service](https://validator.w3.org/) was used to check the validity of HTML in the application.
+
+Although no errors were seen, the info boxes suggested to remove trailing slashes on the void elements so this was done.
 ![Initial W3C test result](documentation/testing/w3c-html-initial.png)
+
+Otherwise, all pages passes through the validator with no errors or warnings
+
+| Page         | URL                                                           | pass    |
+| ------------ | ------------------------------------------------------------- | ------- |
+| home (posts) | https://organisation-app-frontend.herokuapp.com/              | &check; |
+| post         | https://organisation-app-frontend.herokuapp.com/posts/3       | &check; |
+| create post  | https://organisation-app-frontend.herokuapp.com/posts/create  | &check; |
+| edit post    | https://organisation-app-frontend.herokuapp.com/posts/3/edit  |         |
+| events       | https://organisation-app-frontend.herokuapp.com/events        | &check; |
+| event        | https://organisation-app-frontend.herokuapp.com/events/3/     | &check; |
+| create event | https://organisation-app-frontend.herokuapp.com/events/create | &check; |
+| edit event   | https://organisation-app-frontend.herokuapp.com/events/3/edit | &check; |
+| profile      | https://organisation-app-frontend.herokuapp.com/profiles/2    | &check; |
+| calendar     | https://organisation-app-frontend.herokuapp.com/calendar      | &check; |
+| friends      | https://organisation-app-frontend.herokuapp.com/friends       | &check; |
+
+&check;
 
 ## W3C CSS
 
