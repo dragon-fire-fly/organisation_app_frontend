@@ -172,6 +172,11 @@ For this project, several reusable components were created and used throughout v
 
   ![selector switch](documentation/features/selector-switch.png)
 
+  - Alert notification bar
+    The component simply displays custom messages to the user in a notification bar at the top of the screen. It is used in the create and edit post and event forms to convey successful creation/update of these resources.
+
+  ![alert notification bar](documentation/validation/messages.png)
+
 </details>
 
 #### Signup and Signin
@@ -370,20 +375,34 @@ Registered users can update their profile picture and profile details at any tim
 
 ### Validation
 
+Form validation was used throughout the application to ensure only valid data can be submitted to the API. Although there is thorough validation in the backend too, it is important to prevent users from entering invalid data on the frontend too, to ensure that no invalid data slips through the net. It is also important for user experience to notify the user when they have entered invalid data and give hints how to make their data valid.
+
 #### Sign up
 
+Users must enter a username and their password twice
+
 ![sign up validation](documentation/validation/signup-validation-1.png)
+
+Passwords must contain at least 8 characters and not be too common...
 ![sign up validation](documentation/validation/signup-validation-2.png)
+
+... and of course, they must match!
 ![sign up validation](documentation/validation/signup-validation-3.png)
 
 #### Sign in
 
+Login credentials must be entered in order to login
 ![sign in validation](documentation/validation/signin-validation-1.png)
+
+And the username and password must match an entry in the database, or else entry is denied.
 ![sign in validation](documentation/validation/signin-validation-2.png)
 
 #### Images
 
+Custom image validation prevents images larger than 4MB being uploaded. This helps to save space in the database and improve loading times.
 ![profile image validation](documentation/validation/profile-img-validation.png)
+
+Images must also not be too large. A limit of 4096 x 4096 pixels is the limit.
 ![profile image validation](documentation/validation/profile-img-validation-2.png)
 
 #### Posts
@@ -401,12 +420,21 @@ The title, location and start and end time fields are madatory for event creatio
 There is also a custom validator to ensure that end time for an event is after the start time:  
 ![Event creation validation](documentation/validation/event-time-validation.png)
 
-handling user interaction
+#### Handling user interaction
+
+A custom `<AlertMsg />` component was created for displaying success/error messages to the user in a bar under the Navbar. This works correctly and can handle custom success messages, however due to page redirects following creation or editing of resources, the alert only shows briefly before redirect. Additionally, for event creation/editing, the message is shown at the top of the screen and so is not visible unless the user quickly scrolls to the top of the page.
+
+![notifications](documentation/validation/messages.png)
+
+This could be improved in the future by designing a more sophisticated message handling system that lives, for example, in the `<NavBar />` component and receives props from other resources. This could then display the message at the top of the redirected page, removing both problems.
+
+Alternatively, Websockets could be used to convey bi-directional (i.e. between the React client and the DRF server) notifications to users about changes in real time.
 
 ### Future Features
 
 Link to google calendar (through API)
 Link to google maps for location
+Websockets for notifications
 
 ## Testing
 
