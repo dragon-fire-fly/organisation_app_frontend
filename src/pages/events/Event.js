@@ -165,7 +165,6 @@ const Event = (props) => {
               {owner}
             </Link>
             <div className="d-flex align-items-center">
-              {/* <span>{updated_at}</span> */}
               {is_owner && eventPage && (
                 <MoreDropdown
                   handleEdit={handleEdit}
@@ -218,7 +217,7 @@ const Event = (props) => {
           )}
           {link && (
             <Card.Text>
-              <a href={link}>
+              <a href={link} target="_blank" rel="noopener noreferrer">
                 <u>
                   <strong>More info here</strong>
                 </u>
