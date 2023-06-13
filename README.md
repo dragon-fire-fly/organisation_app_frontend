@@ -338,22 +338,22 @@ These pages relate to the following user stories:
   <summary>click to expand</summary>
   Plans and Memories are variants of the same component, depending on whether they were created before or after the start date of their associated event. "Plans" are created when the asset is created before the start of the event, otherwise the asset is a "Memory".
 
-The `<EventPage />` displays the detailed view of an event and also displays any plans that were created.
-The `<EventPastPage />` also displays the detailed view of an event, but also displays the associated memories.
-The `<SelectorSwtich />` component is reused here to switch between the two views.
+  The `<EventPage />` displays the detailed view of an event and also displays any plans that were created.
+  The `<EventPastPage />` also displays the detailed view of an event, but also displays the associated memories.
+  The `<SelectorSwtich />` component is reused here to switch between the two views.
 
-Placeholder text is rendered conditionally depending on whether the event's start date has passed ("The event is upcoming... add plans here!" if so, "This event has passed... add a memory here!" if not).
+  Placeholder text is rendered conditionally depending on whether the event's start date has passed ("The event is upcoming... add plans here!" if so, "This event has passed... add a memory here!" if not).
 
-![plan or memory placeholder text](documentation/features/plan-memory-placeholder.png)
+  ![plan or memory placeholder text](documentation/features/plan-memory-placeholder.png)
 
-Users may add a plan or memory with text content and an image (optional). The `<MemoryCreateForm />` component is embedded inline and plans/memories are added to the top of the list without causing a full page refresh.
+  Users may add a plan or memory with text content and an image (optional). The `<MemoryCreateForm />` component is embedded inline and plans/memories are added to the top of the list without causing a full page refresh.
 
-![plan or memory crud](documentation/features/plan-memory-crud.png)
+  ![plan or memory crud](documentation/features/plan-memory-crud.png)
 
-![plan or memory crud](documentation/features/plans-memories.png)
+  ![plan or memory crud](documentation/features/plans-memories.png)
 
-The following shows the message displayed to the user when there are no plans or memories, depending on whether the event's start date is in the past or future and whether the user is logged in or not.  
- ![no plan or memory message grid](documentation/features/plan-memory-grid.png)
+  The following shows the message displayed to the user when there are no plans or memories, depending on whether the event's start date is in the past or future and whether the user is logged in or not.  
+  ![no plan or memory message grid](documentation/features/plan-memory-grid.png)
 
 </details>
 
