@@ -469,3 +469,7 @@ Many bugs were found and resolved throughout the development of the app. These w
 Occassionally 500 (Internal Server Error) errors can be seen in the console. This can be a particualr problem if there are a lot of events in a user's calendar and they are on the "events" page as events are retrieved from the DB for the "events" page AND a seperate API call is made for the "upcoming events" sidepanel. These errors are caused due to being on the free tier in ElephantSQL and having a limit on the number of database connections available at one time. These errors could be reduced by upgrading to a tier which allows more simultaneous connections.
 
 ![too many db connections](documentation/testing/too-many-db-connections.png)
+
+Some formatting issues remain, for example when an extremely long word/sentence is used as an event name, it stretches the "upcoming events" panel and the date spills out of the box.
+
+![formatting issues](documentation/testing/sidepanel-formatting-issue.png)
