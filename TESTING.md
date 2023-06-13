@@ -439,7 +439,7 @@ All texts used in this project were deemed to be acceptable in terms of colour c
 
 The [Web Accessibility Evaluation Tool](https://wave.webaim.org/) was used to assess the accessibility of the website. This highlights aspects of a website which could make the website hard to navigate and understand for people with disabilities. This particularly focusses on screen reader technology to assist users that use screen readers to understand, nagivate and enjoy the website.
 
-Unfortunately, when different URLs for the application were tested, all routes lead to the /notfound page being rendered, so individual WAVE scores for each page could not be performed. There was one missing alt text identifed, which has since been fixed. A couple of other warnings also show redundant links and "suspicious alternative text". As these are just warnings, they have been left for now.
+Unfortunately, when different URLs for the application were tested, all routes lead to the /notfound page being rendered, so individual WAVE scores for each page could not be performed. There was one missing alt text identifed, which was added to the `<Avatar /> component, however, for an unknown reason, the error remains. A couple of other warnings also show redundant links and "suspicious alternative text". As these are just warnings, they have been left for now.
 
 ![wave testing](documentation/testing/wave-testing.png)
 
