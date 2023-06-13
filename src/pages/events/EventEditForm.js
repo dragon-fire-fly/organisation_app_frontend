@@ -46,21 +46,6 @@ const EventEditForm = () => {
   const history = useHistory();
   const { id } = useParams();
 
-  // variables for showing alerts on form submission
-  const [show, setShow] = useState(false);
-  const handleShow = () => {
-    setShow(true);
-  };
-  const [showAlert, setShowAlert] = useState(false);
-  const [variant, setVariant] = useState("");
-  const [alertMsg, setAlertMsg] = useState("");
-
-  const handleAlert = () => {
-    setShowAlert(true);
-    setVariant("success");
-    setAlertMsg("Your event was edited successfully!");
-  };
-
   useEffect(() => {
     const handleMount = async () => {
       try {
@@ -303,7 +288,6 @@ const EventEditForm = () => {
       <Button
         className={`${btnStyles.Button} ${btnStyles.Blue}`}
         type="submit"
-        onClick={handleAlert}
       >
         save
       </Button>
@@ -311,59 +295,51 @@ const EventEditForm = () => {
   );
 
   return (
-    <>
-      <AlertMsg
-        showAlert={showAlert}
-        setShowAlert
-        variant={variant}
-        alertMsg={alertMsg}
-      />
-      <Form onSubmit={handleSubmit}>
-        <Row className="d-flex justify-content-center">
-          <Col md={8} lg={8}>
-            <Container
-              className={`${appStyles.Content} ${styles.Container} d-flex flex-column justify-content-center`}
-            >
-              <Form.Group className="text-center">
-                <>
-                  <figure>
-                    <Image className={appStyles.Image} src={image} rounded />
-                  </figure>
-                  <div>
-                    <Form.Label
-                      className={`${btnStyles.Button} ${btnStyles.Blue} btn`}
-                      htmlFor="image-upload"
-                    >
-                      Change the image
-                    </Form.Label>
-                  </div>
-                </>
+    <Form onSubmit={handleSubmit}>
+      <Row className="d-flex justify-content-center">
+        <Col md={8} lg={8}>
+          <Container
+            className={`${appStyles.Content} ${styles.Container} d-flex flex-column justify-content-center`}
+          >
+            <Form.Group className="text-center">
+              <>
+                <figure>
+                  <Image className={appStyles.Image} src={image} rounded />
+                </figure>
+                <div>
+                  <Form.Label
+                    className={`${btnStyles.Button} ${btnStyles.Blue} btn`}
+                    htmlFor="image-upload"
+                  >
+                    Change the image
+                  </Form.Label>
+                </div>
+              </>
 
-                <Form.File
-                  id="image-upload"
-                  accept="image/*"
-                  onChange={handleChangeImage}
-                  ref={imageInput}
-                />
-              </Form.Group>
-              {errors?.image?.map((message, idx) => (
-                <Alert variant="warning" key={idx}>
-                  {message}
-                </Alert>
-              ))}
+              <Form.File
+                id="image-upload"
+                accept="image/*"
+                onChange={handleChangeImage}
+                ref={imageInput}
+              />
+            </Form.Group>
+            {errors?.image?.map((message, idx) => (
+              <Alert variant="warning" key={idx}>
+                {message}
+              </Alert>
+            ))}
 
-              <div className="d-md-none">{textFields}</div>
-            </Container>
-          </Col>
-        </Row>
+            <div className="d-md-none">{textFields}</div>
+          </Container>
+        </Col>
+      </Row>
 
-        <Row className="justify-content-md-center">
-          <Col md={10} lg={10} className="d-none d-md-block p-0 p-md-2">
-            <Container className={appStyles.Content}>{textFields}</Container>
-          </Col>
-        </Row>
-      </Form>
-    </>
+      <Row className="justify-content-md-center">
+        <Col md={10} lg={10} className="d-none d-md-block p-0 p-md-2">
+          <Container className={appStyles.Content}>{textFields}</Container>
+        </Col>
+      </Row>
+    </Form>
   );
 };
 

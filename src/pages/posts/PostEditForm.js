@@ -38,17 +38,6 @@ function PostEditForm() {
   const history = useHistory();
   const { id } = useParams();
 
-  // variables for showing alerts on form submission
-  const [showAlert, setShowAlert] = useState(false);
-  const [variant, setVariant] = useState("");
-  const [alertMsg, setAlertMsg] = useState("");
-
-  const handleAlert = () => {
-    setShowAlert(true);
-    setVariant("success");
-    setAlertMsg("Your post was edited successfully!");
-  };
-
   useEffect(() => {
     const handleMount = async () => {
       try {
@@ -215,7 +204,6 @@ function PostEditForm() {
       <Button
         className={`${btnStyles.Button} ${btnStyles.Blue}`}
         type="submit"
-        onClick={handleAlert}
       >
         save
       </Button>
@@ -223,54 +211,46 @@ function PostEditForm() {
   );
 
   return (
-    <>
-      <AlertMsg
-        showAlert={showAlert}
-        setShowAlert
-        variant={variant}
-        alertMsg={alertMsg}
-      />
-      <Form onSubmit={handleSubmit}>
-        <Row>
-          <Col className="py-2 p-0 p-md-2" md={7} lg={8}>
-            <Container
-              className={`${appStyles.Content} ${styles.Container} d-flex flex-column justify-content-center`}
-            >
-              <Form.Group className="text-center">
-                <figure>
-                  <Image className={appStyles.Image} src={image} rounded />
-                </figure>
-                <div>
-                  <Form.Label
-                    className={`${btnStyles.Button} ${btnStyles.Blue} btn`}
-                    htmlFor="image-upload"
-                  >
-                    Change the image
-                  </Form.Label>
-                </div>
+    <Form onSubmit={handleSubmit}>
+      <Row>
+        <Col className="py-2 p-0 p-md-2" md={7} lg={8}>
+          <Container
+            className={`${appStyles.Content} ${styles.Container} d-flex flex-column justify-content-center`}
+          >
+            <Form.Group className="text-center">
+              <figure>
+                <Image className={appStyles.Image} src={image} rounded />
+              </figure>
+              <div>
+                <Form.Label
+                  className={`${btnStyles.Button} ${btnStyles.Blue} btn`}
+                  htmlFor="image-upload"
+                >
+                  Change the image
+                </Form.Label>
+              </div>
 
-                <Form.File
-                  id="image-upload"
-                  accept="image/*"
-                  onChange={handleChangeImage}
-                  ref={imageInput}
-                />
-              </Form.Group>
-              {errors?.image?.map((message, idx) => (
-                <Alert variant="warning" key={idx}>
-                  {message}
-                </Alert>
-              ))}
+              <Form.File
+                id="image-upload"
+                accept="image/*"
+                onChange={handleChangeImage}
+                ref={imageInput}
+              />
+            </Form.Group>
+            {errors?.image?.map((message, idx) => (
+              <Alert variant="warning" key={idx}>
+                {message}
+              </Alert>
+            ))}
 
-              <div className="d-md-none">{textFields}</div>
-            </Container>
-          </Col>
-          <Col md={5} lg={4} className="d-none d-md-block p-0 p-md-2">
-            <Container className={appStyles.Content}>{textFields}</Container>
-          </Col>
-        </Row>
-      </Form>
-    </>
+            <div className="d-md-none">{textFields}</div>
+          </Container>
+        </Col>
+        <Col md={5} lg={4} className="d-none d-md-block p-0 p-md-2">
+          <Container className={appStyles.Content}>{textFields}</Container>
+        </Col>
+      </Row>
+    </Form>
   );
 }
 
