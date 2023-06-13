@@ -17,9 +17,13 @@ Link to the back-end repository - [EventTrove Back-End Repo](https://github.com/
 
 ## Project Goals
 
-The primary goal of this project was to create a full stack application where users can view, add, edit and delete events. These events can be viewed as a list, individually and as a calendar view. Users can add posts about specific events to share and remind other users about the upcoming events, or add "memories" to events which have already passed, allowing different users to collate their experiences together in one place.
+The primary goal of this project was to create a full stack application where users can view, add, edit and delete events. These events can be viewed as a list, individually and as a calendar view. Users can add posts about specific events to share and remind other users about the upcoming events, or add "plans" to upcoming events and "memories" to events which have already passed, allowing different users to collate their experiences together in one place.
 
-## Agile
+## Agile Development Process
+
+### GitHub Projects
+
+GitHub Projects served as an Agile tool for this project. It isn't a specialized tool, but with the right tags and project creation/issue assignments, it can be made to work.
 
 These goals were split into four major themes and used as "Epics" for the agile development of the application. The Epics were as follows:
 
@@ -466,7 +470,7 @@ Users must enter a username and their password twice
 Passwords must contain at least 8 characters and not be too common...
 ![sign up validation](documentation/validation/signup-validation-2.png)
 
-... and of course, they must match!
+... and of course, they must match!  
 ![sign up validation](documentation/validation/signup-validation-3.png)
 
 #### Sign in
@@ -512,10 +516,11 @@ Alternatively, Websockets could be used to convey bi-directional (i.e. between t
 
 ### Future Features
 
-Link to google calendar (through API)
-Link to google maps for location
-Websockets for notifications
-Improve interface
+- Link to google calendar (through API). This would allow users to synchronise their EvntTrove calendar to their actual Google calendar and be able to keep track of and add to events wherever they are.
+- Link to map service for location. This could Google maps or another map service provider. From here, a small interactive map could be rendered on each event to allow users to see exactly where the event will take place
+- A weather widget to display the weather forecast for an event at the time and specific location the event will take palce
+- Websockets for notifications. As mentioned above, the notification system could be improved by useing websockets.
+- Improve interface. The general user interface is a bit plain and very similar to the Moments walkthrough guide. The focus of this project was on the features and calendar integration, but it would be nice to improve the aesthetics in the future too!
 
 ## Testing
 
