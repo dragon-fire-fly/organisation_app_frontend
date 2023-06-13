@@ -14,7 +14,7 @@ const NotFound = () => {
           Sorry, that page couldn&#39;t be found!
         </div>
         <div>
-          <Asset src={NotFoundImg} />
+          <Asset alt="page not found" src={NotFoundImg} />
         </div>
         <div className={`text-center`}>
           <Button className={styles.Button}>

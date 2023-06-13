@@ -11,21 +11,20 @@ Although no errors were seen, the info boxes suggested to remove trailing slashe
 
 Otherwise, all pages passes through the validator with no errors or warnings
 
-| Page         | URL                                                           | pass    |
-| ------------ | ------------------------------------------------------------- | ------- |
-| home (posts) | https://organisation-app-frontend.herokuapp.com/              | &check; |
-| post         | https://organisation-app-frontend.herokuapp.com/posts/3       | &check; |
-| create post  | https://organisation-app-frontend.herokuapp.com/posts/create  | &check; |
-| edit post    | https://organisation-app-frontend.herokuapp.com/posts/3/edit  |         |
-| events       | https://organisation-app-frontend.herokuapp.com/events        | &check; |
-| event        | https://organisation-app-frontend.herokuapp.com/events/3/     | &check; |
-| create event | https://organisation-app-frontend.herokuapp.com/events/create | &check; |
-| edit event   | https://organisation-app-frontend.herokuapp.com/events/3/edit | &check; |
-| profile      | https://organisation-app-frontend.herokuapp.com/profiles/2    | &check; |
-| calendar     | https://organisation-app-frontend.herokuapp.com/calendar      | &check; |
-| friends      | https://organisation-app-frontend.herokuapp.com/friends       | &check; |
-
-&check;
+| Page          | URL                                                           | pass    |
+| ------------- | ------------------------------------------------------------- | ------- |
+| home (posts)  | https://organisation-app-frontend.herokuapp.com/              | &check; |
+| post          | https://organisation-app-frontend.herokuapp.com/posts/3       | &check; |
+| create post   | https://organisation-app-frontend.herokuapp.com/posts/create  | &check; |
+| edit post     | https://organisation-app-frontend.herokuapp.com/posts/3/edit  |         |
+| events        | https://organisation-app-frontend.herokuapp.com/events        | &check; |
+| event         | https://organisation-app-frontend.herokuapp.com/events/3/     | &check; |
+| create event  | https://organisation-app-frontend.herokuapp.com/events/create | &check; |
+| edit event    | https://organisation-app-frontend.herokuapp.com/events/3/edit | &check; |
+| profile       | https://organisation-app-frontend.herokuapp.com/profiles/2    | &check; |
+| calendar      | https://organisation-app-frontend.herokuapp.com/calendar      | &check; |
+| friends       | https://organisation-app-frontend.herokuapp.com/friends       | &check; |
+| 404 not found | https://organisation-app-frontend.herokuapp.com/notfound      | &check; |
 
 ## W3C CSS
 
@@ -373,6 +372,9 @@ A smaller screen size (320px) was also tested to ensure no major issues at a sma
 
 ![navbar overspill](documentation/testing/navbar-overspill.png)
 
+Screenshots from testing on a Samsung Galaxy S20 phone with Chrome browser  
+![samsung screenshots](documentation/testing/samsung-screenshots.png)
+
 ## Browser Compatibility
 
 The application was tested on Chrome, Firefox and Opera with no major difference or issues.
@@ -414,6 +416,18 @@ Contrast between the colours used in this project were assessed using an [eight-
 All texts used in this project were deemed to be acceptable in terms of colour contrast.
 
 ![EightShapes grid](documentation/testing/eight-shapes-grid.png)
+
+### Wave accessibility tool
+
+The [Web Accessibility Evaluation Tool](https://wave.webaim.org/) was used to assess the accessibility of the website. This highlights aspects of a website which could make the website hard to navigate and understand for people with disabilities. This particularly focusses on screen reader technology to assist users that use screen readers to understand, nagivate and enjoy the website.
+
+Unfortunately, when different URLs for the application were tested, all routes lead to the /notfound page being rendered, so individual WAVE scores for each page could not be performed. There was one missing alt text identifed, which has since been fixed. A couple of other warnings also show redundant links and "suspicious alternative text". As these are just warnings, they have been left for now.
+
+![wave testing](documentation/testing/wave-testing.png)
+
+## Defensive Programming
+
+Defensive programming techniques have been applied to this project to ensure correct security is in place and that users can only access areas they are supposed to have access to. This includes form validation, which is illustrated below.
 
 ## Bugs
 
