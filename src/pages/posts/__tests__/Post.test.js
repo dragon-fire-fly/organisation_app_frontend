@@ -3,7 +3,7 @@ import Post from "../Post";
 import { render, screen } from "@testing-library/react";
 import { act } from "react-dom/test-utils";
 
-test("post owner avatar renders", () => {
+test("the post owners avatar renders", () => {
   render(
     <Router>
       <Post />
@@ -14,14 +14,14 @@ test("post owner avatar renders", () => {
   expect(postOwnerAvatar).toBeInTheDocument();
 });
 
-describe("renders post component", () => {
+describe("the post component renders", () => {
   const renderComponent = () =>
     render(
       <Router>
         <Post />
       </Router>
     );
-  test("renders the post component", async () => {
+  test("the post component renders", async () => {
     renderComponent();
     await act(async () => {
       expect(true).toEqual(true);
