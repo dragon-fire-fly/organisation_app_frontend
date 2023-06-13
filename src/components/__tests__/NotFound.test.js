@@ -1,7 +1,6 @@
 import { render, screen, fireEvent } from "@testing-library/react";
 import { BrowserRouter as Router } from "react-router-dom";
 import NotFound from "../../pages/NotFound";
-import { CurrentUserProvider } from "../../contexts/CurrentUserContext";
 
 test("NotFound page renders", () => {
   render(

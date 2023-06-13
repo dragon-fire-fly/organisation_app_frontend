@@ -63,6 +63,24 @@ There are still "Do not pass children as props..." errors, but these have been i
 
 ## Automated Testing
 
+Jest tests were conducted on a couple of components to cehck that they were rendering correctly.
+
+A mock service worker was created to avoid making repeated API calls to test the functionality of the React frontend.
+The `<NavBar />`, `<NotFound />` and `<Post />` components were tested with the following results:
+
+| Component | Test                                                    | Passes test? |
+| --------- | ------------------------------------------------------- | ------------ |
+| NavBar    | Navbar renders                                          | &check;      |
+| NavBar    | renders link to the user profile for a logged in user   | &check;      |
+| NavBar    | renders link to the events page                         | &check;      |
+| NavBar    | renders link to the posts page                          | &check;      |
+| NavBar    | renders link to the calendar for a logged in user       | &check;      |
+| NavBar    | renders link to the add post page for a logged in user  | &check;      |
+| NavBar    | renders link to the add event page for a logged in user | &check;      |
+| NotFound  | NotFound page renders                                   | &check;      |
+| Post      | post owner avatar renders                               | &check;      |
+| Post      | post component renders                                  | &check;      |
+
 ## Manual Testing
 
 Each component of the application was manually tested against the user stories to ensure that the acceptance criteria had been met and that all components function correctly.
