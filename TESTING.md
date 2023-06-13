@@ -387,7 +387,8 @@ All texts used in this project were deemed to be acceptable in terms of colour c
 
 ## Bugs
 
-Resolved
+### Resolved
+
 Many bugs were found and resolved throughout the development of the app. These were recorded using the standard "Bug report" issue template in Github. These can be viewed in the Gothub [bug log](https://github.com/dragon-fire-fly/organisation_app_frontend/issues?q=label%3Abug+is%3Aclosed) for the project.
 
 | Issue # | Bug title                                                                                                                                                       | Resolved |
@@ -400,3 +401,9 @@ Many bugs were found and resolved throughout the development of the app. These w
 |   51    | [Editing an image in the edit memory form changes the image in the memory create form ](https://github.com/dragon-fire-fly/organisation_app_frontend/issues/51) | &check;  |
 |   52    | [Cannot add an image when memory is edited if no image in original memory ](https://github.com/dragon-fire-fly/organisation_app_frontend/issues/52)             | &check;  |
 |   53    | [Last image added to memory not cleared from form](https://github.com/dragon-fire-fly/organisation_app_frontend/issues/53)                                      | &check;  |
+
+### Unresolved
+
+Occassionally 500 (Internal Server Error) errors can be seen in the console. This can be a particualr problem if there are a lot of events in a user's calendar and they are on the "events" page as events are retrieved from the DB for the "events" page AND a seperate API call is made for the "upcoming events" sidepanel. These errors are caused due to being on the free tier in ElephantSQL and having a limit on the number of database connections available at one time. These errors could be reduced by upgrading to a tier which allows more simultaneous connections.
+
+![too many db connections](documentation/testing/too-many-db-connections.png)
