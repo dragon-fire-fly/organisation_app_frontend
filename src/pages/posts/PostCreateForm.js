@@ -15,7 +15,6 @@ import { useHistory } from "react-router";
 import { axiosReq } from "../../api/axiosDefaults";
 import { useRedirect } from "../../hooks/useRedirect";
 import { useCurrentUser } from "../../contexts/CurrentUserContext";
-import AlertMsg from "../../components/AlertMsg";
 
 function PostCreateForm() {
   useRedirect("loggedOut");

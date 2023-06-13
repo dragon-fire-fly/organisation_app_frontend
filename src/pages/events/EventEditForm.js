@@ -14,7 +14,6 @@ import styles from "../../styles/PostCreateEditForm.module.css";
 import appStyles from "../../App.module.css";
 import btnStyles from "../../styles/Button.module.css";
 import Image from "react-bootstrap/Image";
-import AlertMsg from "../../components/AlertMsg";
 
 const EventEditForm = () => {
   const [errors, setErrors] = useState({});
